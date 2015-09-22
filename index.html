@@ -5,72 +5,123 @@
 		<title>Wish Banana</title>
 
 		<style>
-			body > div {
+			body > div.page {
 				width: 80vw;
 				height: 100vh;
 				margin: 0 auto;
+				overflow: hidden;
+				position: relative;
 			}
 
-			@keyframes mainMenuBg {
-				from { background-position: 0 0; }
-				to { background-position: 100% 0; }
+			@keyframes menuBg {
+				0%		{ background-position: 0 0; }
+				100%	{ background-position: 432px 0; }
 			}
 
-			#mainMenu {
-				background-image: url(clouds.jpg);
+			#menu {
+				background-image: url(assets/clouds.jpg);
 				background-position: 0px 0px;
 				background-repeat: repeat;
-				animation: mainMenuBg 4s linear infinite;
+				animation: menuBg 10s linear infinite;
+			}
+
+			@keyframes menuTitle {
+				0%		{ text-shadow: 0 0 10px white; }
+				50%		{ text-shadow: 0 0 25px white; }
+				100%	{ text-shadow: 0 0 10px white; }
 			}
 
 			#title {
 				position: absolute;
-				top: 15vh;
-				left: 0;
-				width: 100%;
+				top: 10vh;
+				left: 50%;
+				transform: translate(-50%, 0);
+
 				font-size: 15vh;
 				font-family: sans-serif;
 				font-weight: bold;
 				text-align: center;
 				color: #CC99FF;
-				white-space: nowrap;
-				background-color: white;
+				z-index: 100;
+
+				animation: menuTitle 1s linear infinite;
+			}
+
+			#logo {
+				position: absolute;
+				top: 25vh;
+				left: 50%;
+				transform: translate(-53%, 0);
+				z-index: 80;
+
+				height: 60vh;
 			}
 
 			#play {
 				position: absolute;
+				bottom: 10vh;
 				left: 50%;
-				bottom: 15vh;
-			}
+				transform: translate(-50%, 0);
+				z-index: 90;
 
-			/* inner div used to center */
-			#play > div {
-				position: relative;
-				left: -50%;
-			}
-
-			#play button {
 				font-size: 10vh;
 				font-family: sans-serif;
 				background-color: #CC99FF;
 				color: #FFF;
-				border: 1px #CC99FF;
+
+				border: 1px solid black;
+				padding: 3vh;
 			}
 
-			#play button:hover {
-				background-color: #947BAE;
+			#play:hover {
+				box-shadow: inset 0 0 5px white;
+				border: 1px solid white;
 			}
 		</style>
+
 		<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
 		<script>
 			$('document').ready(function onDocumentReady () {
-				// Hide other windows, leaving mainMenu open
-				$('body > div').not('#mainMenu').hide();
+				function switchToPage(id) {
+					var $pages = $('body > div');
+					var $thePage = $pages.filter('#' + id);
+
+					var cbs = $thePage.data('wbBeforeShowCallbacks');
+					if (cbs !== undefined) {
+						for (var i = 0; i < cbs.length; i++) {
+							cbs[i]();
+						}
+					}
+
+					$pages.hide();
+					$thePage.show();
+				}
+
+				function addBeforeShowCallback (id, cb) {
+					var $thePage = $('body > div').filter('#' + id);
+					var cbs = $thePage.data('wbBeforeShowCallbacks');
+					if (cbs === undefined) {
+						cbs = [];
+					}
+					cbs.push(cb);
+					$thePage.data('wbBeforeShowCallbacks', cbs);
+				}
+
+				(function initAll () {
+					switchToPage('menu');
+				})();
 
 				(function initMainMenu () {
-					$("#play button").click(function onClickPlay () {
-						$('body > div').hide();
-						$('#game').show();
+					$("#play").click(function onClickPlay () {
+						switchToPage('game');
+					});
+				})();
+
+				(function initGame () {
+					addBeforeShowCallback('game', function scheduleBackToMenu () {
+						setTimeout(function backToMenu () {
+							switchToPage('menu');
+						}, 2000);
 					});
 				})();
 			});
@@ -78,16 +129,14 @@
 	</head>
 
 	<body>
-		<div id="mainMenu">
-			<div id="title">wish banana</div>
+		<div id="menu" class="page">
+			<span id="title">wish banana</span>
 
-			<div id="play">
-				<div>
-					<button>play</button>
-				</div>
-			</div>
+			<img src="assets/banana.png" id="logo" />
+
+			<button id="play">play</button>
 		</div>
-		<div id="game">
+		<div id="game" class="page">
 			The game!
 			<canvas id="canvas">
 			</canvas>
