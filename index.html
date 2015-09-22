@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Wish Banana</title>
+
+		<style>
+			body > div {
+				width: 80vw;
+				height: 100vh;
+				margin: 0 auto;
+			}
+
+			@keyframes mainMenuBg {
+				from { background-position: 0 0; }
+				to { background-position: 100% 0; }
+			}
+
+			#mainMenu {
+				background-image: url(clouds.jpg);
+				background-position: 0px 0px;
+				background-repeat: repeat;
+				animation: mainMenuBg 4s linear infinite;
+			}
+
+			#title {
+				position: absolute;
+				top: 15vh;
+				left: 0;
+				width: 100%;
+				font-size: 15vh;
+				font-family: sans-serif;
+				font-weight: bold;
+				text-align: center;
+				color: #CC99FF;
+				white-space: nowrap;
+				background-color: white;
+			}
+
+			#play {
+				position: absolute;
+				left: 50%;
+				bottom: 15vh;
+			}
+
+			/* inner div used to center */
+			#play > div {
+				position: relative;
+				left: -50%;
+			}
+
+			#play button {
+				font-size: 10vh;
+				font-family: sans-serif;
+				background-color: #CC99FF;
+				color: #FFF;
+				border: 1px #CC99FF;
+			}
+
+			#play button:hover {
+				background-color: #947BAE;
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery-2.1.4.js"></script>
+		<script>
+			$('document').ready(function onDocumentReady () {
+				// Hide other windows, leaving mainMenu open
+				$('body > div').not('#mainMenu').hide();
+
+				(function initMainMenu () {
+					$("#play button").click(function onClickPlay () {
+						$('body > div').hide();
+						$('#game').show();
+					});
+				})();
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="mainMenu">
+			<div id="title">wish banana</div>
+
+			<div id="play">
+				<div>
+					<button>play</button>
+				</div>
+			</div>
+		</div>
+		<div id="game">
+			The game!
+			<canvas id="canvas">
+			</canvas>
+			<div id="infoBar">
+			</div>
+		</div>
+	</body>
+</html>
