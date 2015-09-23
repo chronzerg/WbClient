@@ -1,0 +1,95 @@
+body > div.page {
+	width: 80vw;
+	height: 100vh;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+@keyframes menuBg {
+	0%		{ background-position: 0 0; }
+	100%	{ background-position: 432px 0; }
+}
+
+#menu {
+	background-image: url(clouds.jpg);
+	background-position: 0px 0px;
+	background-repeat: repeat;
+	animation: menuBg 10s linear infinite;
+}
+
+@keyframes menuTitle {
+	0%		{ text-shadow: 0 0 10px black; }
+	50%		{ text-shadow: 0 0 25px black; }
+	100%	{ text-shadow: 0 0 10px black; }
+}
+
+#title {
+	position: absolute;
+	top: 10vh;
+	left: 50%;
+	transform: translate(-50%, 0);
+
+	font-size: 15vmin;
+	font-family: sans-serif;
+	font-weight: bold;
+	text-align: center;
+	color: #CC99FF;
+	z-index: 100;
+
+	/* Adding multiple shadows simulates 3d text */
+	text-shadow:
+		0 1px 0 #ccc,
+		0 2px 0 #c9c9c9,
+		0 3px 0 #bbb,
+		0 4px 0 #b9b9b9,
+		0 5px 0 #aaa,
+		0 6px 1px rgba(0,0,0,.1),
+		0 0 5px rgba(0,0,0,.1),
+		0 1px 3px rgba(0,0,0,.3),
+		0 3px 5px rgba(0,0,0,.2),
+		0 5px 10px rgba(0,0,0,.25),
+		0 10px 10px rgba(0,0,0,.2),
+		0 20px 20px rgba(0,0,0,.15);
+}
+
+#logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 80;
+
+	height: 40vmax;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#menuButtons {
+	position: absolute;
+	bottom: 10vh;
+	left: 50%;
+	transform: translate(-50%, 0);
+	z-index: 90;
+	white-space: nowrap;
+}
+
+#menuButtons > button {
+	font-size: 6vmin;
+	font-family: sans-serif;
+	background-color: #CC99FF;
+	color: #FFF;
+
+	border: 1px solid black;
+	padding: 1vmax;
+}
+
+#menuButtons > button:hover {
+	box-shadow: inset 0 0 5px white;
+	border: 1px solid white;
+	z-index: 110;
+}
+
+button#play {
+	font-size: 10vmin;
+}
