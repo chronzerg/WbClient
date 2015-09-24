@@ -1,52 +1,75 @@
-$('document').ready(function onDocumentReady () {
-	function switchToPage(id, complete) {
-		var $pages = $('body > div');
-		var $thePage = $pages.filter('#' + id);
+function switchToPage(id) {
+	var $pages = $('body > div');
+	var $thePage = $pages.filter('#' + id);
+	var callbacks;
 
-		var callbacks = $thePage.data('wbBeforeShowCallbacks');
-		if (callbacks !== undefined) {
-			for (var i = 0; i < callbacks.length; i++) {
-				callbacks[i]();
-			}
+	callbacks = $thePage.data('wbBeforeShowCallbacks');
+	if (callbacks !== undefined) {
+		for (var i = 0; i < callbacks.length; i++) {
+			callbacks[i]();
 		}
+	}
 
-		$pages.fadeOut({
-			complete: function pageFadeOutComplete () {
-				$thePage.show();
-				if (complete !== undefined) {
-					complete();
+	$pages.fadeOut({
+		complete: function pagesFadeOutComplete () {
+			$thePage.show();
+
+			callbacks = $thePage.data('wbAfterShowCallbacks');
+			if (callbacks !== undefined) {
+				for (var i = 0; i < callbacks.length; i++) {
+					callbacks[i]();
 				}
 			}
-		});
-	}
-
-	function addBeforeShowCallback (id, cb) {
-		var $thePage = $('body > div').filter('#' + id);
-		var callbacks = $thePage.data('wbBeforeShowCallbacks');
-		if (callbacks === undefined) {
-			callbacks = [];
 		}
-		callbacks.push(cb);
-		$thePage.data('wbBeforeShowCallbacks', callbacks);
-	}
+	});
+}
 
+function addPageCallback (id, dataId, cb) {
+	var $thePage = $('body > div').filter('#' + id);
+	var callbacks = $thePage.data(dataId);
+	if (callbacks === undefined) {
+		callbacks = [];
+	}
+	callbacks.push(cb);
+	$thePage.data(dataId, callbacks);
+}
+
+function addBeforeShowCallback (id, cb) {
+	addPageCallback(id, 'wbBeforeShowCallbacks', cb);
+}
+
+function addAfterShowCallback (id, cb) {
+	addPageCallback(id, 'wbAfterShowCallbacks', cb);
+}
+
+$('document').ready(function onDocumentReady () {
 	(function initAll () {
 		// Hide all the pages except the menu
 		$('body > div').hide();
 		$('#menu').show();
 	})();
 
-	(function initMainMenu () {
-		$("#play").click(function onClickPlay () {
+	(function initMenu () {
+		$('#storyButton').click(function onClickStory () {
+			switchToPage('story');
+		});
+
+		$('#playButton').click(function onClickPlay () {
 			switchToPage('game');
+		});
+
+		$('#helpButton').click(function onClickHelp () {
+			// TODO
+		});
+	})();
+
+	(function initStory () {
+		$('#storyToMenuButton').click(function onClickStoryBack () {
+			switchToPage('menu');
 		});
 	})();
 
 	(function initGame () {
-		addBeforeShowCallback('game', function scheduleBackToMenu () {
-			setTimeout(function backToMenu () {
-				switchToPage('menu');
-			}, 2000);
-		});
+		// TODO
 	})();
 });

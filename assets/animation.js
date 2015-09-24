@@ -1,81 +1,59 @@
-function framesFromSingleImage (image, frameCoords) {
-	var frames = function (frameNdx, canvas, x, y) {
-		var ctx = canvas.getContext('2d');
-
-		var sx = frameCoords[frameNdx].x;
-		var sy = frameCoords[frameNdx].y;
-		var w = frameCoords[frameNdx].w;
-		var h = frameCoords[frameNdx].h;
-
-		var scale = frameCoords[frameNdx].scale;
-
-		// (x,y) is the center point of this frame. we need to convert this to
-		// the (dx,dy) which is the upper left corner of the frame.
-		var dx = x - ((w / 2) * scale);
-		var dy = y - ((h / 2) * scale);
-
-		ctx.drawImage(image, sx, sy, w, h, dx, dy, round(w*scale), round(h*scale));
-	};
-	frames.length = frameCoords.length;
-	return frames;
-}
-
-function Animation (frames, time, x, y, scale, looping, done) {
-	if (scale === undefined) {
-		scale = 1;
-	}
-
-	if (looping === undefined) {
-		looping = false;
-	}
-
-	var updatePeriod = time / frames.length;
-	var frameNdx = 0;
+function NumberAnimation (value, x, y) {
+	var startTime;
 	var playing = false;
-	var callbackId;
-
-	function updateState () {
-		frameNdx++;
-		if (frameNdx >= frames.length) {
-			if (looping) {
-				frameNdx = 0;
-			}
-			else {
-				playing = false;
-
-				if (done !== undefined) {
-					done();
-				}
-			}
-		}
-	}
 
 	this.play = function () {
+		startTime = new Date();
 		playing = true;
-		frameNdx = 0;
-		callbackId = setInterval(updateState, updatePeriod);
 	};
 
 	this.stop = function () {
 		playing = false;
-		clearInterval(callbackId);
 	};
 
-	this.draw = function (canvas) {
+	this.draw = function (canvas, x, y) {
 		if (playing) {
-			frames(frameNdx, canvas, x, y);
+			var time = (new Date()).getTime() - startTime.getTime();
+
+			if (time < 1000) {
+				var progress;
+				var ctx = canvas.getContext('2d');
+
+				ctx.textAlign = 'center';
+				ctx.textBaseline = 'middle';
+
+				// First half of a second
+				if (time < 500) {
+					// percentage of progress for the first half of the animation
+					progress = time / 500;
+
+					ctx.font = '50% sans-serif';
+					ctx.fillText(value, x, y);
+				}
+				else {
+					// percentage of progress for the second half of the animation
+					progress = (time - 500) / 500;
+					var size = 50 * (1 - progress);
+
+					ctx.font = size + '% sans-serif';
+					ctx.fillText(value, x, y);
+				}
+			}
+			else {
+				playing = false;
+			}
 		}
 	};
- }
+}
 
- function AnimationEngine (canvas) {
+function AnimationEngine (canvas) {
  	var nextId = 0;
  	var animations = {};
  	var playing = true;
 
  	function renderFrame () {
- 		for (var a in animations) {
- 			a.draw(canvas);
+ 		for (var id in animations) {
+ 			animations[id].draw(canvas);
  		}
 
  		if (playing) {
@@ -110,8 +88,8 @@ function Animation (frames, time, x, y, scale, looping, done) {
  		playing = true;
 
  		if (startAnimations) {
- 			for (var a in animations) {
- 				a.play();
+ 			for (var id in animations) {
+ 				animations[id].play();
  			}
  		}
 
@@ -121,8 +99,8 @@ function Animation (frames, time, x, y, scale, looping, done) {
  	this.stop = function () {
  		playing = false;
 
- 		for (var a in animations) {
- 			a.stop();
+ 		for (var id in animations) {
+ 			animations[id].stop();
  		}
  	};
- }
+}
