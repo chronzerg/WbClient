@@ -1,5 +1,9 @@
 /**************** General ****************/
 
+html {
+	font-family: sans-serif;
+}
+
 body > div.page {
 	width: 80vw;
 	height: 100vh;
@@ -8,7 +12,11 @@ body > div.page {
 	position: relative;
 }
 
-.text3d {
+h1 {
+	color: #CC99FF;
+	font-size: 15vmin;
+	font-weight: bold;
+
 	/* Adding multiple shadows simulates 3d text */
 	text-shadow:
 		0 1px 0 #ccc,
@@ -27,10 +35,8 @@ body > div.page {
 
 button {
 	font-size: 6vmin;
-	font-family: sans-serif;
 	background-color: #CC99FF;
 	color: #FFF;
-
 	border: 1px solid black;
 	padding: 1vmax;
 }
@@ -57,16 +63,11 @@ button:hover {
 
 #title {
 	position: absolute;
-	top: 10vh;
+	top: 8vh;
 	left: 50%;
 	transform: translate(-50%, 0);
-
-	font-size: 15vmin;
-	font-family: sans-serif;
-	font-weight: bold;
-	text-align: center;
-	color: #CC99FF;
 	z-index: 100;
+	text-align: center;
 }
 
 #logo {
@@ -75,7 +76,6 @@ button:hover {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 80;
-
 	height: 40vmax;
 	max-width: 100%;
 	max-height: 100%;
@@ -105,6 +105,7 @@ button#playButton {
 	padding: 0 10px;
 	box-shadow: inset 0px 0px 20px 1px rgba(0,0,0,0.75);
 	background-color: white;
+	position: relative;
 }
 
 #storyTitle {
@@ -112,13 +113,12 @@ button#playButton {
 	text-align: center;
 	font-size: 10vh;
 	color: #CC99FF;
-	position: relative;
 }
 
 #storyToMenuButton {
 	position: absolute;
-	top: 3vh;
-	left: 1vh;
+	top: 20px;
+	left: 20px;
 	padding: 1px;
-	font-size: 5vh;
+	font-size: 5vmin;
 }
