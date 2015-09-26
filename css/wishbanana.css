@@ -61,6 +61,13 @@ button:hover {
 	z-index: 200;
 }
 
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 
 /**************** Menu ****************/
 
@@ -70,7 +77,7 @@ button:hover {
 }
 
 #menu, #story {
-	background-image: url(clouds.jpg);
+	background-image: url(../assets/clouds.jpg);
 	background-position: 0px 0px;
 	background-repeat: repeat;
 	animation: menuBg 10s linear infinite;
@@ -86,10 +93,6 @@ button:hover {
 }
 
 #logo {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	z-index: 80;
 	height: 40vmax;
 	max-width: 100%;
@@ -117,11 +120,7 @@ button#playButton {
 	background-color: white;
 	width: 80%;
 	max-width: 80vmin;
-	border: 10px solid #CC99FF;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	box-shadow: inset 0px 0px 20px 1px rgba(0,0,0,0.75);
 	text-align: center;
 	z-index: 210;
 	padding: 10px;
@@ -153,4 +152,11 @@ button#playButton {
 	left: 20px;
 	padding: 1px;
 	font-size: 5vmin;
+}
+
+
+/**************** Story ****************/
+
+h1#countDownNumber {
+	font-size: 75vmin;
 }

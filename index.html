@@ -3,20 +3,15 @@
 	<head>
 		<title>Wish Banana</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<link rel="stylesheet" type="text/css" href="assets/wishbanana.css">
-
-		<script src="assets/jquery-2.1.4.min.js"></script>
-		<script src="assets/jquery-ui-1.11.4.min.js"></script>
-		<script src="assets/animation.js"></script>
-		<script src="assets/wishbanana.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/wishbanana.css">
+		<script data-main="js/wishbanana" src="js/require.js"></script>
 	</head>
 
 	<body>
 		<div id="menu" class="page">
 			<span id="title"><h1>wish banana</h1></span>
 
-			<img src="assets/banana.svg" id="logo" />
+			<img src="assets/banana.svg" id="logo" class="centered" />
 
 			<div id="menuButtons">
 				<button id="storyButton">story</button>
@@ -26,7 +21,7 @@
 
 			<div class="tint"></div>
 
-			<div id="helpModal">
+			<div id="helpModal" class="centered">
 				tap fast to win
 			</div>
 		</div>
@@ -62,6 +57,7 @@
 			</div>
 		</div>
 		<div id="game" class="page">
+			<div class="centered"><h1 id="countDownNumber"></h1></div>
 		</div>
 	</body>
 </html>
