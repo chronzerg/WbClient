@@ -12,9 +12,8 @@ body > div.page {
 	position: relative;
 }
 
-h1 {
+h1, h2 {
 	color: #CC99FF;
-	font-size: 15vmin;
 	font-weight: bold;
 
 	/* Adding multiple shadows simulates 3d text */
@@ -33,6 +32,14 @@ h1 {
 		0 20px 20px rgba(0,0,0,.15);
 }
 
+h1 {
+	font-size: 15vmin;
+}
+
+h2 {
+	font-size: 10vmin;
+}
+
 button {
 	font-size: 6vmin;
 	background-color: #CC99FF;
@@ -44,6 +51,14 @@ button {
 button:hover {
 	box-shadow: inset 0 0 5px white;
 	border: 1px solid white;
+}
+
+.page > div.tint {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.75);
+	z-index: 200;
 }
 
 
@@ -95,6 +110,23 @@ button#playButton {
 }
 
 
+/**************** Help ****************/
+
+#helpModal {
+	font-size: 7vmin;
+	background-color: white;
+	width: 80%;
+	max-width: 80vmin;
+	border: 10px solid #CC99FF;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 210;
+	padding: 10px;
+}
+
 /**************** Story ****************/
 
 #storyContent {
@@ -102,7 +134,7 @@ button#playButton {
 	height: 100%;
 	overflow: scroll;
 	margin: 0 auto;
-	padding: 0 10px;
+	padding: 0 20px;
 	box-shadow: inset 0px 0px 20px 1px rgba(0,0,0,0.75);
 	background-color: white;
 	position: relative;

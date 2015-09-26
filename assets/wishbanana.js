@@ -1,20 +1,20 @@
 function switchToPage(id) {
-	var $pages = $('body > div');
-	var $thePage = $pages.filter('#' + id);
+	var $oldPage = $('body > div:visible');
+	var $newPage = $('body > div#' + id);
 	var callbacks;
 
-	callbacks = $thePage.data('wbBeforeShowCallbacks');
+	callbacks = $newPage.data('wbBeforeShowCallbacks');
 	if (callbacks !== undefined) {
 		for (var i = 0; i < callbacks.length; i++) {
 			callbacks[i]();
 		}
 	}
 
-	$pages.fadeOut({
+	$oldPage.fadeOut({
 		complete: function pagesFadeOutComplete () {
-			$thePage.show();
+			$newPage.show();
 
-			callbacks = $thePage.data('wbAfterShowCallbacks');
+			callbacks = $newPage.data('wbAfterShowCallbacks');
 			if (callbacks !== undefined) {
 				for (var i = 0; i < callbacks.length; i++) {
 					callbacks[i]();
@@ -47,6 +47,8 @@ $('document').ready(function onDocumentReady () {
 		// Hide all the pages except the menu
 		$('body > div').hide();
 		$('#menu').show();
+		$('#menu > .tint').hide();
+		$('#helpModal').hide();
 	})();
 
 	(function initMenu () {
@@ -58,8 +60,13 @@ $('document').ready(function onDocumentReady () {
 			switchToPage('game');
 		});
 
-		$('#helpButton').click(function onClickHelp () {
-			// TODO
+		$('#helpButton').click(function onClickHelp (event) {
+			event.stopPropagation();
+			$('#helpModal, #menu > .tint').fadeIn(200);
+
+			$(document).one('click', function onDocumentClick () {
+				$('#helpModal, #menu > .tint').fadeOut(200);
+			});
 		});
 	})();
 
