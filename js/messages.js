@@ -1,1 +1,1 @@
-../../GameServer/messages.js
+../../server/messages.js
