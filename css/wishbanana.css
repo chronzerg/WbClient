@@ -1,22 +1,12 @@
-/**************** General ****************/
-
 html {
 	font-family: sans-serif;
-}
-
-body > div.page {
-	width: 80vw;
-	height: 100vh;
-	margin: 0 auto;
-	overflow: hidden;
-	position: relative;
 }
 
 h1, h2 {
 	color: #CC99FF;
 	font-weight: bold;
 
-	/* Adding multiple shadows simulates 3d text */
+	/* Adding multiple shadows to make 3D text */
 	text-shadow:
 		0 1px 0 #ccc,
 		0 2px 0 #c9c9c9,
@@ -40,6 +30,27 @@ h2 {
 	font-size: 10vmin;
 }
 
+
+/* PAGE */
+
+div.page {
+	width: 80vw;
+	height: 100vh;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+div.page > div.tint {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.75);
+}
+
+
+/* BUTTON */
+
 button {
 	font-size: 6vmin;
 	background-color: #CC99FF;
@@ -53,13 +64,8 @@ button:hover {
 	border: 1px solid white;
 }
 
-.page > div.tint {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	background-color: rgba(0, 0, 0, 0.75);
-	z-index: 200;
-}
+
+/* MODIFIERS */
 
 .centered {
 	position: absolute;
@@ -69,32 +75,45 @@ button:hover {
 }
 
 
-/**************** Menu ****************/
+/* CLOUD BACKGROUND
+    Background div used to display clouds moving accross the screen.
+    An animating background isn't used because browsers currently
+    don't GPU optimize such animations.
+*/
 
-@keyframes menuBg {
-	0%		{ background-position: 0 0; }
-	100%	{ background-position: 400px 0; }
+@keyframes cloudMovement {
+	/* Move 400px because thats the size of the repeating background */
+	0%		{ transform: translate(-400px, 0); }
+	100%	{ transform: translate(0, 0); }
 }
 
-#menu, #story {
+div.clouds {
+	position: absolute;
+	/* width is twice the size of the repeating background */
+	width: 200%;
+	min-width: 800px;
+	height: 100%;
+
 	background-image: url(../assets/clouds.svg);
 	background-size: 400px 400px;
 	background-position: 0px 0px;
 	background-repeat: repeat;
-	animation: menuBg 10s linear infinite;
+
+	animation: cloudMovement 10s linear infinite;
 }
+
+
+/* MENU */
 
 #title {
 	position: absolute;
 	top: 8vh;
 	left: 50%;
 	transform: translate(-50%, 0);
-	z-index: 100;
 	text-align: center;
 }
 
 #logo {
-	z-index: 80;
 	height: 40vmax;
 	max-width: 100%;
 	max-height: 100%;
@@ -105,7 +124,6 @@ button:hover {
 	bottom: 10vh;
 	left: 50%;
 	transform: translate(-50%, 0);
-	z-index: 90;
 	white-space: nowrap;
 }
 
@@ -114,7 +132,7 @@ button#playButton {
 }
 
 
-/**************** Help ****************/
+/* HELP */
 
 #helpModal {
 	font-size: 7vmin;
@@ -123,11 +141,11 @@ button#playButton {
 	max-width: 80vmin;
 	box-shadow: inset 0px 0px 20px 1px rgba(0,0,0,0.75);
 	text-align: center;
-	z-index: 210;
 	padding: 10px;
 }
 
-/**************** Story ****************/
+
+/* STORY */
 
 #storyContent {
 	width: 80%;
@@ -156,7 +174,7 @@ button#playButton {
 }
 
 
-/**************** Story ****************/
+/* GAME */
 
 h1#countDownNumber {
 	font-size: 75vmin;

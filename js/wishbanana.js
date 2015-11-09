@@ -93,32 +93,28 @@ define(['jquery', 'game'], function ($, game) {
 
 		(function initGame () {
 			var g;
-			var name;
 
 			function changeState (id) {
 				$('#game > .state').hide();
 				$('#game > .state#' + id).show();
 			}
 
-			$('#opponentName').html('');
-			$('#countDownNumber').html('');
-			$('#game > .state').hide();
-			$('#game > .state#naming').show();
-
-			$('#naming > button').one('click', function onNamingClick () {
-				name = $('#naming > input').val();
-
+			function setupNewGame (name) {
 				g = new game.Game();
+
 				g.getName = function () {
 					return name;
 				};
+
 				g.onCounting = function (opponentName) {
 					$('#opponentName').html(opponentName);
 					changeState('counting');
 				};
+
 				g.onCountDown = function (value) {
 					$('#countDownNumber').html(value);
 				};
+
 				g.onPlaying = function () {
 					changeState('playing');
 					$(document).on('click', g.squeeze);
@@ -128,7 +124,20 @@ define(['jquery', 'game'], function ($, game) {
 						$('#playing').html(won);
 					};
 				};
+			}
 
+			function setupMatching () { }
+			function setupCountDown () { }
+			function setupPlaying () { }
+
+			$('#opponentName').html('');
+			$('#countDownNumber').html('');
+			$('#game > .state').hide();
+			$('#game > .state#naming').show();
+
+			$('#naming > button').one('click', function onNameButtonClick () {
+				var name = $('#naming > input').val();
+				setupNewGame(name);
 				changeState('matching');
 			});
 		})();
