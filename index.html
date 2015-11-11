@@ -8,15 +8,17 @@
 	</head>
 
 	<body>
-		<div id="menu" class="page">
-			<div class="clouds"></div>
+		<div id="cloudContainer" class="centeredX">
+			<div id="clouds"></div>
+		</div>
 
+		<div id="menu" class="page">
 			<img src="assets/banana.svg" id="logo" class="centered" />
 			<span id="title"><h1>wish banana</h1></span>
 			<div id="menuButtons">
-				<button id="storyButton">story</button>
-				<button id="playButton">play</button>
-				<button id="helpButton">help</button>
+				<button id="menuToStory">story</button>
+				<button id="menuToGame">play</button>
+				<button id="openHelp">help</button>
 			</div>
 
 			<div class="tint"></div>
@@ -25,14 +27,12 @@
 			</div>
 		</div>
 		<div id="story" class="page">
-			<div class="clouds"></div>
-
 			<div id="storyContent">
 				<div id="storyTitle">
 					<h1>story</h1>
 				</div>
 
-				<button id="storyToMenuButton">back</button>
+				<button id="storyToMenu" class="back">back</button>
 
 				<p>It was noon-thirty on a beautiful Tuesday. The banana-colored sunlight spilled across the peaceful cul-de-sac of Via Del Campo Ct. Without warning, a determined fist belonging to none other than Joyce "Mother Effin'" Kuo arced down toward James Whiteside's flash frozen snack cake.</p>
 
@@ -58,19 +58,19 @@
 			</div>
 		</div>
 		<div id="game" class="page">
-			<span id="opponentName"></span>
+			<button id="gameToMenu" class="back">quit</button>
 
 			<div class="centered state" id="naming">
-				<input type="text" />
-				<button>done</button>
+				<input type="text" placeholder="enter name" />
+				<br>
+				<button id="namingDone">done</button>
 			</div>
 
 			<div class="centered state" id="matching"><h1>matching...</h1></div>
 
 			<div class="centered state" id="counting"><h1 id="countDownNumber"></h1></div>
 
-			<div class="state" id="playing">
-			</div>
+			<div class="state" id="playing"></div>
 		</div>
 	</body>
 </html>

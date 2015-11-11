@@ -2,143 +2,53 @@ requirejs.config({
 	baseurl: 'js'
 });
 
-define(['jquery', 'game'], function ($, game) {
-	function callCallbacks ($page, dataId) {
-		var callbacks = $page.data(dataId);
-		if (callbacks !== undefined) {
-			for (var i = 0; i < callbacks.length; i++) {
-				callbacks[i]();
-			}
-		}
-	}
-
-	function switchToPage(id) {
-		var $oldPage = $('body > div.open');
-		var $newPage = $('body > div#' + id);
-
-		callCallbacks($oldPage, 'wbBeforeHideCallbacks');
-		callCallbacks($newPage, 'wbBeforeShowCallbacks');
-
-		$oldPage.fadeOut({
-			complete: function pageFadeOutComplete () {
-				$oldPage.removeClass('open');
-				$newPage.show();
-				$newPage.addClass('open');
-
-				callCallbacks($oldPage, 'wbAfterHideCallbacks');
-				callCallbacks($newPage, 'wbAfterShowCallbacks');
-			}
-		});
-	}
-
-	function addPageCallback (id, dataId, cb) {
-		var $thePage = $('body > div#' + id);
-		var callbacks = $thePage.data(dataId);
-		if (callbacks === undefined) {
-			callbacks = [];
-		}
-		callbacks.push(cb);
-		$thePage.data(dataId, callbacks);
-	}
-
-	function addBeforeShowCallback (id, cb) {
-		addPageCallback(id, 'wbBeforeShowCallbacks', cb);
-	}
-
-	function addAfterShowCallback (id, cb) {
-		addPageCallback(id, 'wbAfterShowCallbacks', cb);
-	}
-
-	function addBeforeHideCallback (id, cb) {
-		addPageCallback(id, 'wbBeforeHideCallbacks', cb);
-	}
-
-	function addAfterHideCallback (id, cb) {
-		addPageCallback(id, 'wbAfterHideCallbacks', cb);
-	}
-
+define(['jquery', 'game', 'paging'], function wishbanana ($, game, paging) {
 	$('document').ready(function onDocumentReady () {
+		var mainPaging;
+
 		(function initAll () {
-			// Hide all the pages except the menu
-			$('body > div').hide();
-			$('#menu').show().addClass('open');
-			$('#menu > .tint').hide();
-			$('#helpModal').hide();
+			mainPaging = paging($('body > div.page'));
 		})();
 
 		(function initMenu () {
-			$('#storyButton').click(function onClickStory () {
-				switchToPage('story');
+			$('button#menuToStory').click(function onMenuToStoryClick () {
+				mainPaging.switchToPage('story');
 			});
 
-			$('#playButton').click(function onClickPlay () {
-				switchToPage('game');
+			$('button#menuToGame').click(function onMenuToGameClick () {
+				mainPaging.switchToPage('game');
 			});
 
-			$('#helpButton').click(function onClickHelp (event) {
+			$('button#openHelp').click(function onOpenHelpClick (event) {
 				event.stopPropagation();
-				$('#helpModal, #menu > .tint').fadeIn(200);
+				$('#helpModal, #menu > .tint').show();
 
-				$(document).one('click', function onDocumentClick () {
-					$('#helpModal, #menu > .tint').fadeOut(200);
+				$(document).one('click', function onHelpModalClick () {
+					$('#helpModal, #menu > .tint').hide();
 				});
 			});
 		})();
 
 		(function initStory () {
-			$('#storyToMenuButton').click(function onClickStoryBack () {
-				switchToPage('menu');
+			$('button#storyToMenu').click(function onStoryToMenuClick () {
+				mainPaging.switchToPage('menu');
 			});
 		})();
 
 		(function initGame () {
-			var g;
+			var gamePaging = paging($('div#game > div.state'));
+			var game;
 
-			function changeState (id) {
-				$('#game > .state').hide();
-				$('#game > .state#' + id).show();
-			}
+			mainPaging.addBeforeShowCallback('game', function gameBeforeShow () {
+				gamePaging.switchToPage('naming');
+			});
 
-			function setupNewGame (name) {
-				g = new game.Game();
+			$('button#gameToMenu').click(function onGameToMenuClick () {
+				mainPaging.switchToPage('menu');
+			});
 
-				g.getName = function () {
-					return name;
-				};
-
-				g.onCounting = function (opponentName) {
-					$('#opponentName').html(opponentName);
-					changeState('counting');
-				};
-
-				g.onCountDown = function (value) {
-					$('#countDownNumber').html(value);
-				};
-
-				g.onPlaying = function () {
-					changeState('playing');
-					$(document).on('click', g.squeeze);
-					g.onDone = function (won) {
-						$(document).off('click', g.squeeze);
-						g.quit();
-						$('#playing').html(won);
-					};
-				};
-			}
-
-			function setupMatching () { }
-			function setupCountDown () { }
-			function setupPlaying () { }
-
-			$('#opponentName').html('');
-			$('#countDownNumber').html('');
-			$('#game > .state').hide();
-			$('#game > .state#naming').show();
-
-			$('#naming > button').one('click', function onNameButtonClick () {
-				var name = $('#naming > input').val();
-				setupNewGame(name);
-				changeState('matching');
+			$('button#namingDone').click(function onNamingDoneClick () {
+				gamePaging.switchToPage('matching');
 			});
 		})();
 	});

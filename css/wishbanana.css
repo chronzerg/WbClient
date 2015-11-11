@@ -33,7 +33,7 @@ h2 {
 
 /* PAGE */
 
-div.page {
+.page {
 	width: 80vw;
 	height: 100vh;
 	margin: 0 auto;
@@ -41,11 +41,12 @@ div.page {
 	position: relative;
 }
 
-div.page > div.tint {
+.tint {
 	position: absolute;
 	height: 100%;
 	width: 100%;
 	background-color: rgba(0, 0, 0, 0.75);
+	display: none;
 }
 
 
@@ -64,6 +65,24 @@ button:hover {
 	border: 1px solid white;
 }
 
+button.back {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	padding: 1px;
+	font-size: 5vmin;
+}
+
+
+/* INPUT */
+
+input {
+	font-size: 6vmin;
+	border: 1px solid black;
+	padding: 10px;
+	text-align: center;
+}
+
 
 /* MODIFIERS */
 
@@ -72,6 +91,12 @@ button:hover {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.centeredX {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
 }
 
 
@@ -87,7 +112,7 @@ button:hover {
 	100%	{ transform: translate(0, 0); }
 }
 
-div.clouds {
+div#clouds {
 	position: absolute;
 	/* width is twice the size of the repeating background */
 	width: 200%;
@@ -100,6 +125,12 @@ div.clouds {
 	background-repeat: repeat;
 
 	animation: cloudMovement 10s linear infinite;
+}
+
+div#cloudContainer {
+	width: 80vw;
+	height: 100vh;
+	overflow: hidden;
 }
 
 
@@ -127,7 +158,7 @@ div.clouds {
 	white-space: nowrap;
 }
 
-button#playButton {
+button#menuToGame {
 	font-size: 10vmin;
 }
 
@@ -142,6 +173,7 @@ button#playButton {
 	box-shadow: inset 0px 0px 20px 1px rgba(0,0,0,0.75);
 	text-align: center;
 	padding: 10px;
+	display: none;
 }
 
 
@@ -165,16 +197,24 @@ button#playButton {
 	color: #CC99FF;
 }
 
-#storyToMenuButton {
+/* GAME */
+
+#backgroundBanana {
+	background-image: url('../assets/clouds.svg');
+	background-size: 400px 400px;
+	background-repeat: repeat;
+	height: 100%;
+	width: 100%;
 	position: absolute;
-	top: 20px;
-	left: 20px;
-	padding: 1px;
-	font-size: 5vmin;
 }
 
+#naming.state {
+	text-align: center;
+}
 
-/* GAME */
+button#namingDone {
+	margin-top: 5px;
+}
 
 h1#countDownNumber {
 	font-size: 75vmin;
