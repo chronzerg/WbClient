@@ -1,11 +1,15 @@
 requirejs.config({
-	baseurl: 'js'
+	baseurl: 'js',
+	shim: {
+		'jquery.color': ['jquery']
+	}
 });
 
-define(['jquery', 'paging'], function wishbanana ($, paging) {
+define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor, paging) {
 	$('document').ready(function onDocumentReady () {
 		var mainPaging;
 
+		// Initialize Main Pages
 		(function initAll () {
 			mainPaging = paging($('body > div.page'));
 		})();
@@ -40,17 +44,22 @@ define(['jquery', 'paging'], function wishbanana ($, paging) {
 			var gamePaging = paging($gamePage.find('div.state'));
 			var game;
 
-			mainPaging.addBeforeShowCallback('game', function gameBeforeShow () {
+			mainPaging.addAfterHideCallback('game', function gameAfterHide () {
+				$('#cloudContainer').show();
 				gamePaging.switchToPage('naming');
 			});
 
-			$('button#gameToMenu').click(function onGameToMenuClick () {
+			$('button#gameToMenu').click(function onGameToMenuClick (event) {
 				mainPaging.switchToPage('menu');
+				event.stopPropagation();
 			});
 
-			$('button#namingDone').click(function onNamingDoneClick () {
-				gamePaging.switchToPage('matching');
-			});
+			// Initialize Game Pages
+			(function initNaming () {
+				$('button#namingDone').click(function onNamingDoneClick () {
+					gamePaging.switchToPage('matching');
+				});
+			})();
 
 			(function initMatching () {
 				gamePaging.addAfterShowCallback('matching', function matchingAfterShow () {
@@ -69,7 +78,7 @@ define(['jquery', 'paging'], function wishbanana ($, paging) {
 					countingPaging.switchToPage('5', true);
 				});
 
-				gamePaging.addAfterShowCallback('counting', function countingAfterShow () {
+				gamePaging.addBeforeShowCallback('counting', function countingAfterShow () {
 					// TODO - Add real logic below for counting down.
 					var count = 4; //Start with 4 because 5 is already being displayed.
 					var timerId = setInterval(function countDownTimer () {
@@ -79,14 +88,91 @@ define(['jquery', 'paging'], function wishbanana ($, paging) {
 						}
 						else {
 							clearInterval(timerId);
-							gamePaging.switchToPage('playing');
+							gamePaging.switchToPage('playing', true);
 						}
-					}, 1000);
+					}, 200);
 				});
 			})();
 
 			(function initPlaying () {
-				// TODO
+				var WIN_CLICKS = 25;
+				var FLASH_COLOR = '#ffffcc';
+				var FLASH_DURATION = 100;
+
+				var yourClicks = 0;
+				var theirClicks = 0;
+
+				function translateYourFist() {
+					var clickRatio = yourClicks / WIN_CLICKS;
+					var totalDistance = $('#gameContainer').height() - $('#yourFist').width();
+					var distance = -totalDistance * clickRatio;
+					$('#yourFist').css({ transform: 'rotate(90deg) translate(' + distance + 'px, 30%)'});
+				}
+
+				function changeYourClicks (newYourClicks) {
+					if (newYourClicks || newYourClicks === 0) {
+						yourClicks = newYourClicks;
+					}
+					else {
+						yourClicks++;
+					}
+
+					if (yourClicks > WIN_CLICKS) {
+						yourClicks = WIN_CLICKS;
+					}
+
+					translateYourFist();
+				}
+
+				function translateTheirFist () {
+					var clickRatio = theirClicks / WIN_CLICKS;
+					var totalDistance = ($('#gameContainer').height() * 0.75) - $('#theirFist').width();
+					var distance = totalDistance * clickRatio;
+					$('#theirFist').css({ transform: 'rotate(-90deg) translate(' + distance + 'px, 30%)'});
+				}
+
+				function changeTheirClicks (newTheirClicks) {
+					theirClicks = newTheirClicks;
+
+					if (theirClicks > WIN_CLICKS) {
+						theirClicks = WIN_CLICKS;
+					}
+
+					translateTheirFist();
+				}
+
+				function playingClick () {
+					$gamePage.css({ backgroundColor: FLASH_COLOR });
+					$gamePage.animate({ backgroundColor: '#ffffff' },
+					{
+						duration: FLASH_DURATION,
+						queue: false,
+						complete: function bgColorAnimationComplete () {
+							$gamePage.css({ backgroundColor: 'transparent' });
+						}
+					});
+
+					changeYourClicks();
+					changeTheirClicks(theirClicks+1); // TODO - Remove this.
+				}
+
+				gamePaging.addBeforeShowCallback('playing', function playingBeforeShow () {
+					$(document).on('click', playingClick);
+					$(window).on('resize', translateYourFist);
+					$(window).on('resize', translateTheirFist);
+
+					yourClicks = 0;
+					theirClicks = 0;
+					$('#yourFist').css({ transform: 'rotate(90deg) translate(0, 30%)'});
+					$('#theirFist').css({ transform: 'rotate(-90deg) translate(0, 30%)'});
+					$('#cloudContainer').hide();
+				});
+
+				gamePaging.addBeforeHideCallback('playing', function playingBeforeHide () {
+					$(document).off('click', playingClick);
+					$(window).off('resize', translateYourFist);
+					$(window).off('resize', translateTheirFist);
+				});
 			})();
 		})();
 	});

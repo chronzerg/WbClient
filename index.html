@@ -13,7 +13,7 @@
 		</div>
 
 		<div id="menu" class="page">
-			<img src="assets/banana.svg" id="logo" class="centered" />
+			<img src="assets/banana.svg" class="centered banana" />
 			<span id="title"><h1>wish banana</h1></span>
 			<div id="menuButtons">
 				<button id="menuToStory">story</button>
@@ -58,8 +58,6 @@
 			</div>
 		</div>
 		<div id="game" class="page">
-			<button id="gameToMenu" class="back">quit</button>
-
 			<div class="centered state" id="naming">
 				<input type="text" placeholder="enter name" />
 				<br>
@@ -76,7 +74,18 @@
 				<div id="1" class="count"><h1>1</h1></div>
 			</div>
 
-			<div class="state" id="playing"></div>
+			<div class="state" id="playing">
+				<div id="gameContainer" class="centered">
+					<img src="assets/theirFist.svg" id="theirFist" />
+					<img src="assets/banana.svg" id="smashBanana" class="centered banana" />
+					<img src="assets/yourFist.svg" id="yourFist" />
+				</div>
+				<div id="playingNames"><h1>Me vs. You</h1></div>
+
+				<div id="clickCover"></div>
+			</div>
+
+			<button id="gameToMenu" class="back">quit</button>
 		</div>
 	</body>
 </html>
