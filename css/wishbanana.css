@@ -216,6 +216,6 @@ button#namingDone {
 	margin-top: 5px;
 }
 
-h1#countDownNumber {
+div.count > h1 {
 	font-size: 75vmin;
 }

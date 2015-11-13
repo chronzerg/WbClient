@@ -16,23 +16,31 @@ define(function paging () {
 			}
 		}
 
-		function switchToPage(id) {
+		function switchToPage(id, immediately) {
 			var $oldPage = $pages.filter('div.' + OPEN);
 			var $newPage = $pages.filter('div#' + id);
 
 			callCallbacks($oldPage, BH);
 			callCallbacks($newPage, BS);
 
-			$oldPage.fadeOut({
-				complete: function pageFadeOutComplete () {
-					$oldPage.removeClass(OPEN);
-					$newPage.show();
-					$newPage.addClass(OPEN);
+			function showNewPage () {
+				$oldPage.removeClass(OPEN);
+				$newPage.show();
+				$newPage.addClass(OPEN);
 
-					callCallbacks($oldPage, AH);
-					callCallbacks($newPage, AS);
-				}
-			});
+				callCallbacks($oldPage, AH);
+				callCallbacks($newPage, AS);
+			}
+
+			if (immediately) {
+				$oldPage.hide();
+				showNewPage();
+			}
+			else {
+				$oldPage.fadeOut({
+					complete: showNewPage
+				});
+			}
 		}
 
 		function addPageCallback (id, dataId, cb) {
@@ -43,6 +51,10 @@ define(function paging () {
 			}
 			callbacks.push(cb);
 			$thePage.data(dataId, callbacks);
+		}
+
+		function getPage (id) {
+			return $pages.filter('div#' + id);
 		}
 
 		$pages.hide();
@@ -61,7 +73,8 @@ define(function paging () {
 			},
 			addAfterShowCallback: function (id, cb) {
 				addPageCallback(id, AS, cb);
-			}
+			},
+			getPage: getPage
 		};
 	};
-});
+});;
