@@ -2,7 +2,29 @@ html {
 	font-family: sans-serif;
 }
 
-h1, h2 {
+h1 {
+	font-size: 15vmin;
+	color: #CC99FF;
+	font-weight: bold;
+
+	/* Adding multiple shadows to make 3D text */
+	text-shadow:
+		0 1px 0 #ccc,
+		0 2px 0 #c9c9c9,
+		0 3px 0 #bbb,
+		0 4px 0 #b9b9b9,
+		0 5px 0 #aaa,
+		0 6px 1px rgba(0,0,0,.1),
+		0 0 5px rgba(0,0,0,.1),
+		0 1px 3px rgba(0,0,0,.3),
+		0 3px 5px rgba(0,0,0,.2),
+		0 5px 10px rgba(0,0,0,.25),
+		0 10px 10px rgba(0,0,0,.2),
+		0 20px 30px rgba(0,0,0,.5);
+}
+
+h2 {
+	font-size: 10vmin;
 	color: #CC99FF;
 	font-weight: bold;
 
@@ -20,14 +42,6 @@ h1, h2 {
 		0 5px 10px rgba(0,0,0,.25),
 		0 10px 10px rgba(0,0,0,.2),
 		0 20px 20px rgba(0,0,0,.15);
-}
-
-h1 {
-	font-size: 15vmin;
-}
-
-h2 {
-	font-size: 10vmin;
 }
 
 .banana {
@@ -124,7 +138,7 @@ input {
 	100%	{ transform: translate(0, 0); }
 }
 
-#clouds {
+.clouds {
 	position: absolute;
 	/* width is twice the size of the repeating background */
 	width: 200%;
@@ -137,12 +151,6 @@ input {
 	background-repeat: repeat;
 
 	animation: cloudMovement 10s linear infinite;
-}
-
-#cloudContainer {
-	width: 80vw;
-	height: 100vh;
-	overflow: hidden;
 }
 
 
@@ -205,15 +213,6 @@ button#menuToGame {
 
 /* GAME */
 
-#backgroundBanana {
-	background-image: url('../assets/clouds.svg');
-	background-size: 400px 400px;
-	background-repeat: repeat;
-	height: 100%;
-	width: 100%;
-	position: absolute;
-}
-
 #naming.state {
 	text-align: center;
 }
@@ -257,13 +256,24 @@ button#namingDone {
 
 #playingNames {
 	text-align: center;
-	text-overflow: ellipsis;
-	width: 100%;
 	position: absolute;
+	bottom: 0;
+	width: 70%;
+}
+
+#myName {
+	position: absolute;
+	left: 0;
 	bottom: 0;
 }
 
-#playingNames > h1 {
+#theirName {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#playingNames h1 {
 	margin: 10px;
 }
 

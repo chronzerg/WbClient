@@ -38,7 +38,8 @@ define(function paging () {
 			}
 			else {
 				$oldPage.fadeOut({
-					complete: showNewPage
+					complete: showNewPage,
+					duration: 200
 				});
 			}
 		}

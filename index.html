@@ -8,13 +8,11 @@
 	</head>
 
 	<body>
-		<div id="cloudContainer" class="centeredX">
-			<div id="clouds"></div>
-		</div>
-
 		<div id="menu" class="page">
+			<div class="clouds"></div>
+
 			<img src="assets/banana.svg" class="centered banana" />
-			<span id="title"><h1>wish banana</h1></span>
+			<div id="title"><h1>wish banana</h1></div>
 			<div id="menuButtons">
 				<button id="menuToStory">story</button>
 				<button id="menuToGame">play</button>
@@ -27,9 +25,11 @@
 			</div>
 		</div>
 		<div id="story" class="page">
+			<div class="clouds"></div>
+
 			<div id="storyContent">
 				<div id="storyTitle">
-					<h1>story</h1>
+					<h2>story</h2>
 				</div>
 
 				<button id="storyToMenu" class="back">back</button>
@@ -58,8 +58,10 @@
 			</div>
 		</div>
 		<div id="game" class="page">
+			<div class="clouds"></div>
+
 			<div class="centered state" id="naming">
-				<input type="text" placeholder="enter name" />
+				<input id="name" type="text" placeholder="enter name" />
 				<br>
 				<button id="namingDone">done</button>
 			</div>
@@ -80,7 +82,10 @@
 					<img src="assets/banana.svg" id="smashBanana" class="centered banana" />
 					<img src="assets/yourFist.svg" id="yourFist" />
 				</div>
-				<div id="playingNames"><h1>Me vs. You</h1></div>
+				<div id="playingNames" class="centeredX">
+					<div id="myName"><h1>me</h1></div>
+					<div id="theirName"><h1>you</h1></div>
+				</div>
 
 				<div id="clickCover"></div>
 			</div>

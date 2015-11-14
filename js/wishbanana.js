@@ -1,8 +1,6 @@
 requirejs.config({
 	baseurl: 'js',
-	shim: {
-		'jquery.color': ['jquery']
-	}
+	shim: { 'jquery.color': ['jquery'] }
 });
 
 define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor, paging) {
@@ -44,8 +42,16 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 			var gamePaging = paging($gamePage.find('div.state'));
 			var game;
 
+			mainPaging.addBeforeShowCallback('game', function gameBeforeShow () {
+				gamePaging.switchToPage('naming');
+			});
+
+			mainPaging.addAfterShowCallback('game', function gameAfterShow () {
+				$('input#name').focus();
+			});
+
 			mainPaging.addAfterHideCallback('game', function gameAfterHide () {
-				$('#cloudContainer').show();
+				$gamePage.find('.clouds').show();
 				gamePaging.switchToPage('naming');
 			});
 
@@ -56,6 +62,12 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 
 			// Initialize Game Pages
 			(function initNaming () {
+				$('input#name').keydown(function (e) {
+					if (e.keyCode == 13) {
+						$('button#namingDone').click();
+					}
+				});
+
 				$('button#namingDone').click(function onNamingDoneClick () {
 					gamePaging.switchToPage('matching');
 				});
@@ -72,16 +84,15 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 
 			(function initCounting () {
 				var $counting = gamePaging.getPage('counting');
-				countingPaging = paging($counting.find('div.count'));
+				var countingPaging = paging($counting.find('div.count'));
+				var timerId;
 
 				gamePaging.addBeforeShowCallback('counting', function countingBeforeShow () {
 					countingPaging.switchToPage('5', true);
-				});
 
-				gamePaging.addBeforeShowCallback('counting', function countingAfterShow () {
 					// TODO - Add real logic below for counting down.
 					var count = 4; //Start with 4 because 5 is already being displayed.
-					var timerId = setInterval(function countDownTimer () {
+					timerId = setInterval(function countDownTimer () {
 						if (count > 0) {
 							countingPaging.switchToPage(count.toString());
 							count--;
@@ -90,7 +101,11 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 							clearInterval(timerId);
 							gamePaging.switchToPage('playing', true);
 						}
-					}, 200);
+					}, 1000);
+				});
+
+				gamePaging.addBeforeHideCallback('counting', function countingBeforeHide () {
+					clearInterval(timerId);
 				});
 			})();
 
@@ -109,7 +124,15 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					$('#yourFist').css({ transform: 'rotate(90deg) translate(' + distance + 'px, 30%)'});
 				}
 
-				function changeYourClicks (newYourClicks) {
+				function translateTheirFist () {
+					var MARGIN_BOTTOM = 0.3 //30%
+					var clickRatio = theirClicks / WIN_CLICKS;
+					var totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').width();
+					var distance = totalDistance * clickRatio;
+					$('#theirFist').css({ transform: 'rotate(-90deg) translate(' + distance + 'px, 30%)'});
+				}
+
+				function updateYourClicks (newYourClicks) {
 					if (newYourClicks || newYourClicks === 0) {
 						yourClicks = newYourClicks;
 					}
@@ -124,14 +147,7 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					translateYourFist();
 				}
 
-				function translateTheirFist () {
-					var clickRatio = theirClicks / WIN_CLICKS;
-					var totalDistance = ($('#gameContainer').height() * 0.75) - $('#theirFist').width();
-					var distance = totalDistance * clickRatio;
-					$('#theirFist').css({ transform: 'rotate(-90deg) translate(' + distance + 'px, 30%)'});
-				}
-
-				function changeTheirClicks (newTheirClicks) {
+				function updateTheirClicks (newTheirClicks) {
 					theirClicks = newTheirClicks;
 
 					if (theirClicks > WIN_CLICKS) {
@@ -141,23 +157,19 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					translateTheirFist();
 				}
 
-				function playingClick () {
+				function playingMouseDown () {
 					$gamePage.css({ backgroundColor: FLASH_COLOR });
-					$gamePage.animate({ backgroundColor: '#ffffff' },
-					{
+					$gamePage.animate({ backgroundColor: '#ffffff' }, {
 						duration: FLASH_DURATION,
-						queue: false,
-						complete: function bgColorAnimationComplete () {
-							$gamePage.css({ backgroundColor: 'transparent' });
-						}
+						queue: false
 					});
 
-					changeYourClicks();
-					changeTheirClicks(theirClicks+1); // TODO - Remove this.
+					updateYourClicks();
+					updateTheirClicks(theirClicks+1); // TODO - Remove this.
 				}
 
 				gamePaging.addBeforeShowCallback('playing', function playingBeforeShow () {
-					$(document).on('click', playingClick);
+					$(document).on('mousedown', playingMouseDown);
 					$(window).on('resize', translateYourFist);
 					$(window).on('resize', translateTheirFist);
 
@@ -165,13 +177,15 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					theirClicks = 0;
 					$('#yourFist').css({ transform: 'rotate(90deg) translate(0, 30%)'});
 					$('#theirFist').css({ transform: 'rotate(-90deg) translate(0, 30%)'});
-					$('#cloudContainer').hide();
+					$gamePage.find('.clouds').hide();
+					$gamePage.css({ backgroundColor: '#ffffff' });
 				});
 
 				gamePaging.addBeforeHideCallback('playing', function playingBeforeHide () {
-					$(document).off('click', playingClick);
+					$(document).off('mousedown', playingMouseDown);
 					$(window).off('resize', translateYourFist);
 					$(window).off('resize', translateTheirFist);
+					$gamePage.css({ backgroundColor: 'transparent' });
 				});
 			})();
 		})();
