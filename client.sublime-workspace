@@ -1,0 +1,1055 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"thei",
+				"theirHand"
+			],
+			[
+				"your",
+				"yourHand"
+			],
+			[
+				"they",
+				"theyWinAnimation"
+			],
+			[
+				"tra",
+				"translate"
+			],
+			[
+				"the",
+				"theirClicks"
+			],
+			[
+				"tran",
+				"transform"
+			],
+			[
+				"THE",
+				"theirFist"
+			],
+			[
+				"GAM",
+				"gameContainer"
+			],
+			[
+				"anima",
+				"animate	.animate()"
+			],
+			[
+				"fade",
+				"fadeOut	.fadeOut()"
+			],
+			[
+				"clear",
+				"clearInterval"
+			],
+			[
+				"coun",
+				"counting"
+			],
+			[
+				"addBefore",
+				"addBeforeHideCallback"
+			],
+			[
+				"game",
+				"gamePaging"
+			],
+			[
+				"naming",
+				"namingDone"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"trans",
+				"translateYourFist"
+			],
+			[
+				"chan",
+				"changeTheirClicks"
+			],
+			[
+				"di",
+				"distance"
+			],
+			[
+				"their",
+				"theirClicks"
+			],
+			[
+				"move",
+				"moveTheirFist"
+			],
+			[
+				"cli",
+				"clicksPosition"
+			],
+			[
+				"click",
+				"clicksPosition"
+			],
+			[
+				"clic",
+				"clicks"
+			],
+			[
+				"play",
+				"playingClick"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"show",
+				"showNewPage"
+			],
+			[
+				"mar",
+				"marker"
+			],
+			[
+				"angu",
+				"angularVelocityLine"
+			],
+			[
+				"ang",
+				"angularAcceleration"
+			],
+			[
+				"posi",
+				"position"
+			],
+			[
+				"Normalize",
+				"NormalizeAngleVector"
+			],
+			[
+				"up",
+				"upArm"
+			],
+			[
+				"Z",
+				"zMargins"
+			],
+			[
+				"Draw",
+				"DrawFrame"
+			],
+			[
+				"att",
+				"attitudeRates"
+			],
+			[
+				"pos",
+				"positionRates"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"attit",
+				"attitude"
+			],
+			[
+				"Cal",
+				"CalculateR"
+			],
+			[
+				"Ma",
+				"MakeVector"
+			],
+			[
+				"Prin",
+				"PrintState"
+			],
+			[
+				"print",
+				"printState"
+			],
+			[
+				"Angu",
+				"AngularVelocityToAttitudeRates"
+			],
+			[
+				"angular",
+				"angularVelocity"
+			],
+			[
+				"Calc",
+				"CalculateAngularAcceleration"
+			],
+			[
+				"angul",
+				"angularVelocity"
+			],
+			[
+				"Calcu",
+				"CalculateThrust"
+			],
+			[
+				"yaw",
+				"yawComponent"
+			],
+			[
+				"pit",
+				"pitchComponent"
+			],
+			[
+				"roll",
+				"rollComponent"
+			],
+			[
+				"attitude",
+				"attitudeRates"
+			],
+			[
+				"del",
+				"delete_event"
+			],
+			[
+				"phys",
+				"physicalFrame"
+			],
+			[
+				"sp",
+				"splitName"
+			],
+			[
+				"fil",
+				"filename"
+			],
+			[
+				"wbModu",
+				"wbModulesPath"
+			],
+			[
+				"wbMod",
+				"wbModulesPath"
+			],
+			[
+				"ws",
+				"wsModules"
+			],
+			[
+				"modul",
+				"moduleName"
+			],
+			[
+				"mo",
+				"moduleName"
+			],
+			[
+				"wbMo",
+				"wbModules"
+			],
+			[
+				"wb",
+				"wbMatrixPath"
+			],
+			[
+				"cla",
+				"clawPath"
+			],
+			[
+				"send",
+				"sendUTF"
+			],
+			[
+				"wbM",
+				"wbMsgGameOver"
+			],
+			[
+				"wbMs",
+				"wbMsgCountDown"
+			],
+			[
+				"On",
+				"OnCountDown"
+			],
+			[
+				"OnM",
+				"OnMatched"
+			],
+			[
+				"call",
+				"callIfDefined"
+			],
+			[
+				"WE",
+				"WebSocket"
+			],
+			[
+				"bM",
+				"bMsg"
+			],
+			[
+				"param",
+				"paramTypeError"
+			],
+			[
+				"bMs",
+				"bMsgIDs"
+			],
+			[
+				"b",
+				"bMsgIDs"
+			],
+			[
+				"mosaic",
+				"mosaicIndex"
+			],
+			[
+				"mosa",
+				"mosaic"
+			],
+			[
+				"mos",
+				"mosaics"
+			],
+			[
+				"sing",
+				"singleIndex"
+			],
+			[
+				"mosai",
+				"mosaicIndex"
+			],
+			[
+				"single",
+				"singleIndex"
+			],
+			[
+				"sin",
+				"singleIndex"
+			],
+			[
+				"drop",
+				"droppedPackets"
+			],
+			[
+				"file",
+				"filenames"
+			],
+			[
+				"pa",
+				"packetSize"
+			],
+			[
+				"pack",
+				"packetID"
+			],
+			[
+				"dest",
+				"destPath"
+			],
+			[
+				"des",
+				"destPath"
+			],
+			[
+				"ori",
+				"origPath"
+			],
+			[
+				"orig",
+				"origDir"
+			],
+			[
+				"exe",
+				"execute"
+			],
+			[
+				"mosaicDataKey",
+				"mosaicDataKeysString"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"db",
+				"dbName"
+			],
+			[
+				"get",
+				"getuser"
+			],
+			[
+				"moa",
+				"mosaicGroupId"
+			],
+			[
+				"Buil",
+				"buildTree"
+			],
+			[
+				"build",
+				"buildTree"
+			],
+			[
+				"al",
+				"altMultiplier"
+			],
+			[
+				"old",
+				"oldPosition"
+			],
+			[
+				"store",
+				"storeMetadata"
+			],
+			[
+				"dist",
+				"distThreshold"
+			],
+			[
+				"de",
+				"deg2rad"
+			],
+			[
+				"cap",
+				"capturePhoto"
+			],
+			[
+				"capt",
+				"capturePhoto"
+			],
+			[
+				"ser",
+				"serialName"
+			],
+			[
+				"serial",
+				"serialFd"
+			],
+			[
+				"mavlink",
+				"mavlink_message_t"
+			],
+			[
+				"cou",
+				"countLeaves"
+			],
+			[
+				"add",
+				"addLeft"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 4430,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/wishbanana.js",
+			"settings":
+			{
+				"buffer_size": 6426,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/wishbanana.css",
+			"settings":
+			{
+				"buffer_size": 4132,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ss xml",
+				"Set Syntax: XML"
+			],
+			[
+				"inden",
+				"IndentX: Indent"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/andjon/Desktop/wbClient",
+		"/C/Users/andjon/Desktop/wbClient/css",
+		"/C/Users/andjon/Desktop/wbClient/js"
+	],
+	"file_history":
+	[
+		"/C/Users/andjon/Desktop/wbClient/js/paging.js",
+		"/C/Users/andjon/Desktop/wbClient/js/jquery.moving.js",
+		"/C/Users/andjon/Desktop/wbClient/js/jquery.color.js",
+		"/C/Users/andjon/Desktop/wbClient/js/game.js",
+		"/C/Users/andjon/Desktop/wbClient/animate.js",
+		"/C/Users/andjon/Desktop/wbClient/client.sublime-project",
+		"/C/Users/andjon/ardupilot/ArduCopter/inertia.cpp",
+		"/C/Users/andjon/ardupilot/ArduCopter/Copter.cpp",
+		"/C/Users/andjon/ardupilot/ArduCopter/ArduCopter.cpp",
+		"/C/Users/andjon/ardupilot/libraries/AP_InertialNav/AP_InertialNav_NavEKF.cpp",
+		"/C/Users/andjon/ardupilot/ArduCopter/sensors.cpp",
+		"/C/Users/andjon/ardupilot/ArduCopter/Copter.h",
+		"/C/Users/andjon/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.h",
+		"/C/Users/andjon/ardupilot/libraries/AP_AHRS/AP_AHRS_NavEKF.cpp",
+		"/C/Users/andjon/ardupilot/libraries/AP_AHRS/AP_AHRS.h",
+		"/C/Users/andjon/ardupilot/libraries/AP_Scheduler/AP_Scheduler.h",
+		"/C/Users/andjon/ardupilot/libraries/AP_Scheduler/AP_Scheduler.cpp",
+		"/C/Users/andjon/ardupilot/libraries/AP_HAL/utility/functor.h",
+		"/C/Users/andjon/ardupilot/ArduCopter/Parameters.h",
+		"/C/Users/andjon/ardupilot/ArduCopter/Parameters.cpp",
+		"/C/Users/andjon/ardupilot/ArduCopter/Parameters.pde",
+		"/C/Users/andjon/ardupilot/libraries/AP_HAL/examples/UART_test/UART_test.cpp",
+		"/C/Users/andjon/ardupilot/libraries/AP_HAL/utility/BetterStream.h",
+		"/C/Users/andjon/ardupilot/libraries/AP_HAL/AP_HAL_Namespace.h",
+		"/C/Users/andjon/ardupilot/libraries/AP_Vehicle/AP_Vehicle.h",
+		"/C/Users/andjon/ardupilot/libraries/AP_HAL/HAL.h",
+		"/C/Users/andjon/ardupilot/libraries/AP_HAL/AP_HAL.h",
+		"/C/Users/andjon/ardupilot/ArduPlane/ArduPlane.cpp",
+		"/C/Users/andjon/Desktop/Release/gui_settings.xml",
+		"/C/Users/andjon/Desktop/Release/logfields.xml",
+		"/C/Source/Claw_USAF_904_6_Rel_II_307/Claw2Core/Builds/CLAW2X/CLAW2.sln",
+		"/C/Source/Claw_USAF_904_6_Rel_II_307/results.txt",
+		"/C/Source/Claw_USAF_904_6_Rel_II_307/results2.txt",
+		"/C/Users/andjon/Desktop/wbClient/css/wishbanana.css",
+		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
+		"/C/Users/andjon/Desktop/wbClient/index.html",
+		"/C/Users/andjon/Desktop/QuadcopterDynamics/QuadcopterSim.py",
+		"/C/Python34/lib/site-packages/matplotlib/backends/backend_agg.py",
+		"/C/Users/andjon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/andjon/Desktop/ex.py",
+		"/C/Users/andjon/Desktop/surface3d_demo2.py",
+		"/C/Users/andjon/Desktop/pid/pid.h",
+		"/C/Users/andjon/Desktop/pid/pid.c",
+		"/C/Users/andjon/Desktop/pid/main.c",
+		"/C/Users/andjon/Desktop/ParenthesesProblem.py",
+		"/C/Users/andjon/Desktop/rename.py",
+		"/C/Users/andjon/Desktop/QuadcopterSim.py",
+		"/C/Users/andjon/Desktop/PID Demo/pid.c",
+		"/C/Users/andjon/Desktop/PID Demo/physics.c",
+		"/C/Users/andjon/Desktop/PID Demo/main.c",
+		"/C/Users/andjon/Desktop/PID Demo/physics.h",
+		"/C/Users/andjon/Desktop/PID Demo/pid.h",
+		"/C/Users/andjon/Desktop/wb/index.html",
+		"/C/Users/andjon/Desktop/wb/foundation/index.html",
+		"/C/Users/andjon/Desktop/StarCraft-master/GameRule/Levels.js",
+		"/C/Users/andjon/Desktop/StarCraft-master/GameRule/Resource.js",
+		"/C/Users/andjon/Desktop/StarCraft-master/GameRule/Game.js",
+		"/C/Users/andjon/Desktop/StarCraft-master/README.md",
+		"/C/Users/andjon/Desktop/AI/Talker.cpp",
+		"/C/Source/Claw_USAF_904_6_Rel_II_307/Claw2Core/Vyper/Vyper.csproj",
+		"/C/Users/andjon/Desktop/AI/main.cpp",
+		"/C/Users/andjon/Desktop/MarkovTheChatter.py",
+		"/C/Users/andjon/Desktop/8.c",
+		"/C/Users/andjon/Desktop/AI/starwars.txt",
+		"/C/Users/andjon/Desktop/DataRights/TestDLL.py",
+		"/C/Users/andjon/Desktop/DataRights/ExcelAnalyzer.py",
+		"/C/Users/andjon/Desktop/Test.py",
+		"/C/Users/andjon/Desktop/ExcelAnalyzer.py",
+		"/C/Users/andjon/Desktop/ExcelAnalyzer",
+		"/C/Users/andjon/Desktop/WishBanana/js/test/wbGameServer.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/test/testWbSocketServer.py",
+		"/C/Users/andjon/Desktop/WishBanana/js/test/testWbSClient.js",
+		"/C/Users/andjon/Desktop/WishBanana/testWbSClient.html",
+		"/C/Users/andjon/Desktop/WishBanana/js/app.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/wb/sClient.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/wb/messages.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/testWbSClient.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/wb/wbSClient.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/wb/wbMessages.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/wb/SClient.md",
+		"/C/Users/andjon/Desktop/WishBanana/js/wbMessages.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/wbSClient.js",
+		"/C/Users/andjon/Desktop/WishBanana/js/wbUtilities.js",
+		"/C/Users/andjon/Desktop/WishBanana/testWbWebSocketServer.js",
+		"/C/Users/andjon/Desktop/WishBanana/readme.md",
+		"/C/Users/andjon/Desktop/WishBanana/wbMessages.js",
+		"/C/Users/andjon/Desktop/WishBanana/wbSClient.js",
+		"/C/Users/andjon/Desktop/WishBanana/wbSClientTest.js",
+		"/C/Users/andjon/Desktop/WishBanana/testWbWebSocketServer.py",
+		"/C/Users/andjon/Desktop/WishBanana/testWbSocketClient.py",
+		"/C/Users/andjon/Desktop/WishBanana/wbUtilities.js",
+		"/C/Users/andjon/Desktop/WishBanana/socketMessages.js",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/FrenchCDApp/Win32/Debug/CDApp/Settings.xml",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/FrenchCDApp/Win32/Release/CDApp/Settings.xml",
+		"/C/Users/andjon/Desktop/CD Process.txt",
+		"/C/Users/andjon/Virtual Machines/Windows XP Mode.vmcx",
+		"/C/Users/andjon/AppData/Local/Microsoft/Windows Virtual PC/Virtual Machines/Windows XP Mode.vmc",
+		"/C/test/DateTimeUpdateTest.py",
+		"/C/Program Files (x86)/GA-ASI Reconnaissance Systems/CDApp 2.7.307.292/Settings.xml",
+		"/C/Users/andjon/Desktop/Settings.xml",
+		"/C/Program Files (x86)/GA-ASI Reconnaissance Systems/CDApp 2.7.307.292/CDApp.exe.config",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/Claw2Core/Builds/FrenchCDApp/FrenchCDApp/Settings.xml",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/Claw2Core/Builds/FrenchCDApp/FrenchCDApp.sln",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/FrenchCDApp/Win32/Debug/FrenchCDApp/Settings.xml",
+		"/C/Users/andjon/Downloads/broken GetFXEnvelope.RPP",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/.gitignore",
+		"/P/Users/andjon/test/scripts/TimeSync.bat",
+		"/C/Users/andjon/Source/CppMT/README.md",
+		"/C/test/c",
+		"/C/test/DateTimeUpdateTest_Old.py",
+		"/C/Users/andjon/Desktop/finaldir/README",
+		"/C/Users/andjon/Desktop/Jons Settings.xml",
+		"/C/test/DateTimeUpdateTest_Lab.py",
+		"/C/Users/andjon/Desktop/deps.ps1",
+		"/C/test/Compare.py",
+		"/E/guid",
+		"/C/Source/Claw_USAF_Dev_222/drops/ISCS/Win32/Debug/CLAW2App/Settings.xml",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/FrenchCDApp/Win32/Debug/FrenchCDApp/Settings.130777597387599508.bad_xml",
+		"/P/Users/duenke/French SOC IRAD/IssuesLog.md",
+		"/P/Users/duenke/French SOC IRAD/IssuesLog.html",
+		"/P/Users/andjon/test/scripts/Compare.py",
+		"/P/Users/andjon/test/scripts/CopyTest.py",
+		"/C/test/CheckZeros.py",
+		"/C/test/CopyTest.py",
+		"/C/test/Compare.bat",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/DbPollerTest.py",
+		"/C/test/tester.py",
+		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/ISCS/Win32/Debug/ClawCCDApp/Settings.xml"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			"<project>",
+			"C:\\Users\\andjon\\ardupilot\\libraries",
+			"<project>",
+			"<current file>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"hidden",
+			"smashBanana",
+			"get_altitude",
+			"ahrs",
+			"inertial_nav",
+			"read_inertial_altitude",
+			"alt",
+			"baro_climbrate",
+			"baro_alt",
+			"read_barometer",
+			"fastloop",
+			"update",
+			"read_AHRS",
+			"AP_AHRS",
+			"ahrs",
+			"ahrs''",
+			" ahrs",
+			"ahrs",
+			"read_AHRS",
+			"MAIN_LOOP_MICROS",
+			"AP_Scheduler::Task",
+			"#define FUNCTOR_BIND",
+			"FUNCTOR_BIND",
+			"AP_HAL::BetterStream",
+			"BetterStream",
+			"class BetterStream",
+			"Callbacks",
+			"AP_HAL::HAL::Callbacks",
+			"SITL",
+			"iscsm",
+			"vc",
+			"vcx",
+			"vc",
+			"name",
+			"changeTheirClicks",
+			"changeYourClicks",
+			"clouds",
+			"input",
+			"border",
+			"text-shadow",
+			"newyourClicks",
+			"WIN_Clicks",
+			"clicks",
+			"div",
+			"inputs",
+			"Init3DLine",
+			".exe",
+			"exe",
+			"msgs",
+			"wbMsg",
+			"9000",
+			"bMsg",
+			"bMsgIds",
+			"Messages",
+			"C:\\CLAWImageStore",
+			"Y:\\",
+			"A:\\",
+			"C:\\CLAWImageStore",
+			"mission",
+			"_01",
+			"C:\\CLAWImageStore",
+			"database",
+			"C:\\CLAWImageStore",
+			"C:\\",
+			"CDAppCore",
+			"core",
+			"FrenchCDApp",
+			"0FA8E932",
+			"A:",
+			"C:\\ClawImageStore",
+			"C:\\",
+			"A:\\",
+			"C:\\CLAWImageStore",
+			"singleIndex",
+			"ccd",
+			"cd",
+			"C:\\claw",
+			"A:",
+			"sql",
+			"C:\\CLAWImageStore",
+			"Use_Default_store",
+			"C:\\CLAW",
+			"use",
+			">\n",
+			"C:\\",
+			"store",
+			"C:\\CLAWImageStore",
+			"store",
+			"C:\\CLAWImageStore",
+			"A:",
+			"C:\\CLAWImageStore",
+			"Imagestore",
+			"CDAppGeneral",
+			"mosaicQuery_UpdateTime",
+			"origPath",
+			"destPath",
+			"destDir",
+			"destPath",
+			"origDir",
+			"destDir",
+			"\"\"\n",
+			"ati_compress",
+			"GroupName",
+			"python",
+			"%",
+			"ExpOption",
+			"exp",
+			"exploit",
+			"FileSystemEventHandler",
+			"event",
+			"ImageDir",
+			"IMageDir",
+			"exploitation",
+			"options",
+			"lynx",
+			"gps",
+			"lynx",
+			"gps",
+			"lynx",
+			"System Default",
+			"Lynx",
+			"gps",
+			"lynx",
+			"Lynx",
+			"lynx",
+			"gps",
+			"ipadd",
+			"ip"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"updateTheirClicks",
+			"updateYourClicks",
+			"newYourClicks",
+			"WIN_CLICKS",
+			"yourClicks",
+			"Create3dLine",
+			"messages",
+			"msg",
+			"10000",
+			"wbMsg",
+			"wbMsgIds",
+			"Y:\\",
+			"A:\\",
+			"C:\\CLAWImageStore",
+			"A:",
+			"origDir",
+			"destDir",
+			"destPath",
+			"destDir",
+			"originDirectory",
+			"destinationDirectory",
+			"gpsMultiplier",
+			"oldPosition"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4154,
+								4154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1254.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/wishbanana.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5513,
+								5513
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3762.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "css/wishbanana.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4132,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3824,
+								3824
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4275.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 373.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "client.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 403.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

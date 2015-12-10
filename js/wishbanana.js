@@ -40,7 +40,6 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 		(function initGame () {
 			var $gamePage = $('div#game');
 			var gamePaging = paging($gamePage.find('div.state'));
-			var game;
 
 			mainPaging.addBeforeShowCallback('game', function gameBeforeShow () {
 				gamePaging.switchToPage('naming');
@@ -101,7 +100,7 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 							clearInterval(timerId);
 							gamePaging.switchToPage('playing', true);
 						}
-					}, 1000);
+					}, 100);
 				});
 
 				gamePaging.addBeforeHideCallback('counting', function countingBeforeHide () {
@@ -110,26 +109,50 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 			})();
 
 			(function initPlaying () {
-				var WIN_CLICKS = 25;
+				var WIN_CLICKS = 3;
 				var FLASH_COLOR = '#ffffcc';
 				var FLASH_DURATION = 100;
 
-				var yourClicks = 0;
-				var theirClicks = 0;
+				var yourClicks;
+				var theirClicks;
 
 				function translateYourFist() {
 					var clickRatio = yourClicks / WIN_CLICKS;
 					var totalDistance = $('#gameContainer').height() - $('#yourFist').width();
 					var distance = -totalDistance * clickRatio;
-					$('#yourFist').css({ transform: 'rotate(90deg) translate(' + distance + 'px, 30%)'});
+					$('#yourFist').css({ transform: 'translate(0, ' + distance + 'px)' });
 				}
 
 				function translateTheirFist () {
-					var MARGIN_BOTTOM = 0.3 //30%
+					var MARGIN_BOTTOM = 0.25 //25%
 					var clickRatio = theirClicks / WIN_CLICKS;
 					var totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').width();
-					var distance = totalDistance * clickRatio;
-					$('#theirFist').css({ transform: 'rotate(-90deg) translate(' + distance + 'px, 30%)'});
+					var distance = -totalDistance * clickRatio;
+					$('#theirFist').css({ transform: 'translate(0, ' + distance + 'px)' });
+				}
+
+				function youWinAnimation () {
+					$('#theirFist').fadeOut({
+						done: function () {
+							$('#yourFist').hide();
+							$('#unsmashed').hide();
+
+							$('#yourHand').show();
+							$('#smashed').show();
+						}
+					});
+				}
+
+				function theyWinAnimation () {
+					$('#yourFist').fadeOut({
+						done: function () {
+							$('#theirFist').hide();
+							$('#unsmashed').hide();
+
+							$('#theirHand').show();
+							$('#smashed').show();
+						}
+					});
 				}
 
 				function updateYourClicks (newYourClicks) {
@@ -145,6 +168,8 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					}
 
 					translateYourFist();
+
+					return yourClicks === WIN_CLICKS
 				}
 
 				function updateTheirClicks (newTheirClicks) {
@@ -155,6 +180,8 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					}
 
 					translateTheirFist();
+
+					return theirClicks === WIN_CLICKS
 				}
 
 				function playingMouseDown () {
@@ -164,8 +191,21 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 						queue: false
 					});
 
-					updateYourClicks();
-					updateTheirClicks(theirClicks+1); // TODO - Remove this.
+					// TODO - Redo this function with proper logic
+					var youWon = updateYourClicks();
+					var theyWon = updateTheirClicks(theirClicks+1);
+
+					/*
+					if (youWon) {
+						youWinAnimation();
+						$(document).off('mousedown', playingMouseDown);
+					}
+					*/
+
+					if (theyWon) {
+						theyWinAnimation();
+						$(document).off('mousedown', playingMouseDown);
+					}
 				}
 
 				gamePaging.addBeforeShowCallback('playing', function playingBeforeShow () {
@@ -175,8 +215,14 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 
 					yourClicks = 0;
 					theirClicks = 0;
-					$('#yourFist').css({ transform: 'rotate(90deg) translate(0, 30%)'});
-					$('#theirFist').css({ transform: 'rotate(-90deg) translate(0, 30%)'});
+					$('#yourFist').css({ transform: ''}).show();
+					$('#theirFist').css({ transform: ''}).show();
+					$('#unsmashed').show();
+
+					$('#smashed').hide();
+					$('#yourHand').hide();
+					$('#theirHand').hide();
+
 					$gamePage.find('.clouds').hide();
 					$gamePage.css({ backgroundColor: '#ffffff' });
 				});
@@ -185,6 +231,7 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					$(document).off('mousedown', playingMouseDown);
 					$(window).off('resize', translateYourFist);
 					$(window).off('resize', translateTheirFist);
+
 					$gamePage.css({ backgroundColor: 'transparent' });
 				});
 			})();

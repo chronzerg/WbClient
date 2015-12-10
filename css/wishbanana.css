@@ -50,6 +50,10 @@ h2 {
 	max-height: 100%;
 }
 
+.hidden {
+	display: none;
+}
+
 
 /* PAGE */
 
@@ -239,8 +243,6 @@ button#namingDone {
 	position: absolute;
 	right: 0;
 	bottom: 25%;
-	/* TODO - Remove the rotate when we get the real image. */
-	transform: rotate(-90deg) translate(0, 30%);
 }
 
 #yourFist {
@@ -250,8 +252,6 @@ button#namingDone {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	/* TODO - Remove the rotate when we get the real image. */
-	transform: rotate(90deg) translate(0, 30%);
 }
 
 #playingNames {
