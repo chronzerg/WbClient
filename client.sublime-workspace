@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"their",
+				"theirFist"
+			],
+			[
+				"fade",
+				"fadeIn	.fadeIn()"
+			],
+			[
+				"del",
+				"delayObj"
+			],
+			[
+				"clear",
+				"clearDelay"
+			],
+			[
+				"time",
+				"timeoutId"
+			],
+			[
+				"_fu",
+				"_funcList"
+			],
+			[
+				"_",
+				"_funcList"
+			],
+			[
+				"dley",
+				"delayObj"
+			],
+			[
+				"_fun",
+				"_funcList"
+			],
+			[
+				"fun",
+				"funcIndex"
+			],
+			[
+				"dle",
+				"delayObj"
+			],
+			[
+				"delay",
+				"delayObj"
+			],
+			[
+				"func",
+				"funcList"
+			],
+			[
 				"thei",
 				"theirHand"
 			],
@@ -40,14 +92,6 @@
 				"animate	.animate()"
 			],
 			[
-				"fade",
-				"fadeOut	.fadeOut()"
-			],
-			[
-				"clear",
-				"clearInterval"
-			],
-			[
 				"coun",
 				"counting"
 			],
@@ -82,10 +126,6 @@
 			[
 				"di",
 				"distance"
-			],
-			[
-				"their",
-				"theirClicks"
 			],
 			[
 				"move",
@@ -226,10 +266,6 @@
 			[
 				"attitude",
 				"attitudeRates"
-			],
-			[
-				"del",
-				"delete_event"
 			],
 			[
 				"phys",
@@ -464,27 +500,22 @@
 	"buffers":
 	[
 		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 4430,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "js/wishbanana.js",
 			"settings":
 			{
-				"buffer_size": 6426,
+				"buffer_size": 6761,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "css/wishbanana.css",
+			"contents": "define(function delay () {\n    var currentId = 1;\n    var delayList = {};\n\n    function setDelay (funcList) {\n        var delayObj = {\n            funcList: funcList,\n            funcIndex: 0,\n            timeoutId: 0\n        };\n        var id = currentId;\n\n        delayList[id] = delayObj;\n        currentId++;\n\n        if (funcList[0].constructor === Array) {\n            // If the first is a func/delay pair, then schedule it with the delay\n            delayObj.timeoutId = setTimeout(function () {\n                contDelay(delayObj);\n            }, funcList[0][1]);\n        }\n        else {\n            // If the first is just a func, run it immediately after we return\n            // and schedule the next func.\n            setTimeout(funcList[0], 0);\n\n            delayObj.funcIndex = 1;\n            delayObj.timeoutId = setTimeout(function () {\n                contDelay(delayObj);\n            }, funcList[1][1]);\n        }\n\n        return id;\n    }\n\n    function contDelay (delayObj) {\n        var func = delayObj.funcList[delayObj.funcIndex][0];\n        delayObj.funcIndex++;\n\n        // If we have another function to call, schedule it.\n        if (delayObj.funcIndex < delayObj.funcList.length) {\n            delayObj.timeoutId = setTimeout(function () {\n                contDelay(delayObj);\n            }, delayObj.funcList[delayObj.funcIndex][1]);\n        }\n\n        func();\n    }\n\n    function clearDelay (id) {\n        if (id in delayList) {\n            clearTimeout(delayList[id].timeoutId);\n            delete delayList[id];\n        }\n    }\n\n    return {\n        setDelay: setDelay,\n        clearDelay: clearDelay\n    };\n});",
+			"file": "js/delay.js",
+			"file_size": 1703,
+			"file_write_time": 130946037040115926,
 			"settings":
 			{
-				"buffer_size": 4132,
-				"line_ending": "Unix"
+				"buffer_size": 1643,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -511,10 +542,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 104.0,
-		"last_filter": "install",
+		"height": 392.0,
+		"last_filter": "pack",
 		"selected_items":
 		[
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -528,7 +563,7 @@
 				"IndentX: Indent"
 			]
 		],
-		"width": 400.0
+		"width": 416.0
 	},
 	"console":
 	{
@@ -555,6 +590,11 @@
 	],
 	"file_history":
 	[
+		"/C/Users/andjon/Desktop/wbClient/js/delay.js",
+		"/C/Users/andjon/Desktop/wbClient/css/wishbanana.css",
+		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
+		"/C/Users/andjon/Desktop/wbClient/index.html",
+		"/C/Users/andjon/Desktop/wbClient/js/setDelay.js",
 		"/C/Users/andjon/Desktop/wbClient/js/paging.js",
 		"/C/Users/andjon/Desktop/wbClient/js/jquery.moving.js",
 		"/C/Users/andjon/Desktop/wbClient/js/jquery.color.js",
@@ -588,9 +628,6 @@
 		"/C/Source/Claw_USAF_904_6_Rel_II_307/Claw2Core/Builds/CLAW2X/CLAW2.sln",
 		"/C/Source/Claw_USAF_904_6_Rel_II_307/results.txt",
 		"/C/Source/Claw_USAF_904_6_Rel_II_307/results2.txt",
-		"/C/Users/andjon/Desktop/wbClient/css/wishbanana.css",
-		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
-		"/C/Users/andjon/Desktop/wbClient/index.html",
 		"/C/Users/andjon/Desktop/QuadcopterDynamics/QuadcopterSim.py",
 		"/C/Python34/lib/site-packages/matplotlib/backends/backend_agg.py",
 		"/C/Users/andjon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
@@ -680,9 +717,7 @@
 		"/C/test/CheckZeros.py",
 		"/C/test/CopyTest.py",
 		"/C/test/Compare.bat",
-		"/C/Source/Claw_2_French_CCD_IRAD_500/DbPollerTest.py",
-		"/C/test/tester.py",
-		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/ISCS/Win32/Debug/ClawCCDApp/Settings.xml"
+		"/C/Source/Claw_2_French_CCD_IRAD_500/DbPollerTest.py"
 	],
 	"find":
 	{
@@ -705,6 +740,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"}\n",
 			"hidden",
 			"smashBanana",
 			"get_altitude",
@@ -831,8 +867,7 @@
 			"Lynx",
 			"lynx",
 			"gps",
-			"ipadd",
-			"ip"
+			"ipadd"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -873,53 +908,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4430,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4154,
-								4154
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1254.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "js/wishbanana.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6426,
+						"buffer_size": 6761,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5513,
-								5513
+								237,
+								237
 							]
 						],
 						"settings":
@@ -928,36 +934,37 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3762.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "css/wishbanana.css",
-					"semi_transient": false,
+					"buffer": 1,
+					"file": "js/delay.js",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 4132,
+						"buffer_size": 1643,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3824,
-								3824
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4275.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,

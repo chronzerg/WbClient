@@ -4,6 +4,9 @@ requirejs.config({
 });
 
 define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor, paging) {
+	var setDelay = delay.setDelay;
+	var clearDelay = delay.clearDelay;
+
 	$('document').ready(function onDocumentReady () {
 		var mainPaging;
 
@@ -109,7 +112,7 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 			})();
 
 			(function initPlaying () {
-				var WIN_CLICKS = 3;
+				var WIN_CLICKS = 30;
 				var FLASH_COLOR = '#ffffcc';
 				var FLASH_DURATION = 100;
 
@@ -133,24 +136,34 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 
 				function youWinAnimation () {
 					$('#theirFist').fadeOut({
+						duration: "slow",
 						done: function () {
 							$('#yourFist').hide();
 							$('#unsmashed').hide();
 
 							$('#yourHand').show();
 							$('#smashed').show();
+
+							setTimeout(function () {
+								$('#youWin').fadeIn();
+							}, 500);
 						}
 					});
 				}
 
 				function theyWinAnimation () {
 					$('#yourFist').fadeOut({
+						duration: "slow",
 						done: function () {
 							$('#theirFist').hide();
 							$('#unsmashed').hide();
 
 							$('#theirHand').show();
 							$('#smashed').show();
+
+							setTimeout(function () {
+								$('#youLoose').fadeIn();
+							}, 500);
 						}
 					});
 				}
@@ -195,17 +208,17 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					var youWon = updateYourClicks();
 					var theyWon = updateTheirClicks(theirClicks+1);
 
-					/*
 					if (youWon) {
 						youWinAnimation();
 						$(document).off('mousedown', playingMouseDown);
 					}
-					*/
 
+					/*
 					if (theyWon) {
 						theyWinAnimation();
 						$(document).off('mousedown', playingMouseDown);
 					}
+					*/
 				}
 
 				gamePaging.addBeforeShowCallback('playing', function playingBeforeShow () {
@@ -218,6 +231,9 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					$('#yourFist').css({ transform: ''}).show();
 					$('#theirFist').css({ transform: ''}).show();
 					$('#unsmashed').show();
+
+					$('#youWin').hide();
+					$('#youLoose').hide();
 
 					$('#smashed').hide();
 					$('#yourHand').hide();
