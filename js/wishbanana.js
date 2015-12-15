@@ -4,9 +4,6 @@ requirejs.config({
 });
 
 define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor, paging) {
-	var setDelay = delay.setDelay;
-	var clearDelay = delay.clearDelay;
-
 	$('document').ready(function onDocumentReady () {
 		var mainPaging;
 
@@ -53,7 +50,6 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 			});
 
 			mainPaging.addAfterHideCallback('game', function gameAfterHide () {
-				$gamePage.find('.clouds').show();
 				gamePaging.switchToPage('naming');
 			});
 
@@ -112,89 +108,122 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 			})();
 
 			(function initPlaying () {
-				var WIN_CLICKS = 30;
+				var WIN_CLICKS = 3;
 				var FLASH_COLOR = '#ffffcc';
 				var FLASH_DURATION = 100;
 
 				var yourClicks;
 				var theirClicks;
+				var youWon = false;
+				var theyWon = false;
 
-				function translateYourFist() {
-					var clickRatio = yourClicks / WIN_CLICKS;
-					var totalDistance = $('#gameContainer').height() - $('#yourFist').width();
-					var distance = -totalDistance * clickRatio;
+				function updateYourFistLocation() {
+					var distance;
+
+					if (!theyWon) {
+						var clickRatio = yourClicks / WIN_CLICKS;
+						var totalDistance = $('#gameContainer').height() - $('#yourFist').height();
+						distance = -totalDistance * clickRatio;
+					}
+					else {
+						// Because the #gameContainer is 40vmax tall and centered, 30% of that
+						// height plus the fist's height should get the fist off the screen.
+						distance =  ($(window).height() * 0.30) + $('#yourFist').height();
+					}
+
 					$('#yourFist').css({ transform: 'translate(0, ' + distance + 'px)' });
 				}
 
-				function translateTheirFist () {
-					var MARGIN_BOTTOM = 0.25 //25%
-					var clickRatio = theirClicks / WIN_CLICKS;
-					var totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').width();
-					var distance = -totalDistance * clickRatio;
+				function updateTheirFistLocation () {
+					var MARGIN_BOTTOM = 0.25; //25%
+					var distance;
+
+					if (!youWon) {
+						var clickRatio = theirClicks / WIN_CLICKS;
+						var totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').height();
+						distance = -totalDistance * clickRatio;
+					}
+					else {
+						// Because the #gameContainer is 40vmax tall and centered, 30% of that
+						// height plus the fist's height should get the fist off the screen.
+						distance =  ($(window).height() * 0.30) + $('#theirFist').height();
+					}
+
 					$('#theirFist').css({ transform: 'translate(0, ' + distance + 'px)' });
 				}
 
 				function youWinAnimation () {
-					$('#theirFist').fadeOut({
-						duration: "slow",
-						done: function () {
-							$('#yourFist').hide();
-							$('#unsmashed').hide();
+					updateTheirFistLocation();
+					$('#theirFist').fadeOut();
 
-							$('#yourHand').show();
-							$('#smashed').show();
+					setTimeout(function youWinTimeout1 () {
+						$('#yourFist').hide();
+						$('#unsmashed').hide();
 
-							setTimeout(function () {
-								$('#youWin').fadeIn();
-							}, 500);
-						}
-					});
+						$('#yourHand').show();
+						$('#smashed').show();
+
+						setTimeout(function youWinTimeout2 () {
+							$('#youWin').show();
+							$('#gameOverBanner').fadeIn();
+						}, 500);
+					}, 2000);
 				}
 
 				function theyWinAnimation () {
-					$('#yourFist').fadeOut({
-						duration: "slow",
-						done: function () {
-							$('#theirFist').hide();
-							$('#unsmashed').hide();
+					updateYourFistLocation();
+					$('#yourFist').fadeOut();
 
-							$('#theirHand').show();
-							$('#smashed').show();
+					setTimeout(function theyWinTimeout1 () {
+						$('#theirFist').hide();
+						$('#unsmashed').hide();
 
-							setTimeout(function () {
-								$('#youLoose').fadeIn();
-							}, 500);
-						}
-					});
+						$('#theirHand').show();
+						$('#smashed').show();
+
+						setTimeout(function youWinTimeout2 () {
+							$('#youLoose').show();
+							$('#gameOverBanner').fadeIn();
+						}, 500);
+					}, 2000);
 				}
 
 				function updateYourClicks (newYourClicks) {
-					if (newYourClicks || newYourClicks === 0) {
-						yourClicks = newYourClicks;
-					}
-					else {
-						yourClicks++;
-					}
+					if (!theyWon) {
+						if (newYourClicks >= 0) {
+							yourClicks = newYourClicks;
+						}
+						else {
+							yourClicks++;
+						}
 
-					if (yourClicks > WIN_CLICKS) {
-						yourClicks = WIN_CLICKS;
+						if (yourClicks > WIN_CLICKS) {
+							yourClicks = WIN_CLICKS;
+						}
+
+						// TODO - This flag should only be set by a game server msg.
+						if (newYourClicks >= 0) {
+							youWon = yourClicks === WIN_CLICKS;
+						}
+
+						updateYourFistLocation();
 					}
-
-					translateYourFist();
-
-					return yourClicks === WIN_CLICKS
 				}
 
 				function updateTheirClicks (newTheirClicks) {
-					theirClicks = newTheirClicks;
+					if (!youWon) {
+						theirClicks = newTheirClicks;
 
-					if (theirClicks > WIN_CLICKS) {
-						theirClicks = WIN_CLICKS;
+						if (theirClicks > WIN_CLICKS) {
+							theirClicks = WIN_CLICKS;
+						}
+
+						// TODO - This flag should only be set by the game server
+						// msg.
+						theyWon = theirClicks === WIN_CLICKS;
+
+						updateTheirFistLocation();
 					}
-
-					translateTheirFist();
-
-					return theirClicks === WIN_CLICKS
 				}
 
 				function playingMouseDown () {
@@ -204,9 +233,8 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 						queue: false
 					});
 
-					// TODO - Redo this function with proper logic
-					var youWon = updateYourClicks();
-					var theyWon = updateTheirClicks(theirClicks+1);
+					updateYourClicks(-1);
+					updateTheirClicks(theirClicks+1);
 
 					if (youWon) {
 						youWinAnimation();
@@ -221,19 +249,27 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					*/
 				}
 
+				$('#playAgain').click(function onPlayAgainClick () {
+					gamePaging.switchToPage('naming');
+				});
+
 				gamePaging.addBeforeShowCallback('playing', function playingBeforeShow () {
 					$(document).on('mousedown', playingMouseDown);
-					$(window).on('resize', translateYourFist);
-					$(window).on('resize', translateTheirFist);
+					$(window).on('resize', updateYourFistLocation);
+					$(window).on('resize', updateTheirFistLocation);
 
 					yourClicks = 0;
 					theirClicks = 0;
+					youWon = false;
+					theyWon = false;
+
 					$('#yourFist').css({ transform: ''}).show();
 					$('#theirFist').css({ transform: ''}).show();
 					$('#unsmashed').show();
 
 					$('#youWin').hide();
 					$('#youLoose').hide();
+					$('#gameOverBanner').hide();
 
 					$('#smashed').hide();
 					$('#yourHand').hide();
@@ -245,10 +281,14 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 
 				gamePaging.addBeforeHideCallback('playing', function playingBeforeHide () {
 					$(document).off('mousedown', playingMouseDown);
-					$(window).off('resize', translateYourFist);
-					$(window).off('resize', translateTheirFist);
+					$(window).off('resize', updateYourFistLocation);
+					$(window).off('resize', updateTheirFistLocation);
 
 					$gamePage.css({ backgroundColor: 'transparent' });
+				});
+
+				gamePaging.addAfterHideCallback('playing', function playingAfterHide () {
+					$gamePage.find('.clouds').show();
 				});
 			})();
 		})();
