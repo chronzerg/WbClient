@@ -152,6 +152,14 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 					$('#theirFist').css({ transform: 'translate(0, ' + distance + 'px)' });
 				}
 
+				function clickFlashAnimation () {
+					$gamePage.css({ backgroundColor: FLASH_COLOR });
+					$gamePage.animate({ backgroundColor: '#ffffff' }, {
+						duration: FLASH_DURATION,
+						queue: false
+					});
+				}
+
 				function youWinAnimation () {
 					updateTheirFistLocation();
 					$('#theirFist').fadeOut();
@@ -189,64 +197,40 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 				}
 
 				function updateYourClicks (newYourClicks) {
-					if (!theyWon) {
-						if (newYourClicks >= 0) {
-							yourClicks = newYourClicks;
-						}
-						else {
-							yourClicks++;
-						}
-
-						if (yourClicks > WIN_CLICKS) {
-							yourClicks = WIN_CLICKS;
-						}
-
-						// TODO - This flag should only be set by a game server msg.
-						if (newYourClicks >= 0) {
-							youWon = yourClicks === WIN_CLICKS;
-						}
-
-						updateYourFistLocation();
+					if (newYourClicks || newYourClicks === 0) {
+						yourClicks = newYourClicks;
 					}
+					else {
+						yourClicks++;
+					}
+
+					if (yourClicks > WIN_CLICKS) {
+						yourClicks = WIN_CLICKS;
+					}
+
+					updateYourFistLocation();
 				}
 
 				function updateTheirClicks (newTheirClicks) {
-					if (!youWon) {
-						theirClicks = newTheirClicks;
+					theirClicks = newTheirClicks;
 
-						if (theirClicks > WIN_CLICKS) {
-							theirClicks = WIN_CLICKS;
-						}
-
-						// TODO - This flag should only be set by the game server
-						// msg.
-						theyWon = theirClicks === WIN_CLICKS;
-
-						updateTheirFistLocation();
+					if (theirClicks > WIN_CLICKS) {
+						theirClicks = WIN_CLICKS;
 					}
+
+					updateTheirFistLocation();
 				}
 
 				function playingMouseDown () {
-					$gamePage.css({ backgroundColor: FLASH_COLOR });
-					$gamePage.animate({ backgroundColor: '#ffffff' }, {
-						duration: FLASH_DURATION,
-						queue: false
-					});
+					clickFlashAnimation();
+					updateYourClicks();
 
-					updateYourClicks(-1);
-					updateTheirClicks(theirClicks+1);
-
-					if (youWon) {
+					// TODO - Remove the follow pseudo logic
+					if (yourClicks === WIN_CLICKS) {
+						$(document).off('mousedown', playingMouseDown);
+						youWon = true;
 						youWinAnimation();
-						$(document).off('mousedown', playingMouseDown);
 					}
-
-					/*
-					if (theyWon) {
-						theyWinAnimation();
-						$(document).off('mousedown', playingMouseDown);
-					}
-					*/
 				}
 
 				$('#playAgain').click(function onPlayAgainClick () {
