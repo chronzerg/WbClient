@@ -1,8 +1,9 @@
-define(['client2Server'], function (client2Server) {
+define(['client2Server', 'logging'], function (client2Server, logging) {
 	var url = 'ws://192.168.1.80:3456';
+	var log = logging('client2Server').log;
 
 	return {
-		Game: function () {
+		Game: function (name) {
 			var thisGame = this;
 			var playing = true;
 			var state = 0;
@@ -18,9 +19,11 @@ define(['client2Server'], function (client2Server) {
 			function changeState(newState) {
 				if (newState - state === 1) {
 					state = newState;
+					log('Game state changed: ' + state);
 					return true;
 				}
 
+				log ('Invalid state change requested: ' state + ' to ' + newState);
 				return false;
 			}
 
@@ -30,7 +33,6 @@ define(['client2Server'], function (client2Server) {
 
 			C2S.onNamePlease = function () {
 				if (changeState(1)) {
-					var name = thisGame.getName();
 					C2S.name(name);
 				}
 			};
@@ -69,7 +71,6 @@ define(['client2Server'], function (client2Server) {
 				}
 			};
 
-			this.getName = undefined;
 			this.onCounting = undefined;
 			this.onCountDown = undefined;
 			this.onPlaying = undefined;

@@ -1,7 +1,10 @@
-define(['messages'], function (messages) {
+define(['messages', 'logging'], function (messages, logging) {
+	var log = logging('client2Server').log;
+
 	return {
 		C2SWrapper: function (url) {
 			if (!window.WebSocket) {
+				log('WebSockets are not supported.');
 				throw new Error('WebSockets are not supported.');
 			}
 
@@ -15,6 +18,7 @@ define(['messages'], function (messages) {
 			}
 
 			function sendMessage (msg) {
+				log('Sent message: ' + msg);
 				conn.send(JSON.stringify(msg));
 			}
 
@@ -27,33 +31,41 @@ define(['messages'], function (messages) {
 						msg = JSON.parse(rawMsg.data);
 					}
 					catch (err) {
+						log('Failed to parse message JSON: ' + rawMsg.data);
 						callIfDefined('onError', err, rawMsg.data);
 						return;
 					}
 
 					var id = msg.id;
 					if (id == messages.MESSAGE_ID.NamePlease) {
+						log('Received "NamePlease" message.');
 						callIfDefined('onNamePlease');
 					}
 					else if (id == messages.MESSAGE_ID.Matched) {
+						log('Received "Matched" message: ' + msg.opponentName);
 						callIfDefined('onMatched', msg.opponentName);
 					}
 					else if (id == messages.MESSAGE_ID.CountDown) {
+						log('Received "CountDown" message: ' + msg.value);
 						callIfDefined('onCountDown', msg.value);
 					}
 					else if (id == messages.MESSAGE_ID.GameOver) {
+						log('Received "GameOver" message: ' + msg.won);
 						callIfDefined('onGameOver', msg.won);
 					}
 					else {
+						log('Received invalid message type: ' + rawMsg.data);
 						callIfDefined('onError', 'Invalid message type.', rawMsg.data);
 					}
 				}
 				else {
-					callIfDefined('onError', 'Invalid rawMsg type: ' + (typeof rawMsg.data) + '.', '');
+					log('Received invalid rawMsg datatype: ' + rawMsg.data);
+					callIfDefined('onError', 'Invalid rawMsg datatype: ' + (typeof rawMsg.data) + '.', '');
 				}
 			};
 
 			conn.onclose = function onClose () {
+				log('Websocket closed.');
 				callIfDefined('onClose');
 			};
 

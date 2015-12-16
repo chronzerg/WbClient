@@ -256,7 +256,6 @@ button#namingDone {
 	position: absolute;
 	right: 0;
 	bottom: 25%;
-	transition: transform 0.5s;
 }
 
 #yourFist {
@@ -266,7 +265,14 @@ button#namingDone {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	transition: transform 0.1s;
+}
+
+.fist {
+	transition: transform 0.2s;
+}
+
+.fist.slow {
+	transition: transform 1s;
 }
 
 #playingNames {

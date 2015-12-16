@@ -1,18 +1,28 @@
 requirejs.config({
 	baseurl: 'js',
-	shim: { 'jquery.color': ['jquery'] }
+	shim: { 'jquery.color': ['jquery'] },
+	config: {
+		moment: {
+			noGlobal: true
+		}
+	}
 });
 
-define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor, paging) {
+define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, jqueryColor, paging, logging) {
+	var logging = logging('wishbanana');
+	var log = logging.log;
+
 	$('document').ready(function onDocumentReady () {
 		var mainPaging;
 
 		// Initialize Main Pages
 		(function initAll () {
+			log('Initializing paging');
 			mainPaging = paging($('body > div.page'));
 		})();
 
 		(function initMenu () {
+			log('Initializing menu');
 			$('button#menuToStory').click(function onMenuToStoryClick () {
 				mainPaging.switchToPage('story');
 			});
@@ -32,12 +42,14 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 		})();
 
 		(function initStory () {
+			log('Initializing story');
 			$('button#storyToMenu').click(function onStoryToMenuClick () {
 				mainPaging.switchToPage('menu');
 			});
 		})();
 
 		(function initGame () {
+			log('Initializing game');
 			var $gamePage = $('div#game');
 			var gamePaging = paging($gamePage.find('div.state'));
 
@@ -60,6 +72,7 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 
 			// Initialize Game Pages
 			(function initNaming () {
+				log('Initialize game->naming');
 				$('input#name').keydown(function (e) {
 					if (e.keyCode == 13) {
 						$('button#namingDone').click();
@@ -72,6 +85,7 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 			})();
 
 			(function initMatching () {
+				log('Initializing game->matching');
 				gamePaging.addAfterShowCallback('matching', function matchingAfterShow () {
 					// TODO - Add real logic for waiting for match.
 					$gamePage.one('click', function doneMatchingClick () {
@@ -81,6 +95,7 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 			})();
 
 			(function initCounting () {
+				log('Initializing game->counting');
 				var $counting = gamePaging.getPage('counting');
 				var countingPaging = paging($counting.find('div.count'));
 				var timerId;
@@ -108,48 +123,66 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 			})();
 
 			(function initPlaying () {
+				log('Initializing game->playing');
 				var WIN_CLICKS = 3;
 				var FLASH_COLOR = '#ffffcc';
 				var FLASH_DURATION = 100;
 
 				var yourClicks;
 				var theirClicks;
-				var youWon = false;
-				var theyWon = false;
+				var yourFistState = 'playing';
+				var theirFistState = 'playing';
 
 				function updateYourFistLocation() {
-					var distance;
+					switch(yourFistState) {
+						case 'playing':
+							var clickRatio = yourClicks / WIN_CLICKS;
+							var totalDistance = $('#gameContainer').height() - $('#yourFist').height();
+							var y = -totalDistance * clickRatio;
+							$('#yourFist').css({ transform: 'translate(0, ' + y + 'px)' });
+							break;
 
-					if (!theyWon) {
-						var clickRatio = yourClicks / WIN_CLICKS;
-						var totalDistance = $('#gameContainer').height() - $('#yourFist').height();
-						distance = -totalDistance * clickRatio;
-					}
-					else {
-						// Because the #gameContainer is 40vmax tall and centered, 30% of that
-						// height plus the fist's height should get the fist off the screen.
-						distance =  ($(window).height() * 0.30) + $('#yourFist').height();
-					}
+						case 'loosing':
+							// Because the #gameContainer is 40vmax tall and centered, 30% of the
+							// window height plus the fist's height should get the fist off the 
+							// screen.
+							var y =  ($(window).height() * 0.30) + $('#yourFist').height();
+							$('#yourFist').css({ transform: 'translate(0, ' + y + 'px)' });
+							break;
 
-					$('#yourFist').css({ transform: 'translate(0, ' + distance + 'px)' });
+						case 'smashing':
+							var y = - (($('#gameContainer').height() / 2) - ($('#yourFist').height() / 2));
+							var x = ($('#gameContainer').width() / 2) - ($('#yourFist').width() / 2);
+							$('#yourFist').css({ transform: 'translate(' + x + 'px, ' + y + 'px)' });
+							break;
+					}
 				}
 
 				function updateTheirFistLocation () {
 					var MARGIN_BOTTOM = 0.25; //25%
-					var distance;
 
-					if (!youWon) {
-						var clickRatio = theirClicks / WIN_CLICKS;
-						var totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').height();
-						distance = -totalDistance * clickRatio;
-					}
-					else {
-						// Because the #gameContainer is 40vmax tall and centered, 30% of that
-						// height plus the fist's height should get the fist off the screen.
-						distance =  ($(window).height() * 0.30) + $('#theirFist').height();
-					}
+					switch (theirFistState) {
+						case 'playing':
+							var clickRatio = theirClicks / WIN_CLICKS;
+							var totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').height();
+							var distance = -totalDistance * clickRatio;
+							$('#theirFist').css({ transform: 'translate(0, ' + distance + 'px)' });
+							break;
 
-					$('#theirFist').css({ transform: 'translate(0, ' + distance + 'px)' });
+						case 'loosing':
+							// Because the #gameContainer is 40vmax tall and centered, 30% of the
+							// window height plus the fist's height should get the fist off the 
+							// screen.
+							var distance =  ($(window).height() * 0.30) + $('#theirFist').height();
+							$('#theirFist').css({ transform: 'translate(0, ' + distance + 'px)' });
+							break;
+
+						case 'smashing':
+							var y = - (($('#gameContainer').height() / 2) - ($('#theirFist').height() / 2));
+							var x = - (($('#gameContainer').width() / 2) - ($('#theirFist').width() / 2));
+							$('#theirFist').css({ transform: 'translate(' + x + 'px, ' + y + 'px)' });
+							break;
+					}
 				}
 
 				function clickFlashAnimation () {
@@ -161,39 +194,57 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 				}
 
 				function youWinAnimation () {
-					updateTheirFistLocation();
+					$('.fist').addClass('slow');
+					theirFistState = 'loosing';
 					$('#theirFist').fadeOut();
+					updateYourFistLocation();
+					updateTheirFistLocation();
 
 					setTimeout(function youWinTimeout1 () {
+						$('.fist').removeClass('slow');
+						yourFistState = 'smashing';
+						updateYourFistLocation();
+					}, 1900);
+
+					setTimeout(function youWinTimeout2 () {
 						$('#yourFist').hide();
 						$('#unsmashed').hide();
 
 						$('#yourHand').show();
 						$('#smashed').show();
-
-						setTimeout(function youWinTimeout2 () {
-							$('#youWin').show();
-							$('#gameOverBanner').fadeIn();
-						}, 500);
 					}, 2000);
+
+					setTimeout(function youWinTimeout3 () {
+						$('#youWin').show();
+						$('#gameOverBanner').fadeIn();
+					}, 2500);
 				}
 
 				function theyWinAnimation () {
-					updateYourFistLocation();
+					$('.fist').addClass('slow');
+					yourFistState = 'loosing';
 					$('#yourFist').fadeOut();
+					updateYourFistLocation();
+					updateTheirFistLocation();
 
 					setTimeout(function theyWinTimeout1 () {
+						$('.fist').removeClass('slow');
+						theirFistState = 'smashing';
+						updateTheirFistLocation();
+					}, 1900);
+
+					setTimeout(function theyWinTimeout2 () {
 						$('#theirFist').hide();
 						$('#unsmashed').hide();
 
 						$('#theirHand').show();
 						$('#smashed').show();
-
-						setTimeout(function youWinTimeout2 () {
-							$('#youLoose').show();
-							$('#gameOverBanner').fadeIn();
-						}, 500);
 					}, 2000);
+
+					setTimeout(function youWinTimeout3 () {
+						$('#youLoose').show();
+						$('#gameOverBanner').fadeIn();
+					}, 2500);
 				}
 
 				function updateYourClicks (newYourClicks) {
@@ -223,13 +274,13 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 
 				function playingMouseDown () {
 					clickFlashAnimation();
-					updateYourClicks();
+					//updateYourClicks();
+					updateTheirClicks(theirClicks+1);
 
 					// TODO - Remove the follow pseudo logic
-					if (yourClicks === WIN_CLICKS) {
+					if (theirClicks === WIN_CLICKS) {
 						$(document).off('mousedown', playingMouseDown);
-						youWon = true;
-						youWinAnimation();
+						theyWinAnimation();
 					}
 				}
 
@@ -244,11 +295,10 @@ define(['jquery', 'jquery.color', 'paging'], function wishbanana ($, jqueryColor
 
 					yourClicks = 0;
 					theirClicks = 0;
-					youWon = false;
-					theyWon = false;
+					yourFistState = 'playing';
+					theirFistState = 'playing';
 
-					$('#yourFist').css({ transform: ''}).show();
-					$('#theirFist').css({ transform: ''}).show();
+					$('.fist').css({ transform: ''}).removeClass('slow').show();
 					$('#unsmashed').show();
 
 					$('#youWin').hide();
