@@ -267,14 +267,6 @@ button#namingDone {
 	bottom: 0;
 }
 
-.fist {
-	transition: transform 0.2s ease-in;
-}
-
-.fist.slow {
-	transition: transform 1s ease-in;
-}
-
 #playingNames {
 	text-align: center;
 	position: absolute;

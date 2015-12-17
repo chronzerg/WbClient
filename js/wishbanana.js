@@ -128,14 +128,15 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 
 			(function initPlaying () {
 				log('Initializing game->playing');
-				var WIN_CLICKS = 3;
+				var WIN_CLICKS = 30;
 				var FLASH_COLOR = '#ffffcc';
 				var FLASH_DURATION = 100;
 
 				var FIST_STATE = {
 					PLAYING: 0,
 					LOOSING: 1,
-					SMASHING: 2
+					RAISING: 2,
+					SMASHING: 3
 				};
 
 				var yourClicks;
@@ -144,95 +145,137 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 				var theirFistState = FIST_STATE.PLAYING;
 
 				function updateYourFistLocation() {
+					var totalDistance;
+					var x, y;
+
 					switch(yourFistState) {
 						case FIST_STATE.PLAYING:
 							var clickRatio = yourClicks / WIN_CLICKS;
-							var totalDistance = $('#gameContainer').height() - $('#yourFist').height();
-							var y = -totalDistance * clickRatio;
-							$('#yourFist').css({ transform: 'translate(0, ' + y + 'px)' });
+							totalDistance = $('#gameContainer').height() - $('#yourFist').height();
+							y = -totalDistance * clickRatio;
+							$('#yourFist').css({
+								transform: 'translate(0, ' + y + 'px)',
+								transition: 'transform 0.2s ease-in'
+							});
 							break;
 
 						case FIST_STATE.LOOSING:
 							// Because the #gameContainer is 40vmax tall and centered, 30% of the
-							// window height plus the fist's height should get the fist off the 
+							// window height plus the fist's height should get the fist off the
 							// screen.
-							var y =  ($(window).height() * 0.30) + $('#yourFist').height();
-							$('#yourFist').css({ transform: 'translate(0, ' + y + 'px)' });
+							y =  ($(window).height() * 0.30) + $('#yourFist').height();
+							$('#yourFist').css({
+								transform: 'translate(0, ' + y + 'px)',
+								transition: 'transform 1s ease-out'
+							});
+							break;
+
+						case FIST_STATE.RAISING:
+							y = - ($('#gameContainer').height() - ($('#yourFist').height() / 2));
+							x = - $('#yourFist').width() / 2;
+							$('#yourFist').css({
+								transform: 'translate(' + x + 'px, ' + y + 'px)',
+								transition: 'transform 1.3s ease-in'
+							});
 							break;
 
 						case FIST_STATE.SMASHING:
-							var y = - (($('#gameContainer').height() / 2) - ($('#yourFist').height() / 2));
-							var x = ($('#gameContainer').width() / 2) - ($('#yourFist').width() / 2);
-							$('#yourFist').css({ transform: 'translate(' + x + 'px, ' + y + 'px)' });
+							y = - (($('#gameContainer').height() / 2) - ($('#yourFist').height() / 2));
+							x = ($('#gameContainer').width() / 2) - ($('#yourFist').width() / 2);
+							$('#yourFist').css({
+								transform: 'translate(' + x + 'px, ' + y + 'px)',
+								transition: 'transform 0.2s ease-out'
+							});
 							break;
 					}
 				}
 
 				function updateTheirFistLocation () {
 					var MARGIN_BOTTOM = 0.25; //25%
+					var totalDistance;
+					var x, y;
 
 					switch (theirFistState) {
 						case FIST_STATE.PLAYING:
 							var clickRatio = theirClicks / WIN_CLICKS;
-							var totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').height();
-							var distance = -totalDistance * clickRatio;
-							$('#theirFist').css({ transform: 'translate(0, ' + distance + 'px)' });
+							totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').height();
+							y = -totalDistance * clickRatio;
+							$('#theirFist').css({
+								transform: 'translate(0, ' + y + 'px)',
+								transition: 'transform 0.2s ease-in'
+							});
 							break;
 
 						case FIST_STATE.LOOSING:
 							// Because the #gameContainer is 40vmax tall and centered, 30% of the
-							// window height plus the fist's height should get the fist off the 
+							// window height plus the fist's height should get the fist off the
 							// screen.
-							var distance =  ($(window).height() * 0.30) + $('#theirFist').height();
-							$('#theirFist').css({ transform: 'translate(0, ' + distance + 'px)' });
+							y =  ($(window).height() * 0.30) + $('#theirFist').height();
+							$('#theirFist').css({
+								transform: 'translate(0, ' + y + 'px)',
+								transition: 'transform 1s ease-out'
+							});
+							break;
+
+						case FIST_STATE.RAISING:
+							y = - ($('#gameContainer').height() - ($('#theirFist').height() / 2));
+							x = $('#theirFist').width() / 2;
+							$('#theirFist').css({
+								transform: 'translate(' + x + 'px, ' + y + 'px)',
+								transition: 'transform 1.3s ease-in'
+							});
 							break;
 
 						case FIST_STATE.SMASHING:
-							var y = - (($('#gameContainer').height() / 2) - ($('#theirFist').height() / 2));
-							var x = - (($('#gameContainer').width() / 2) - ($('#theirFist').width() / 2));
-							$('#theirFist').css({ transform: 'translate(' + x + 'px, ' + y + 'px)' });
+							y = - (($('#gameContainer').height() / 2) - ($('#gameContainer').height() * MARGIN_BOTTOM) - ($('#theirFist').height() / 2));
+							x = - (($('#gameContainer').width() / 2) - ($('#theirFist').width() / 2));
+							$('#theirFist').css({
+								transform: 'translate(' + x + 'px, ' + y + 'px)',
+								transition: 'transform 0.2s ease-out'
+							});
 							break;
 					}
 				}
 
+				var flashTimeoutId = 0;
 				function clickFlashAnimation () {
+					clearTimeout(flashTimeoutId);
 					$gamePage.css({ backgroundColor: FLASH_COLOR });
-					$gamePage.animate({ backgroundColor: '#ffffff' }, {
-						duration: FLASH_DURATION,
-						queue: false
-					});
+					flashTimeoutId = setTimeout(function flashTimeout () {
+						$gamePage.css({ backgroundColor: '#fff' });
+					}, FLASH_DURATION);
 				}
 
 				function youWinAnimation () {
-					$('.fist').addClass('slow');
 					theirFistState = FIST_STATE.LOOSING;
+					yourFistState = FIST_STATE.RAISING;
 					$('#theirFist').fadeOut();
 					updateYourFistLocation();
 					updateTheirFistLocation();
 
-					setTimeout(function youWinTimeout1 () {
+					setTimeout(function youWinTimeout2 () {
 						$('.fist').removeClass('slow');
 						yourFistState = FIST_STATE.SMASHING;
 						updateYourFistLocation();
-					}, 1900);
+					}, 1300);
 
-					setTimeout(function youWinTimeout2 () {
+					setTimeout(function youWinTimeout3 () {
 						$('#yourFist').hide();
 						$('#unsmashed').hide();
 
 						$('#yourHand').show();
 						$('#smashed').show();
-					}, 2000);
+					}, 1400);
 
-					setTimeout(function youWinTimeout3 () {
+					setTimeout(function youWinTimeout4 () {
 						$('#youWin').show();
 						$('#gameOverBanner').fadeIn();
-					}, 2500);
+					}, 1900);
 				}
 
 				function theyWinAnimation () {
-					$('.fist').addClass('slow');
 					yourFistState = FIST_STATE.LOOSING;
+					theirFistState = FIST_STATE.RAISING;
 					$('#yourFist').fadeOut();
 					updateYourFistLocation();
 					updateTheirFistLocation();
@@ -241,7 +284,7 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 						$('.fist').removeClass('slow');
 						theirFistState = FIST_STATE.SMASHING;
 						updateTheirFistLocation();
-					}, 1900);
+					}, 1300);
 
 					setTimeout(function theyWinTimeout2 () {
 						$('#theirFist').hide();
@@ -249,12 +292,12 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 
 						$('#theirHand').show();
 						$('#smashed').show();
-					}, 2000);
+					}, 1400);
 
 					setTimeout(function youWinTimeout3 () {
 						$('#youLoose').show();
 						$('#gameOverBanner').fadeIn();
-					}, 2500);
+					}, 1900);
 				}
 
 				function updateYourClicks (newYourClicks) {
@@ -284,13 +327,13 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 
 				function playingMouseDown () {
 					clickFlashAnimation();
-					//updateYourClicks();
+					updateYourClicks();
 					updateTheirClicks(theirClicks+1);
 
 					// TODO - Remove the follow pseudo logic
 					if (theirClicks === WIN_CLICKS) {
 						$(document).off('mousedown', playingMouseDown);
-						theyWinAnimation();
+						youWinAnimation();
 					}
 				}
 
