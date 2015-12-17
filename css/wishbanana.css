@@ -268,11 +268,11 @@ button#namingDone {
 }
 
 .fist {
-	transition: transform 0.2s;
+	transition: transform 0.2s ease-in;
 }
 
 .fist.slow {
-	transition: transform 1s;
+	transition: transform 1s ease-in;
 }
 
 #playingNames {

@@ -1,10 +1,11 @@
 define(['messages', 'logging'], function (messages, logging) {
-	var log = logging('client2Server').log;
+	var logging = logging('client2Server');
+	var log = logging.log;
 
 	return {
 		C2SWrapper: function (url) {
 			if (!window.WebSocket) {
-				log('WebSockets are not supported.');
+				log('WebSockets are not supported.', logging.ERROR);
 				throw new Error('WebSockets are not supported.');
 			}
 
@@ -31,7 +32,7 @@ define(['messages', 'logging'], function (messages, logging) {
 						msg = JSON.parse(rawMsg.data);
 					}
 					catch (err) {
-						log('Failed to parse message JSON: ' + rawMsg.data);
+						log('Failed to parse message JSON: ' + rawMsg.data, LOGGING.WARNING);
 						callIfDefined('onError', err, rawMsg.data);
 						return;
 					}
@@ -59,7 +60,7 @@ define(['messages', 'logging'], function (messages, logging) {
 					}
 				}
 				else {
-					log('Received invalid rawMsg datatype: ' + rawMsg.data);
+					log('Received invalid rawMsg datatype: ' + rawMsg.data, LOGGING.WARNING);
 					callIfDefined('onError', 'Invalid rawMsg datatype: ' + (typeof rawMsg.data) + '.', '');
 				}
 			};

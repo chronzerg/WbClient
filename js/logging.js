@@ -1,14 +1,27 @@
 define(['moment'], function logging (moment) {
-    // List of modules whose logs are no displayed.
+    // List of modules whose logs are not displayed.
     var moduleFilter = {};
+    var levelFilter = 0;
+    var levelNames = ['ERROR', 'WARNING', 'DEBUG', 'INFO'];
 
-    return function loggingCtor (module) {
+    return function loggingCtor (module, showLevel) {
+        if (showLevel !== undefined) {
+            showLevel = false;
+        }
+
         return {
-            log: function (msg) {
-                // If the current module logging isn't being filtered...
-                if (!(module in moduleFilter)) {
-                    var date = moment().format('MM/DD/YY HH:MM');
-                    console.log(date + " " + module + " => " + msg + "\n");
+            log: function (msg, level) {
+                if (level === undefined) {
+                    level = 3;
+                }
+
+                if (!(module in moduleFilter) && level <= levelFilter) {
+                    var msgStr = moment().format('MM/DD/YY HH:MM');
+                    if (showLevel) {
+                        msgStr += ' ' + levelNames[level];
+                    }
+                    msgStr += ' ' + msg + '\n';
+                    console.log(msgStr);
                 }
             },
             filter: function (filters) {
@@ -22,7 +35,15 @@ define(['moment'], function logging (moment) {
                         }
                     }
                 }
-            }
+
+                if (filters.level !== undefined) {
+                    levelFilter = filters.level;
+                }
+            },
+            ERROR: 0,
+            WARNING: 1,
+            DEBUG: 2,
+            INFO: 3
         };
     };
 });

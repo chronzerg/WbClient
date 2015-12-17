@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"smashi",
+				"SMASHING"
+			],
+			[
+				"sma",
+				"SMASHING"
+			],
+			[
+				"loo",
+				"LOOSING"
+			],
+			[
+				"fist",
+				"FIST_STATE"
+			],
+			[
+				"playi",
+				"PLAYING"
+			],
+			[
+				"pla",
+				"PLAYING"
+			],
+			[
+				"msg",
+				"msgStr"
+			],
+			[
+				"leve",
+				"levelNames"
+			],
+			[
+				"in",
+				"INFO"
+			],
+			[
+				"level",
+				"levelFilter"
+			],
+			[
 				"update",
 				"updateTheirFistLocation"
 			],
@@ -14,10 +54,6 @@
 			[
 				"upda",
 				"updateYourFistLocation"
-			],
-			[
-				"sma",
-				"smashing"
 			],
 			[
 				"your",
@@ -478,42 +514,6 @@
 			[
 				"store",
 				"storeMetadata"
-			],
-			[
-				"dist",
-				"distThreshold"
-			],
-			[
-				"de",
-				"deg2rad"
-			],
-			[
-				"cap",
-				"capturePhoto"
-			],
-			[
-				"capt",
-				"capturePhoto"
-			],
-			[
-				"ser",
-				"serialName"
-			],
-			[
-				"serial",
-				"serialFd"
-			],
-			[
-				"mavlink",
-				"mavlink_message_t"
-			],
-			[
-				"cou",
-				"countLeaves"
-			],
-			[
-				"add",
-				"addLeft"
 			]
 		]
 	},
@@ -523,31 +523,7 @@
 			"file": "js/wishbanana.js",
 			"settings":
 			{
-				"buffer_size": 9440,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 4658,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/logging.js",
-			"settings":
-			{
-				"buffer_size": 974,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "css/wishbanana.css",
-			"settings":
-			{
-				"buffer_size": 4602,
+				"buffer_size": 9694,
 				"line_ending": "Unix"
 			}
 		}
@@ -623,17 +599,17 @@
 	],
 	"file_history":
 	[
-		"/C/Users/andjon/Desktop/wbClient/js/paging.js",
 		"/C/Users/andjon/Desktop/wbClient/js/game.js",
 		"/C/Users/andjon/Desktop/wbClient/js/client2Server.js",
+		"/C/Users/andjon/Desktop/wbClient/index.html",
+		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
+		"/C/Users/andjon/Desktop/wbClient/js/logging.js",
+		"/C/Users/andjon/Desktop/wbClient/css/wishbanana.css",
+		"/C/Users/andjon/Desktop/wbClient/js/paging.js",
 		"/C/Users/andjon/Desktop/wbClient/js/versions.txt",
 		"/C/Users/andjon/Desktop/wbClient/js/jquery.color.js",
-		"/C/Users/andjon/Desktop/wbClient/js/logging.js",
 		"/C/Users/andjon/Desktop/wbClient/js/messages.js",
 		"/C/Users/andjon/Desktop/wbClient/js/delay.js",
-		"/C/Users/andjon/Desktop/wbClient/css/wishbanana.css",
-		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
-		"/C/Users/andjon/Desktop/wbClient/index.html",
 		"/C/Users/andjon/Desktop/wbClient/js/setDelay.js",
 		"/C/Users/andjon/Desktop/wbClient/js/jquery.moving.js",
 		"/C/Users/andjon/Desktop/wbClient/animate.js",
@@ -773,6 +749,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"theirFistState",
+			"yourFistState",
 			"updateTheirFistLocation",
 			"updateYourFistLocation",
 			"youWon",
@@ -898,9 +876,7 @@
 			"lynx",
 			"System Default",
 			"Lynx",
-			"gps",
-			"lynx",
-			"Lynx"
+			"gps"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -950,15 +926,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9440,
+						"buffer_size": 9694,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6529,
-								6529
+								8146,
+								8146
 							]
 						],
 						"settings":
@@ -967,98 +943,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3660.0,
+						"translation.y": 4873.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4658,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3751,
-								3755
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1425.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/logging.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 974,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								970,
-								970
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "css/wishbanana.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4602,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4058,
-								4058
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4436.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]

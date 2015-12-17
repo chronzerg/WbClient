@@ -1,6 +1,7 @@
 define(['client2Server', 'logging'], function (client2Server, logging) {
 	var url = 'ws://192.168.1.80:3456';
-	var log = logging('client2Server').log;
+	var logging = logging('client2Server');
+	var log = logging.log;
 
 	return {
 		Game: function (name) {
@@ -23,7 +24,7 @@ define(['client2Server', 'logging'], function (client2Server, logging) {
 					return true;
 				}
 
-				log ('Invalid state change requested: ' state + ' to ' + newState);
+				log ('Invalid state change requested: ' state + ' to ' + newState, LOGGING.WARNING);
 				return false;
 			}
 
