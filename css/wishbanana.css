@@ -2,7 +2,7 @@ html {
 	font-family: sans-serif;
 }
 
-h1 {
+h1, .h1 {
 	font-size: 15vmin;
 	color: #CC99FF;
 	font-weight: bold;
@@ -23,7 +23,7 @@ h1 {
 		0 20px 30px rgba(0,0,0,.5);
 }
 
-h2 {
+h2, .h2 {
 	font-size: 10vmin;
 	color: #CC99FF;
 	font-weight: bold;
@@ -44,7 +44,7 @@ h2 {
 		0 20px 20px rgba(0,0,0,.15);
 }
 
-h3 {
+h3, .h3 {
 	font-size: 8vmin;
 	color: #615865;
 
@@ -274,20 +274,24 @@ button#namingDone {
 	width: 70%;
 }
 
-#myName {
-	position: absolute;
+#yourName {
 	left: 0;
-	bottom: 0;
 }
 
 #theirName {
-	position: absolute;
 	right: 0;
-	bottom: 0;
 }
 
-#playingNames h1 {
-	margin: 10px;
+.name {
+	position: absolute;
+	bottom: 0;
+	width: 35%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+	/* So that the text-shadow doesn't get cut off */
+	padding-bottom: 5px;
 }
 
 #clickCover {
