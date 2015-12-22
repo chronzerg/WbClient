@@ -129,7 +129,6 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 			(function initPlaying () {
 				log('Initializing game->playing');
 				var WIN_CLICKS = 30;
-				var FLASH_COLOR = '#ffffcc';
 				var FLASH_DURATION = 100;
 
 				var FIST_STATE = {
@@ -240,9 +239,9 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 				var flashTimeoutId = 0;
 				function clickFlashAnimation () {
 					clearTimeout(flashTimeoutId);
-					$gamePage.css({ backgroundColor: FLASH_COLOR });
+					$('#flash').show();
 					flashTimeoutId = setTimeout(function flashTimeout () {
-						$gamePage.css({ backgroundColor: '#fff' });
+						$('#flash').hide();
 					}, FLASH_DURATION);
 				}
 

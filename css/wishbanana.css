@@ -149,31 +149,38 @@ input {
 }
 
 
-/* CLOUD BACKGROUND
+/* SCROLLING BACKGROUND
     Background div used to display clouds moving accross the screen.
     An animating background isn't used because browsers currently
     don't GPU optimize such animations.
 */
 
-@keyframes cloudMovement {
+@keyframes scrollingMovement {
 	/* Move 400px because thats the size of the repeating background */
 	0%		{ transform: translate(-400px, 0); }
 	100%	{ transform: translate(0, 0); }
 }
 
-.clouds {
+.scrolling {
 	position: absolute;
 	/* width is twice the size of the repeating background */
 	width: 200%;
 	min-width: 800px;
 	height: 100%;
-
-	background-image: url(../assets/clouds.svg);
+	
 	background-size: 400px 400px;
 	background-position: 0px 0px;
 	background-repeat: repeat;
+}
 
-	animation: cloudMovement 10s linear infinite;
+.clouds {
+	background-image: url(../assets/clouds.svg);
+	animation: scrollingMovement 10s linear infinite;
+}
+
+.lights {
+	background-image: url(../assets/lights.svg);
+	animation: scrollingMovement 1s linear infinite;
 }
 
 
@@ -219,7 +226,8 @@ button#menuToGame {
 #storyContent {
 	width: 80%;
 	height: 100%;
-	overflow: scroll;
+	overflow-y: scroll;
+	overflow-x: hidden;
 	margin: 0 auto;
 	padding: 0 20px;
 	box-shadow: inset 0px 0px 20px 1px rgba(0,0,0,0.75);
@@ -246,6 +254,22 @@ button#namingDone {
 
 .count > h1 {
 	font-size: 75vmin;
+}
+
+#playingBackground {
+	position: absolute;
+	height: 142vmax;
+	width: 142vmax;
+	transform: rotate(90deg);
+}
+
+#flash {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: #ffffcc;
+	display: none;
+	opacity: 0.7;
 }
 
 #gameContainer {
