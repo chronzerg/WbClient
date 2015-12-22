@@ -2,6 +2,12 @@ html {
 	font-family: sans-serif;
 }
 
+body {
+	/* prevent scrolling on desktop browsers */
+	overflow: hidden;
+	margin: 0;
+}
+
 h1, .h1 {
 	font-size: 15vmin;
 	color: #CC99FF;

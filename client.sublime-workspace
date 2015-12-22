@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ma",
+				"margin"
+			],
+			[
 				"smashi",
 				"SMASHING"
 			],
@@ -510,10 +514,6 @@
 			[
 				"old",
 				"oldPosition"
-			],
-			[
-				"store",
-				"storeMetadata"
 			]
 		]
 	},
@@ -523,7 +523,15 @@
 			"file": "js/wishbanana.js",
 			"settings":
 			{
-				"buffer_size": 9694,
+				"buffer_size": 10842,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/wishbanana.css",
+			"settings":
+			{
+				"buffer_size": 4717,
 				"line_ending": "Unix"
 			}
 		}
@@ -917,7 +925,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -926,15 +934,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9694,
+						"buffer_size": 10842,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8146,
-								8146
+								346,
+								346
 							]
 						],
 						"settings":
@@ -943,7 +951,36 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4873.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/wishbanana.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4717,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								476,
+								476
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
