@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"fade",
+				"fadeOut"
+			],
+			[
+				"play",
+				"playingBackground"
+			],
+			[
 				"ma",
 				"margin"
 			],
@@ -70,10 +78,6 @@
 			[
 				"module",
 				"moduleFilter"
-			],
-			[
-				"fade",
-				"fadeIn	.fadeIn()"
 			],
 			[
 				"del",
@@ -202,10 +206,6 @@
 			[
 				"clic",
 				"clicks"
-			],
-			[
-				"play",
-				"playingClick"
 			],
 			[
 				"max",
@@ -520,18 +520,26 @@
 	"buffers":
 	[
 		{
-			"file": "js/wishbanana.js",
+			"file": "css/wishbanana.css",
 			"settings":
 			{
-				"buffer_size": 10842,
+				"buffer_size": 5546,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "css/wishbanana.css",
+			"file": "js/wishbanana.js",
 			"settings":
 			{
-				"buffer_size": 4717,
+				"buffer_size": 10622,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 4814,
 				"line_ending": "Unix"
 			}
 		}
@@ -607,10 +615,10 @@
 	],
 	"file_history":
 	[
+		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
 		"/C/Users/andjon/Desktop/wbClient/js/game.js",
 		"/C/Users/andjon/Desktop/wbClient/js/client2Server.js",
 		"/C/Users/andjon/Desktop/wbClient/index.html",
-		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
 		"/C/Users/andjon/Desktop/wbClient/js/logging.js",
 		"/C/Users/andjon/Desktop/wbClient/css/wishbanana.css",
 		"/C/Users/andjon/Desktop/wbClient/js/paging.js",
@@ -757,6 +765,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"#playing",
+			"95deg",
+			"rotate",
+			"cloudMovement",
 			"theirFistState",
 			"yourFistState",
 			"updateTheirFistLocation",
@@ -880,10 +892,6 @@
 			"lynx",
 			"gps",
 			"lynx",
-			"gps",
-			"lynx",
-			"System Default",
-			"Lynx",
 			"gps"
 		],
 		"highlight": true,
@@ -892,6 +900,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"scrollingMovement",
 			"updateTheirClicks",
 			"updateYourClicks",
 			"newYourClicks",
@@ -925,24 +934,53 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "js/wishbanana.js",
+					"file": "css/wishbanana.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10842,
+						"buffer_size": 5546,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								346,
-								346
+								4509,
+								4509
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4686.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/wishbanana.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8382,
+								8382
 							]
 						],
 						"settings":
@@ -951,36 +989,36 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4731.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "css/wishbanana.css",
+					"buffer": 2,
+					"file": "index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4717,
+						"buffer_size": 4814,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								476,
-								476
+								3135,
+								3135
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": -0.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 1235.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

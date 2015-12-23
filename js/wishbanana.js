@@ -264,6 +264,8 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 
 						$('#yourHand').show();
 						$('#smashed').show();
+
+						$('#playingBackground').fadeOut();
 					}, 1400);
 
 					setTimeout(function youWinTimeout4 () {
@@ -291,6 +293,8 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 
 						$('#theirHand').show();
 						$('#smashed').show();
+
+						$('#playingBackground').fadeOut();
 					}, 1400);
 
 					setTimeout(function youWinTimeout3 () {
@@ -351,6 +355,7 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 					theirFistState = FIST_STATE.PLAYING;
 
 					$('.fist').css({ transform: ''}).removeClass('slow').show();
+					$('#playingBackground').show().addClass('running');
 					$('#unsmashed').show();
 
 					$('#youWin').hide();
@@ -360,21 +365,12 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 					$('#smashed').hide();
 					$('#yourHand').hide();
 					$('#theirHand').hide();
-
-					$gamePage.find('.clouds').hide();
-					$gamePage.css({ backgroundColor: '#ffffff' });
 				});
 
 				gamePaging.addBeforeHideCallback('playing', function playingBeforeHide () {
 					$(document).off('mousedown', playingMouseDown);
 					$(window).off('resize', updateYourFistLocation);
 					$(window).off('resize', updateTheirFistLocation);
-
-					$gamePage.css({ backgroundColor: 'transparent' });
-				});
-
-				gamePaging.addAfterHideCallback('playing', function playingAfterHide () {
-					$gamePage.find('.clouds').show();
 				});
 			})();
 		})();
