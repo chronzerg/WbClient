@@ -130,6 +130,7 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 				log('Initializing game->playing');
 				var WIN_CLICKS = 30;
 				var FLASH_DURATION = 100;
+				var HAND_MAX_ANGLE = 20;
 
 				var FIST_STATE = {
 					PLAYING: 0,
@@ -145,15 +146,17 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 
 				function updateYourFistLocation() {
 					var totalDistance;
-					var x, y;
+					var x, y, a;
 
 					switch(yourFistState) {
 						case FIST_STATE.PLAYING:
 							var clickRatio = yourClicks / WIN_CLICKS;
 							totalDistance = $('#gameContainer').height() - $('#yourFist').height();
 							y = -totalDistance * clickRatio;
+							x = -($('#yourFist').width() / 4) * clickRatio;
+							a = -HAND_MAX_ANGLE * clickRatio;
 							$('#yourFist').css({
-								transform: 'translate(0, ' + y + 'px)',
+								transform: 'translate(' + x + 'px, ' + y + 'px) rotate(' + a + 'deg)' ,
 								transition: 'transform 0.2s ease-in'
 							});
 							break;
@@ -173,7 +176,7 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 							y = - ($('#gameContainer').height() - ($('#yourFist').height() / 2));
 							x = - $('#yourFist').width() / 2;
 							$('#yourFist').css({
-								transform: 'translate(' + x + 'px, ' + y + 'px)',
+								transform: 'translate(' + x + 'px, ' + y + 'px) rotate(' + -HAND_MAX_ANGLE + 'deg)',
 								transition: 'transform 1.3s ease-in'
 							});
 							break;

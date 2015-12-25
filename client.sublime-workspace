@@ -609,12 +609,11 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/andjon/Desktop/wbClient",
-		"/C/Users/andjon/Desktop/wbClient/css",
-		"/C/Users/andjon/Desktop/wbClient/js"
+		"/Users/littlejon/Source/WishBanana/client"
 	],
 	"file_history":
 	[
+		"/Users/littlejon/Source/WishBanana/client/client.sublime-project",
 		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
 		"/C/Users/andjon/Desktop/wbClient/js/game.js",
 		"/C/Users/andjon/Desktop/wbClient/js/client2Server.js",
@@ -741,8 +740,7 @@
 		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/FrenchCDApp/Win32/Debug/FrenchCDApp/Settings.130777597387599508.bad_xml",
 		"/P/Users/duenke/French SOC IRAD/IssuesLog.md",
 		"/P/Users/duenke/French SOC IRAD/IssuesLog.html",
-		"/P/Users/andjon/test/scripts/Compare.py",
-		"/P/Users/andjon/test/scripts/CopyTest.py"
+		"/P/Users/andjon/test/scripts/Compare.py"
 	],
 	"find":
 	{
@@ -1008,8 +1006,8 @@
 						"selection":
 						[
 							[
-								3135,
-								3135
+								3623,
+								3623
 							]
 						],
 						"settings":
@@ -1018,7 +1016,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1235.0,
+						"translation.y": 1160.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1108,7 +1106,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 403.0,
+	"side_bar_width": 149.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

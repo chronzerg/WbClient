@@ -157,7 +157,7 @@ input {
 
 @keyframes scrollingMovement {
 	/* Move 400px because thats the size of the repeating background */
-	0%		{ transform: translate(-400px, 0); }
+	0%		{ transform: translate(-500px, 0); }
 	100%	{ transform: translate(0, 0); }
 }
 
@@ -165,20 +165,22 @@ input {
 	position: absolute;
 	/* width is twice the size of the repeating background */
 	width: 200%;
-	min-width: 800px;
+	min-width: 1000px;
 	height: 100%;
-	
-	background-size: 400px 400px;
+
+	background-size: 500px 500px;
 	background-position: 0px 0px;
 	background-repeat: repeat;
 }
 
 .clouds {
+	background-color: #547aff;
 	background-image: url(../assets/clouds.svg);
 	animation: scrollingMovement 10s linear infinite;
 }
 
 .lights {
+	background-color: #547aff;
 	background-image: url(../assets/lights.svg);
 	animation: scrollingMovement 1s linear infinite;
 }
@@ -258,7 +260,7 @@ button#namingDone {
 
 @keyframes playingBackgroundAnim {
 	0%, 50%, 100%	{ transform: rotate(90deg) scale(1,1) }
-	25%				{ transform: rotate(85deg) scale(1.2, 1.2) }	
+	25%				{ transform: rotate(85deg) scale(1.2, 1.2) }
 	75%				{ transform: rotate(95deg) scale(1.2, 1.2) }
 }
 
