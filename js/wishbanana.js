@@ -195,15 +195,17 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 				function updateTheirFistLocation () {
 					var MARGIN_BOTTOM = 0.25; //25%
 					var totalDistance;
-					var x, y;
+					var x, y, a;
 
 					switch (theirFistState) {
 						case FIST_STATE.PLAYING:
 							var clickRatio = theirClicks / WIN_CLICKS;
 							totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirFist').height();
 							y = -totalDistance * clickRatio;
+							x = ($('#theirFist').width() / 4) * clickRatio;
+							a = HAND_MAX_ANGLE * clickRatio;
 							$('#theirFist').css({
-								transform: 'translate(0, ' + y + 'px)',
+								transform: 'translate(' + x + 'px, ' + y + 'px) rotate(' + a + 'deg)',
 								transition: 'transform 0.2s ease-in'
 							});
 							break;
@@ -223,7 +225,7 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 							y = - ($('#gameContainer').height() - ($('#theirFist').height() / 2));
 							x = $('#theirFist').width() / 2;
 							$('#theirFist').css({
-								transform: 'translate(' + x + 'px, ' + y + 'px)',
+								transform: 'translate(' + x + 'px, ' + y + 'px) rotate(' + HAND_MAX_ANGLE + 'deg)',
 								transition: 'transform 1.3s ease-in'
 							});
 							break;
