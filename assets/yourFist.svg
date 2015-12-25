@@ -46,5 +46,14 @@
   <path stroke-linejoin="miter" style="enable-background:accumulate;color:#000000;" d="m187,800,22.5-44.6,38.9-46.4" stroke-dashoffset="0" filter="url(#filter4365-4)" stroke="#000" stroke-linecap="butt" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="1px" fill="none"/>
   <path stroke-linejoin="miter" style="enable-background:accumulate;color:#000000;" d="m135,804,13.9-34.6,25-43.9" stroke-dashoffset="0" filter="url(#filter4365-9)" stroke="#000" stroke-linecap="butt" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="1px" fill="none"/>
   <path stroke-linejoin="miter" style="enable-background:accumulate;color:#000000;" d="m152,1030,16.4-35.7,32.1-16.4,37.9-6.43,30.7-10.7,34.3-25,36.4-28.6" stroke-dashoffset="0" filter="url(#filter4365-1)" stroke="#000" stroke-linecap="butt" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m141,725s7.07-3.54,15.7,2.53" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m122,760s9.6-5.56,18.2,1.01" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m207,704s9.6-2.02,16.7,6.06" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m182,738s12.6-6.06,20.7,4.55" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m270,711l19.2,8.59" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m237,746s14.1-3.03,21.2,5.05" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m320,742s12.6-2.02,17.2,11.6" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m291,766s12.6-1.52,17.2,10.1" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+  <path stroke-linejoin="miter" d="m327,889s10.6,9.6,6.06,24.2" stroke="#b49393" stroke-linecap="butt" stroke-width="1px" fill="none"/>
  </g>
 </svg>
