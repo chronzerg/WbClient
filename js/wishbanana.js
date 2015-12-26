@@ -341,7 +341,7 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 					// TODO - Remove the follow pseudo logic
 					if (theirClicks === WIN_CLICKS) {
 						$(document).off('mousedown', playingMouseDown);
-						youWinAnimation();
+						theyWinAnimation();
 					}
 				}
 
