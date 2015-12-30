@@ -3,7 +3,14 @@
 	<head>
 		<title>Wish Banana</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="css/wishbanana.css">
+
+		<link rel="stylesheet" type="text/css" href="css/general.css">
+		<link rel="stylesheet" type="text/css" href="css/menu.css">
+		<link rel="stylesheet" type="text/css" href="css/story.css">
+		<link rel="stylesheet" type="text/css" href="css/game.css">
+		<link rel="stylesheet" type="text/css" href="css/scrolling.css">
+
+
 		<script data-main="js/wishbanana" src="js/require.js"></script>
 	</head>
 
@@ -68,12 +75,18 @@
 
 			<div class="state centered" id="matching"><h1>matching...</h1></div>
 
-			<div class="state centered" id="counting">
-				<div id="5" class="count"><h1>5</h1></div>
-				<div id="4" class="count"><h1>4</h1></div>
-				<div id="3" class="count"><h1>3</h1></div>
-				<div id="2" class="count"><h1>2</h1></div>
-				<div id="1" class="count"><h1>1</h1></div>
+			<div class="state" id="counting">
+				<div id="5" class="count centered"><h1>5</h1></div>
+				<div id="4" class="count centered"><h1>4</h1></div>
+				<div id="3" class="count centered"><h1>3</h1></div>
+				<div id="2" class="count centered"><h1>2</h1></div>
+				<div id="1" class="count centered"><h1>1</h1></div>
+
+				<div class="playingNames centeredX">
+					<div class="name yourName h3">Jonathan</div>
+					<div class="name theirName h3">Christopher</div>
+					<div class="vs">vs</div>
+				</div>
 			</div>
 
 			<div class="state" id="playing">
@@ -92,9 +105,10 @@
 
 					<img src="assets/yourHand.svg" id="yourHand" class="fist" />
 				</div>
-				<div id="playingNames" class="centeredX">
-					<div id="yourName" class="name h3">player player 1</div>
-					<div id="theirName" class="name h3">player player 2</div>
+				<div class="playingNames centeredX">
+					<div class="name yourName h3">Jonathan</div>
+					<div class="name theirName h3">Christopher</div>
+					<div class="vs">vs</div>
 				</div>
 
 				<div id="clickCover"></div>

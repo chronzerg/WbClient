@@ -118,7 +118,7 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 							clearInterval(timerId);
 							gamePaging.switchToPage('playing', true);
 						}
-					}, 100);
+					}, 1000);
 				});
 
 				gamePaging.addBeforeHideCallback('counting', function countingBeforeHide () {

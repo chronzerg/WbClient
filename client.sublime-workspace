@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"pso",
+				"position"
+			],
+			[
+				"theyWin",
+				"theyWinAnimation"
+			],
+			[
+				"click",
+				"clickRatio"
+			],
+			[
+				"clic",
+				"clickRatio"
+			],
+			[
+				"your",
+				"yourFist"
+			],
+			[
 				"fade",
 				"fadeOut"
 			],
@@ -66,10 +86,6 @@
 			[
 				"upda",
 				"updateYourFistLocation"
-			],
-			[
-				"your",
-				"yourFistState"
 			],
 			[
 				"yourFis",
@@ -198,14 +214,6 @@
 			[
 				"cli",
 				"clicksPosition"
-			],
-			[
-				"click",
-				"clicksPosition"
-			],
-			[
-				"clic",
-				"clicks"
 			],
 			[
 				"max",
@@ -506,24 +514,24 @@
 			[
 				"build",
 				"buildTree"
-			],
-			[
-				"al",
-				"altMultiplier"
-			],
-			[
-				"old",
-				"oldPosition"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 5045,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "css/wishbanana.css",
 			"settings":
 			{
-				"buffer_size": 5546,
+				"buffer_size": 6175,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,15 +539,7 @@
 			"file": "js/wishbanana.js",
 			"settings":
 			{
-				"buffer_size": 10622,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 4814,
+				"buffer_size": 10986,
 				"line_ending": "Unix"
 			}
 		}
@@ -609,10 +609,18 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/littlejon/Source/WishBanana/client"
+		"/Users/littlejon/Source/WishBanana/client",
+		"/Users/littlejon/Source/WishBanana/client/js"
 	],
 	"file_history":
 	[
+		"/Users/littlejon/Source/WishBanana/client/js/paging.js",
+		"/Users/littlejon/Source/WishBanana/client/assets/inkscape/yourHand.svg",
+		"/Users/littlejon/Source/WishBanana/client/assets/inkscape/theirHand.svg",
+		"/Users/littlejon/Source/WishBanana/client/index.html",
+		"/Users/littlejon/Source/WishBanana/client/js/wishbanana.js",
+		"/Users/littlejon/Source/WishBanana/client/css/wishbanana.css",
+		"/Users/littlejon/Source/WishBanana/client/js/client2Server.js",
 		"/Users/littlejon/Source/WishBanana/client/client.sublime-project",
 		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
 		"/C/Users/andjon/Desktop/wbClient/js/game.js",
@@ -733,14 +741,7 @@
 		"/C/Users/andjon/Desktop/finaldir/README",
 		"/C/Users/andjon/Desktop/Jons Settings.xml",
 		"/C/test/DateTimeUpdateTest_Lab.py",
-		"/C/Users/andjon/Desktop/deps.ps1",
-		"/C/test/Compare.py",
-		"/E/guid",
-		"/C/Source/Claw_USAF_Dev_222/drops/ISCS/Win32/Debug/CLAW2App/Settings.xml",
-		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/FrenchCDApp/Win32/Debug/FrenchCDApp/Settings.130777597387599508.bad_xml",
-		"/P/Users/duenke/French SOC IRAD/IssuesLog.md",
-		"/P/Users/duenke/French SOC IRAD/IssuesLog.html",
-		"/P/Users/andjon/test/scripts/Compare.py"
+		"/C/Users/andjon/Desktop/deps.ps1"
 	],
 	"find":
 	{
@@ -763,6 +764,12 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"theirFist",
+			"yourFist",
+			"yourHand",
+			"theirHand",
+			"color",
+			"scrolling",
 			"#playing",
 			"95deg",
 			"rotate",
@@ -884,13 +891,7 @@
 			"FileSystemEventHandler",
 			"event",
 			"ImageDir",
-			"IMageDir",
-			"exploitation",
-			"options",
-			"lynx",
-			"gps",
-			"lynx",
-			"gps"
+			"IMageDir"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -898,6 +899,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"theirHand",
+			"yourHand",
+			"yourSmash",
+			"theirSmash",
 			"scrollingMovement",
 			"updateTheirClicks",
 			"updateYourClicks",
@@ -937,77 +942,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "css/wishbanana.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5546,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4509,
-								4509
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4686.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/wishbanana.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10622,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8382,
-								8382
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 4731.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4814,
+						"buffer_size": 5045,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3623,
-								3623
+								3648,
+								3648
 							]
 						],
 						"settings":
@@ -1016,7 +963,65 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1160.0,
+						"translation.y": 1320.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/wishbanana.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6175,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4049,
+								4049
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS3/CSS3.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3518.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/wishbanana.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10986,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10709,
+								10709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 5.0,
+						"translation.y": 4677.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1106,7 +1111,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 149.0,
+	"side_bar_width": 220.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
