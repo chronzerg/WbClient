@@ -1,5 +1,5 @@
-define(function paging () {
-	return function createPaging ($pages) {
+define(function pagingModule () {
+	return function Paging ($pages) {
 		//Constants
 		var BH = "pagingBeforeHideCallbacks";
 		var BS = "pagingBeforeShowCallbacks";
@@ -78,4 +78,4 @@ define(function paging () {
 			getPage: getPage
 		};
 	};
-});;
+});

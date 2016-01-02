@@ -1,14 +1,8 @@
 requirejs.config({
-	baseurl: 'js',
-	shim: { 'jquery.color': ['jquery'] },
-	config: {
-		moment: {
-			noGlobal: true
-		}
-	}
+	baseurl: 'js'
 });
 
-define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, jqueryColor, paging, logging) {
+define(['jquery', 'paging', 'animations', 'logging'], function wishbananaModule ($, paging, animations, logging) {
 	var logging = logging('wishbanana');
 	var log = logging.log;
 
@@ -129,184 +123,9 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 			(function initPlaying () {
 				log('Initializing game->playing');
 				var WIN_CLICKS = 30;
-				var FLASH_DURATION = 100;
-				var HAND_MAX_ANGLE = 20;
-
-				var FIST_STATE = {
-					PLAYING: 0,
-					LOOSING: 1,
-					RAISING: 2,
-					SMASHING: 3
-				};
 
 				var yourClicks;
 				var theirClicks;
-				var yourHandState = FIST_STATE.PLAYING;
-				var theirHandState = FIST_STATE.PLAYING;
-
-				function updateYourFistLocation() {
-					var totalDistance;
-					var x, y, a;
-
-					switch(yourHandState) {
-						case FIST_STATE.PLAYING:
-							var clickRatio = yourClicks / WIN_CLICKS;
-							totalDistance = $('#gameContainer').height() - $('#yourHand').height();
-							y = -totalDistance * clickRatio;
-							x = -($('#yourHand').width() / 4) * clickRatio;
-							a = -HAND_MAX_ANGLE * clickRatio;
-							$('#yourHand').css({
-								transform: 'translate(' + x + 'px, ' + y + 'px) rotate(' + a + 'deg)' ,
-								transition: 'transform 0.2s ease-in'
-							});
-							break;
-
-						case FIST_STATE.LOOSING:
-							// Because the #gameContainer is 40vmax tall and centered, 30% of the
-							// window height plus the fist's height should get the fist off the
-							// screen.
-							y =  ($(window).height() * 0.30) + $('#yourHand').height();
-							$('#yourHand').css({
-								transform: 'translate(0, ' + y + 'px)',
-								transition: 'transform 1s ease-out'
-							});
-							break;
-
-						case FIST_STATE.RAISING:
-							y = - ($('#gameContainer').height() - ($('#yourHand').height() / 2));
-							x = - $('#yourHand').width() / 2;
-							$('#yourHand').css({
-								transform: 'translate(' + x + 'px, ' + y + 'px) rotate(' + -HAND_MAX_ANGLE + 'deg)',
-								transition: 'transform 1.3s ease-in'
-							});
-							break;
-
-						case FIST_STATE.SMASHING:
-							y = - (($('#gameContainer').height() / 2) - ($('#yourHand').height() / 2));
-							x = ($('#gameContainer').width() / 2) - ($('#yourHand').width() / 2);
-							$('#yourHand').css({
-								transform: 'translate(' + x + 'px, ' + y + 'px)',
-								transition: 'transform 0.2s ease-out'
-							});
-							break;
-					}
-				}
-
-				function updateTheirFistLocation () {
-					var MARGIN_BOTTOM = 0.25; //25%
-					var totalDistance;
-					var x, y, a;
-
-					switch (theirHandState) {
-						case FIST_STATE.PLAYING:
-							var clickRatio = theirClicks / WIN_CLICKS;
-							totalDistance = ($('#gameContainer').height() * (1-MARGIN_BOTTOM)) - $('#theirHand').height();
-							y = -totalDistance * clickRatio;
-							x = ($('#theirHand').width() / 4) * clickRatio;
-							a = HAND_MAX_ANGLE * clickRatio;
-							$('#theirHand').css({
-								transform: 'translate(' + x + 'px, ' + y + 'px) rotate(' + a + 'deg)',
-								transition: 'transform 0.2s ease-in'
-							});
-							break;
-
-						case FIST_STATE.LOOSING:
-							// Because the #gameContainer is 40vmax tall and centered, 30% of the
-							// window height plus the fist's height should get the fist off the
-							// screen.
-							y =  ($(window).height() * 0.30) + $('#theirHand').height();
-							$('#theirHand').css({
-								transform: 'translate(0, ' + y + 'px)',
-								transition: 'transform 1s ease-out'
-							});
-							break;
-
-						case FIST_STATE.RAISING:
-							y = - ($('#gameContainer').height() - ($('#theirHand').height() / 2));
-							x = $('#theirHand').width() / 2;
-							$('#theirHand').css({
-								transform: 'translate(' + x + 'px, ' + y + 'px) rotate(' + HAND_MAX_ANGLE + 'deg)',
-								transition: 'transform 1.3s ease-in'
-							});
-							break;
-
-						case FIST_STATE.SMASHING:
-							y = - (($('#gameContainer').height() / 2) - ($('#gameContainer').height() * MARGIN_BOTTOM) - ($('#theirHand').height() / 2));
-							x = - (($('#gameContainer').width() / 2) - ($('#theirHand').width() / 2));
-							$('#theirHand').css({
-								transform: 'translate(' + x + 'px, ' + y + 'px)',
-								transition: 'transform 0.2s ease-out'
-							});
-							break;
-					}
-				}
-
-				var flashTimeoutId = 0;
-				function clickFlashAnimation () {
-					clearTimeout(flashTimeoutId);
-					$('#flash').show();
-					flashTimeoutId = setTimeout(function flashTimeout () {
-						$('#flash').hide();
-					}, FLASH_DURATION);
-				}
-
-				function youWinAnimation () {
-					theirHandState = FIST_STATE.LOOSING;
-					yourHandState = FIST_STATE.RAISING;
-					$('#theirHand').fadeOut();
-					updateYourFistLocation();
-					updateTheirFistLocation();
-
-					setTimeout(function youWinTimeout2 () {
-						$('.fist').removeClass('slow');
-						yourHandState = FIST_STATE.SMASHING;
-						updateYourFistLocation();
-					}, 1300);
-
-					setTimeout(function youWinTimeout3 () {
-						$('#yourHand').hide();
-						$('#unsmashed').hide();
-
-						$('#yourSmash').show();
-						$('#smashed').show();
-
-						$('#playingBackground').fadeOut();
-					}, 1400);
-
-					setTimeout(function youWinTimeout4 () {
-						$('#youWin').show();
-						$('#gameOverBanner').fadeIn();
-					}, 1900);
-				}
-
-				function theyWinAnimation () {
-					yourHandState = FIST_STATE.LOOSING;
-					theirHandState = FIST_STATE.RAISING;
-					$('#yourHand').fadeOut();
-					updateYourFistLocation();
-					updateTheirFistLocation();
-
-					setTimeout(function theyWinTimeout1 () {
-						$('.fist').removeClass('slow');
-						theirHandState = FIST_STATE.SMASHING;
-						updateTheirFistLocation();
-					}, 1300);
-
-					setTimeout(function theyWinTimeout2 () {
-						$('#theirHand').hide();
-						$('#unsmashed').hide();
-
-						$('#theirSmash').show();
-						$('#smashed').show();
-
-						$('#playingBackground').fadeOut();
-					}, 1400);
-
-					setTimeout(function youWinTimeout3 () {
-						$('#youLoose').show();
-						$('#gameOverBanner').fadeIn();
-					}, 1900);
-				}
 
 				function updateYourClicks (newYourClicks) {
 					if (newYourClicks || newYourClicks === 0) {
@@ -320,7 +139,7 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 						yourClicks = WIN_CLICKS;
 					}
 
-					updateYourFistLocation();
+					animations.updateYourProgress(yourClicks / WIN_CLICKS);
 				}
 
 				function updateTheirClicks (newTheirClicks) {
@@ -330,18 +149,21 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 						theirClicks = WIN_CLICKS;
 					}
 
-					updateTheirFistLocation();
+					animations.updateTheirProgress(theirClicks / WIN_CLICKS);
 				}
 
 				function playingMouseDown () {
-					clickFlashAnimation();
+					animations.flash();
+
 					updateYourClicks();
 					updateTheirClicks(theirClicks+1);
 
-					// TODO - Remove the follow pseudo logic
 					if (theirClicks === WIN_CLICKS) {
 						$(document).off('mousedown', playingMouseDown);
-						theyWinAnimation();
+						animations.gameOver(false, function gameOverComplete () {
+							$('#youLose').show();
+							$('#gameOverBanner').fadeIn();
+						});
 					}
 				}
 
@@ -351,31 +173,21 @@ define(['jquery', 'jquery.color', 'paging', 'logging'], function wishbanana ($, 
 
 				gamePaging.addBeforeShowCallback('playing', function playingBeforeShow () {
 					$(document).on('mousedown', playingMouseDown);
-					$(window).on('resize', updateYourFistLocation);
-					$(window).on('resize', updateTheirFistLocation);
 
 					yourClicks = 0;
 					theirClicks = 0;
-					yourHandState = FIST_STATE.PLAYING;
-					theirHandState = FIST_STATE.PLAYING;
-
-					$('.fist').css({ transform: ''}).removeClass('slow').show();
-					$('#playingBackground').show().addClass('running');
-					$('#unsmashed').show();
 
 					$('#youWin').hide();
-					$('#youLoose').hide();
+					$('#youLose').hide();
 					$('#gameOverBanner').hide();
 
-					$('#smashed').hide();
-					$('#yourSmash').hide();
-					$('#theirSmash').hide();
+					animations.reset();
+					animations.attachResizeHandler();
 				});
 
 				gamePaging.addBeforeHideCallback('playing', function playingBeforeHide () {
 					$(document).off('mousedown', playingMouseDown);
-					$(window).off('resize', updateYourFistLocation);
-					$(window).off('resize', updateTheirFistLocation);
+					animations.detachResizeHandler();
 				});
 			})();
 		})();

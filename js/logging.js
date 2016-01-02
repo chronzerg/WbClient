@@ -1,10 +1,10 @@
-define(['moment'], function logging (moment) {
+define(['moment'], function loggingModule (moment) {
     // List of modules whose logs are not displayed.
     var moduleFilter = {};
     var levelFilter = 0;
     var levelNames = ['ERROR', 'WARNING', 'DEBUG', 'INFO'];
 
-    return function loggingCtor (module, showLevel) {
+    return function Logging (module, showLevel) {
         if (showLevel !== undefined) {
             showLevel = false;
         }
