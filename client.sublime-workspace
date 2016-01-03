@@ -4,6 +4,78 @@
 		"selected_items":
 		[
 			[
+				"gameOv",
+				"gameOverBanner"
+			],
+			[
+				"your",
+				"yourHand"
+			],
+			[
+				"updat",
+				"updatePosition"
+			],
+			[
+				"upda",
+				"updatePosition"
+			],
+			[
+				"run",
+				"runWinAnimation"
+			],
+			[
+				"update",
+				"updateProgress"
+			],
+			[
+				"smash",
+				"smashed"
+			],
+			[
+				"PL",
+				"PLAYING"
+			],
+			[
+				"smas",
+				"smashed"
+			],
+			[
+				"Play",
+				"PlayerAnimations"
+			],
+			[
+				"PLA",
+				"PLAYING_TRANS_TIME"
+			],
+			[
+				"lo",
+				"LOSING_TRANS_TIME"
+			],
+			[
+				"pro",
+				"progress"
+			],
+			[
+				"LOS",
+				"LOSING_TRANS_TIME"
+			],
+			[
+				"SMA",
+				"SMASHING_TRANS_TIME"
+			],
+			[
+				"RAI",
+				"RAISING_TRANS_TIME"
+			],
+			[
+				"thei",
+				"theirProgress"
+			],
+			[
+				"up",
+				"updateTheirPosition"
+			],
+			[
 				"pso",
 				"position"
 			],
@@ -18,10 +90,6 @@
 			[
 				"clic",
 				"clickRatio"
-			],
-			[
-				"your",
-				"yourFist"
 			],
 			[
 				"fade",
@@ -76,16 +144,8 @@
 				"levelFilter"
 			],
 			[
-				"update",
-				"updateTheirFistLocation"
-			],
-			[
 				"their",
 				"theirClicks"
-			],
-			[
-				"upda",
-				"updateYourFistLocation"
 			],
 			[
 				"yourFis",
@@ -138,10 +198,6 @@
 			[
 				"func",
 				"funcList"
-			],
-			[
-				"thei",
-				"theirHand"
 			],
 			[
 				"they",
@@ -254,10 +310,6 @@
 			[
 				"Normalize",
 				"NormalizeAngleVector"
-			],
-			[
-				"up",
-				"upArm"
 			],
 			[
 				"Z",
@@ -462,58 +514,6 @@
 			[
 				"pa",
 				"packetSize"
-			],
-			[
-				"pack",
-				"packetID"
-			],
-			[
-				"dest",
-				"destPath"
-			],
-			[
-				"des",
-				"destPath"
-			],
-			[
-				"ori",
-				"origPath"
-			],
-			[
-				"orig",
-				"origDir"
-			],
-			[
-				"exe",
-				"execute"
-			],
-			[
-				"mosaicDataKey",
-				"mosaicDataKeysString"
-			],
-			[
-				"user",
-				"username"
-			],
-			[
-				"db",
-				"dbName"
-			],
-			[
-				"get",
-				"getuser"
-			],
-			[
-				"moa",
-				"mosaicGroupId"
-			],
-			[
-				"Buil",
-				"buildTree"
-			],
-			[
-				"build",
-				"buildTree"
 			]
 		]
 	},
@@ -523,23 +523,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 5045,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "css/wishbanana.css",
-			"settings":
-			{
-				"buffer_size": 6175,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/wishbanana.js",
-			"settings":
-			{
-				"buffer_size": 10986,
+				"buffer_size": 5302,
 				"line_ending": "Unix"
 			}
 		}
@@ -609,18 +593,27 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/littlejon/Source/WishBanana/client",
 		"/Users/littlejon/Source/WishBanana/client/js"
 	],
 	"file_history":
 	[
+		"/Users/littlejon/Source/WishBanana/client/js/game.js",
+		"/Users/littlejon/Source/WishBanana/client/js/client2Server.js",
+		"/Users/littlejon/Source/WishBanana/client/js/logging.js",
+		"/Users/littlejon/Source/WishBanana/client/js/wishbanana.js",
+		"/Users/littlejon/Source/WishBanana/client/js/messages.js",
+		"/Users/littlejon/Source/WishBanana/client/js/animations.js",
 		"/Users/littlejon/Source/WishBanana/client/js/paging.js",
+		"/Users/littlejon/Source/WishBanana/client/js/animations/hands.js",
+		"/Users/littlejon/Source/WishBanana/client/index.html",
+		"/Users/littlejon/Source/WishBanana/client/css/game.css",
+		"/Users/littlejon/Source/WishBanana/client/css/story.css",
+		"/Users/littlejon/Source/WishBanana/client/css/menu.css",
+		"/Users/littlejon/Source/WishBanana/client/css/scrolling.css",
+		"/Users/littlejon/Source/WishBanana/client/css/general.css",
+		"/Users/littlejon/Source/WishBanana/client/css/wishbanana.css",
 		"/Users/littlejon/Source/WishBanana/client/assets/inkscape/yourHand.svg",
 		"/Users/littlejon/Source/WishBanana/client/assets/inkscape/theirHand.svg",
-		"/Users/littlejon/Source/WishBanana/client/index.html",
-		"/Users/littlejon/Source/WishBanana/client/js/wishbanana.js",
-		"/Users/littlejon/Source/WishBanana/client/css/wishbanana.css",
-		"/Users/littlejon/Source/WishBanana/client/js/client2Server.js",
 		"/Users/littlejon/Source/WishBanana/client/client.sublime-project",
 		"/C/Users/andjon/Desktop/wbClient/js/wishbanana.js",
 		"/C/Users/andjon/Desktop/wbClient/js/game.js",
@@ -731,17 +724,7 @@
 		"/C/Program Files (x86)/GA-ASI Reconnaissance Systems/CDApp 2.7.307.292/CDApp.exe.config",
 		"/C/Source/Claw_2_French_CCD_IRAD_500/Claw2Core/Builds/FrenchCDApp/FrenchCDApp/Settings.xml",
 		"/C/Source/Claw_2_French_CCD_IRAD_500/Claw2Core/Builds/FrenchCDApp/FrenchCDApp.sln",
-		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/FrenchCDApp/Win32/Debug/FrenchCDApp/Settings.xml",
-		"/C/Users/andjon/Downloads/broken GetFXEnvelope.RPP",
-		"/C/Source/Claw_2_French_CCD_IRAD_500/.gitignore",
-		"/P/Users/andjon/test/scripts/TimeSync.bat",
-		"/C/Users/andjon/Source/CppMT/README.md",
-		"/C/test/c",
-		"/C/test/DateTimeUpdateTest_Old.py",
-		"/C/Users/andjon/Desktop/finaldir/README",
-		"/C/Users/andjon/Desktop/Jons Settings.xml",
-		"/C/test/DateTimeUpdateTest_Lab.py",
-		"/C/Users/andjon/Desktop/deps.ps1"
+		"/C/Source/Claw_2_French_CCD_IRAD_500/drops/FrenchCDApp/Win32/Debug/FrenchCDApp/Settings.xml"
 	],
 	"find":
 	{
@@ -752,6 +735,7 @@
 		"height": 102.0,
 		"where_history":
 		[
+			"<current file>",
 			"<project>",
 			"C:\\Users\\andjon\\ardupilot\\libraries",
 			"<project>",
@@ -764,6 +748,21 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"TODO",
+			"$theirHand",
+			"$gameContainer",
+			"$yourHand",
+			"theirProgress",
+			"yourProgress",
+			"HAND_MAX_ANGLE",
+			"LOOSING",
+			"yourProgress",
+			"HAND_STATE",
+			"totalDistance",
+			"FIST_STATE",
+			"jqueryColor",
+			"playingBackgroundAnim",
+			"scrollingMovement",
 			"theirFist",
 			"yourFist",
 			"yourHand",
@@ -876,22 +875,7 @@
 			"mosaicQuery_UpdateTime",
 			"origPath",
 			"destPath",
-			"destDir",
-			"destPath",
-			"origDir",
-			"destDir",
-			"\"\"\n",
-			"ati_compress",
-			"GroupName",
-			"python",
-			"%",
-			"ExpOption",
-			"exp",
-			"exploit",
-			"FileSystemEventHandler",
-			"event",
-			"ImageDir",
-			"IMageDir"
+			"destDir"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -899,6 +883,18 @@
 		"regex": false,
 		"replace_history":
 		[
+			"$hand",
+			"$container",
+			"$hand",
+			"progress",
+			"MAX_ANGLE",
+			"LOSING",
+			"this.progress",
+			"STATE",
+			"totalX",
+			"HAND_STATE",
+			"playingBackgroundFrames",
+			"scrollingFrames",
 			"theirHand",
 			"yourHand",
 			"yourSmash",
@@ -937,7 +933,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -946,15 +942,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5045,
+						"buffer_size": 5302,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3648,
-								3648
+								4963,
+								4963
 							]
 						],
 						"settings":
@@ -963,65 +959,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1320.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "css/wishbanana.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6175,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4049,
-								4049
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS3/CSS3.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 3518.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/wishbanana.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 10986,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10709,
-								10709
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 5.0,
-						"translation.y": 4677.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

@@ -1,20 +1,14 @@
 define(['client2Server', 'logging'], function gameModule (client2Server, logging) {
-	var url = 'ws://192.168.1.80:3456';
+	var url = 'ws://192.168.0.13:3456';
 	var logging = logging('client2Server');
 	var log = logging.log;
 
-	return function Game (name) {
+	return function Game (name, onMatched, onCountDown, onPlaying, onGameOver) {
 		var thisGame = this;
 		var playing = true;
 		var state = 0;
 
-		var C2S = new client2Server.C2SWrapper(url);
-
-		function callIfDefined(fnName) {
-			if (thisGame[fnName] !== undefined) {
-				thisGame[fnName].apply(this, arguments.slice(1));
-			}
-		}
+		var C2S = new client2Server(url);
 
 		function changeState(newState) {
 			if (newState - state === 1) {
@@ -23,7 +17,7 @@ define(['client2Server', 'logging'], function gameModule (client2Server, logging
 				return true;
 			}
 
-			log ('Invalid state change requested: ' + state + ' to ' + newState, LOGGING.WARNING);
+			log ('Invalid state change requested: ' + state + ' to ' + newState, logging.WARNING);
 			return false;
 		}
 
@@ -39,22 +33,26 @@ define(['client2Server', 'logging'], function gameModule (client2Server, logging
 
 		C2S.onMatched = function (opponentName) {
 			if (changeState(2)) {
-				callIfDefined('onCounting', opponentName);
+				onMatched(opponentName);
 			}
 		};
 
 		C2S.onCountDown = function (value) {
-			if (value > 0 && changeState(3)) {
-				callIfDefined('onCountDown', value);
+			if (state !== 2) {
+				log('Received countdown message during state ' + state, logging.WARNING);
 			}
-			else if (changeState(4)) {
-				callIfDefined('onPlaying');
+
+			if (value > 0) {
+				onCountDown(value);
+			}
+			else if (changeState(3)) {
+				onPlaying();
 			}
 		};
 
-		C2S.onGameOver = function (won) {
+		C2S.onGameOver = function (youWon) {
 			if (changeState(4)) {
-				callIfDefined('onDone', won);
+				onGameOver(youWon);
 				thisGame.quit();
 			}
 		};
@@ -70,10 +68,5 @@ define(['client2Server', 'logging'], function gameModule (client2Server, logging
 				C2S.close();
 			}
 		};
-
-		this.onCounting = undefined;
-		this.onCountDown = undefined;
-		this.onPlaying = undefined;
-		this.onDone = undefined;
 	};
 });

@@ -11,62 +11,65 @@ define(['messages', 'logging'], function client2ServerModule (messages, logging)
 		var conn = new WebSocket(url, ['wishbanana']);
 		var thisWrapper = this;
 
-		function callIfDefined (fnName) {
-			if (thisWrapper[fnName] !== undefined) {
-				thisWrapper[fnName].apply(this, arguments.slice(1));
-			}
-		}
-
 		function sendMessage (msg) {
-			log('Sent message: ' + msg);
-			conn.send(JSON.stringify(msg));
+			var strMsg = JSON.stringify(msg);
+			log('Sent message: ' + strMsg);
+			conn.send(strMsg);
 		}
 
 		conn.onmessage = function (rawMsg) {
 			var msg;
 
 			// We only accept messages of utf8 type because we only accept JSON message.
-			if (rawMsg.data instanceof String) {
-				try {
-					msg = JSON.parse(rawMsg.data);
+			try {
+				msg = JSON.parse(rawMsg.data);
+			}
+			catch (err) {
+				log('Failed to parse message JSON: ' + rawMsg.data, logging.WARNING);
+				if (this.onError !== undefined) {
+					this.onError(err, rawMsg.data);
 				}
-				catch (err) {
-					log('Failed to parse message JSON: ' + rawMsg.data, LOGGING.WARNING);
-					callIfDefined('onError', err, rawMsg.data);
-					return;
-				}
+				return;
+			}
 
-				var id = msg.id;
-				if (id == messages.MESSAGE_ID.NamePlease) {
-					log('Received "NamePlease" message.');
-					callIfDefined('onNamePlease');
+			var id = msg.id;
+			if (id == messages.MESSAGE_ID.NamePlease) {
+				log('Received "NamePlease" message.');
+				if (this.onNamePlease !== undefined) {
+					this.onNamePlease();
 				}
-				else if (id == messages.MESSAGE_ID.Matched) {
-					log('Received "Matched" message: ' + msg.opponentName);
-					callIfDefined('onMatched', msg.opponentName);
+			}
+			else if (id == messages.MESSAGE_ID.Matched) {
+				log('Received "Matched" message: ' + msg.opponentName);
+				if (this.onMatched !== undefined) {
+					this.onMatched(msg.opponentName);
 				}
-				else if (id == messages.MESSAGE_ID.CountDown) {
-					log('Received "CountDown" message: ' + msg.value);
-					callIfDefined('onCountDown', msg.value);
+			}
+			else if (id == messages.MESSAGE_ID.CountDown) {
+				log('Received "CountDown" message: ' + msg.value);
+				if (this.onCountDown !== undefined) {
+					this.onCountDown(msg.value);
 				}
-				else if (id == messages.MESSAGE_ID.GameOver) {
-					log('Received "GameOver" message: ' + msg.won);
-					callIfDefined('onGameOver', msg.won);
-				}
-				else {
-					log('Received invalid message type: ' + rawMsg.data);
-					callIfDefined('onError', 'Invalid message type.', rawMsg.data);
+			}
+			else if (id == messages.MESSAGE_ID.GameOver) {
+				log('Received "GameOver" message: ' + msg.won);
+				if (this.onGameOver !== undefined) {
+					this.onGameOver(msg.won);
 				}
 			}
 			else {
-				log('Received invalid rawMsg datatype: ' + rawMsg.data, LOGGING.WARNING);
-				callIfDefined('onError', 'Invalid rawMsg datatype: ' + (typeof rawMsg.data) + '.', '');
+				log('Received invalid message type: ' + rawMsg.data);
+				if (this.onError !== undefined) {
+					this.onError('Invalid message type.', rawMsg.data);
+				}
 			}
 		};
 
 		conn.onclose = function onClose () {
 			log('Websocket closed.');
-			callIfDefined('onClose');
+			if (this.onClose !== undefined) {
+				this.onClose();
+			}
 		};
 
 		this.name = function (name) {
