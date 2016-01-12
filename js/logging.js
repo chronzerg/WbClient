@@ -1,4 +1,6 @@
 define(['moment'], function loggingModule (moment) {
+    'use strict';
+
     // List of modules whose logs are not displayed.
     var moduleFilter = {};
     var levelFilter = 0;
@@ -6,7 +8,7 @@ define(['moment'], function loggingModule (moment) {
 
     return function Logging (module, showLevel) {
         if (showLevel !== undefined) {
-            showLevel = false;
+            showLevel = true;
         }
 
         return {

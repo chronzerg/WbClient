@@ -1,16 +1,20 @@
-define(['client2Server', 'logging'], function gameModule (client2Server, logging) {
-	var url = 'ws://192.168.0.13:3456';
-	var logging = logging('client2Server');
+define(['client2Server', 'logging'], function gameModule (Server, logging) {
+	'use strict';
+
+	const url = 'ws://localhost:3456';
+	const stateNames = ['Connecting', 'Matching', 'Counting', 'Playing', 'Ending'];
+
+	logging = logging('Server');
 	var log = logging.log;
 
-	return function Game (name, onMatched, onCountDown, onPlaying, onGameOver) {
-		var thisGame = this;
-		var playing = true;
-		var state = 0;
+	return function Game (name) {
+		var thisGame = this,
+		    playing = true,
+		    state = 0,
 
-		var C2S = new client2Server(url);
+		    server = new Server(url);
 
-		function changeState(newState) {
+		var changeState = function (newState) {
 			if (newState - state === 1) {
 				state = newState;
 				log('Game state changed: ' + state);
@@ -19,54 +23,70 @@ define(['client2Server', 'logging'], function gameModule (client2Server, logging
 
 			log ('Invalid state change requested: ' + state + ' to ' + newState, logging.WARNING);
 			return false;
-		}
+		};
 
-		C2S.onClose = function () {
+		server.onClose = function () {
 			playing = false;
 		};
 
-		C2S.onNamePlease = function () {
+		server.onNamePlease = function () {
 			if (changeState(1)) {
-				C2S.name(name);
+				server.name(name);
 			}
 		};
 
-		C2S.onMatched = function (opponentName) {
+		server.onMatched = function (opponentName) {
 			if (changeState(2)) {
-				onMatched(opponentName);
+				thisGame.onMatched(opponentName);
 			}
 		};
 
-		C2S.onCountDown = function (value) {
+		server.onCountDown = function (value) {
 			if (state !== 2) {
 				log('Received countdown message during state ' + state, logging.WARNING);
 			}
 
 			if (value > 0) {
-				onCountDown(value);
+				thisGame.onCountDown(value);
 			}
 			else if (changeState(3)) {
-				onPlaying();
+				thisGame.onPlaying();
 			}
 		};
 
-		C2S.onGameOver = function (youWon) {
+		server.onUpdateClicks = function (yourClicks, theirClicks) {
+			thisGame.clickCount = yourClicks;
+			thisGame.onUpdateClicks(yourClicks, theirClicks);
+		};
+
+		server.onGameOver = function (youWon) {
 			if (changeState(4)) {
-				onGameOver(youWon);
+				thisGame.onGameOver(youWon);
 				thisGame.quit();
 			}
 		};
 
-		this.playing = function () {
-			return playing;
+		this.click = function () {
+			if (state === 3) {
+				this.clickCount++;
+				server.click();
+			}
+			else {
+				throw new Error('Tried to click when not in playing state.');
+			}
 		};
-
-		this.squeeze = C2S.squeeze;
 
 		this.quit = function () {
 			if (playing) {
-				C2S.close();
+				server.close();
 			}
 		};
+
+		this.onMatched = undefined;
+		this.onCountDown = undefined;
+		this.onPlaying = undefined;
+		this.onUpdateClicks = undefined;
+		this.onGameOver = undefined;
+		this.clickCount = 0;
 	};
 });

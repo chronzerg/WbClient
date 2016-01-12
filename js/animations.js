@@ -1,4 +1,6 @@
 define(['jquery'], function animationsModule ($) {
+	'use strict';
+
 	// The angle reached by the hand when the winning number
 	// of clicks is reached.
 	var MAX_ANGLE = 20;

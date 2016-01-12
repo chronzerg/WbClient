@@ -1,4 +1,6 @@
 define(function pagingModule () {
+	'use strict';
+
 	return function Paging ($pages) {
 		//Constants
 		var BH = "pagingBeforeHideCallbacks";

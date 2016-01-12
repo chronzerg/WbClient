@@ -2,13 +2,11 @@ requirejs.config({
 	baseurl: 'js'
 });
 
-define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbananaModule ($, paging, animations, game, logging) {
-	var logging = logging('wishbanana');
-	var log = logging.log;
+define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbananaModule ($, paging, animations, Game, logging) {
+	'use strict';
 
-	logging.filter({
-		level: logging.INFO
-	});
+	logging = logging('wishbanana');
+	var log = logging.log;
 
 	$('document').ready(function onDocumentReady () {
 		var mainPaging;
@@ -44,9 +42,54 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 		})();
 
 		(function initGame () {
-			var g = null;
-			var gamePaging = paging($('div#game').find('div.state'));
-			var countingPaging = paging($('div#counting').find('div.count'));
+			const WIN_CLICKS = 50;
+
+			var gamePaging = paging($('div#game').find('div.state')),
+			    countingPaging = paging($('div#counting').find('div.count')),
+			    g = null;
+
+			var updateYourClicks = function (yourClicks) {
+				animations.updateYourProgress(yourClicks / WIN_CLICKS);
+			};
+
+			var updateTheirClicks = function (theirClicks) {
+				animations.updateTheirProgress(theirClicks / WIN_CLICKS);
+			};
+
+			var playingMouseDown = function () {
+				g.click();
+				animations.flash();
+				updateYourClicks(g.clickCount);
+			};
+
+			var initNewGame = function (name) {
+				g = new Game(name);
+				g.onMatched = function (opponentName) {
+					$('.theirName').html(opponentName);
+					gamePaging.switchToPage('counting');
+				};
+				g.onCountDown = function (value) {
+					countingPaging.switchToPage(value, true);
+				};
+				g.onPlaying = function () {
+					gamePaging.switchToPage('playing');
+				};
+				g.onUpdateClicks = function (yourClicks, theirClicks) {
+					updateYourClicks(yourClicks);
+					updateTheirClicks(theirClicks);
+				};
+				g.onGameOver = function (youWon) {
+					animations.gameOver(youWon, function gameOverComplete () {
+						if (youWon) {
+							$('#youWin').show();
+						}
+						else {
+							$('#youLose').show();
+						}
+						$('#gameOverBanner').fadeIn();
+					});
+				};
+			};
 
 			mainPaging.addBeforeShowCallback('game', function gameBeforeShow () {
 				gamePaging.switchToPage('naming');
@@ -94,69 +137,11 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 			$('button#namingDone').click(function startNewGame () {
 				var name = $('input#name').val();
 				$('.yourName').html(name);
-				g = new game(
-					name,
-					function onMatched (opponentName) {
-						$('.theirName').html(opponentName);
-						gamePaging.switchToPage('counting');
-					},
-					function onCountDown (value) {
-						countingPaging.switchToPage(value, true);
-					},
-					function onPlaying () {
-						gamePaging.switchToPage('playing');
-					},
-					function onGameOver (youWon) {
-						animations.gameOver(youWon, function gameOverComplete () {
-							if (youWon) {
-								$('#youWin').show();
-							}
-							else {
-								$('#youLose').show();
-							}
-							$('#gameOverBanner').fadeIn();
-						});
-					}
-				);
+
+				initNewGame(name);
+
 				gamePaging.switchToPage('matching');
 			});
-
-			var WIN_CLICKS = 30;
-
-			var yourClicks;
-			var theirClicks;
-
-			function updateYourClicks (newYourClicks) {
-				if (newYourClicks || newYourClicks === 0) {
-					yourClicks = newYourClicks;
-				}
-				else {
-					yourClicks++;
-				}
-
-				if (yourClicks > WIN_CLICKS) {
-					yourClicks = WIN_CLICKS;
-				}
-
-				animations.updateYourProgress(yourClicks / WIN_CLICKS);
-			}
-
-			function updateTheirClicks (newTheirClicks) {
-				theirClicks = newTheirClicks;
-
-				if (theirClicks > WIN_CLICKS) {
-					theirClicks = WIN_CLICKS;
-				}
-
-				animations.updateTheirProgress(theirClicks / WIN_CLICKS);
-			}
-
-			function playingMouseDown () {
-				animations.flash();
-				updateYourClicks();
-				g.squeeze();
-			}
-
 			$('#playAgain').click(function onPlayAgainClick () {
 				g.quit();
 				g = null;
