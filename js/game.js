@@ -1,8 +1,8 @@
 define(['client2Server', 'logging'], function gameModule (Server, logging) {
 	'use strict';
 
-	const url = 'ws://localhost:3456';
-	const stateNames = ['Connecting', 'Matching', 'Counting', 'Playing', 'Ending'];
+	const url = 'ws://localhost:3456',
+		  stateNames = ['Connecting', 'Matching', 'Counting', 'Playing', 'Ending'];
 
 	logging = logging('Server');
 	var log = logging.log;
@@ -27,6 +27,10 @@ define(['client2Server', 'logging'], function gameModule (Server, logging) {
 
 		server.onClose = function () {
 			playing = false;
+		};
+
+		server.onWinCount = function (count) {
+			thisGame.onWinCount(count);
 		};
 
 		server.onNamePlease = function () {
@@ -54,9 +58,9 @@ define(['client2Server', 'logging'], function gameModule (Server, logging) {
 			}
 		};
 
-		server.onUpdateClicks = function (yourClicks, theirClicks) {
-			thisGame.clickCount = yourClicks;
-			thisGame.onUpdateClicks(yourClicks, theirClicks);
+		server.onClickCount = function (yourClicks, theirClicks) {
+			thisGame.count = yourClicks;
+			thisGame.onClickCount(yourClicks, theirClicks);
 		};
 
 		server.onGameOver = function (youWon) {
@@ -68,11 +72,8 @@ define(['client2Server', 'logging'], function gameModule (Server, logging) {
 
 		this.click = function () {
 			if (state === 3) {
-				this.clickCount++;
+				this.count++;
 				server.click();
-			}
-			else {
-				throw new Error('Tried to click when not in playing state.');
 			}
 		};
 
@@ -82,11 +83,12 @@ define(['client2Server', 'logging'], function gameModule (Server, logging) {
 			}
 		};
 
+		this.onWinCount = undefined;
 		this.onMatched = undefined;
 		this.onCountDown = undefined;
 		this.onPlaying = undefined;
-		this.onUpdateClicks = undefined;
+		this.onClickCount = undefined;
 		this.onGameOver = undefined;
-		this.clickCount = 0;
+		this.count = 0;
 	};
 });

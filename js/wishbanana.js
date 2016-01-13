@@ -42,7 +42,7 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 		})();
 
 		(function initGame () {
-			const WIN_CLICKS = 50;
+			var WIN_CLICKS = 1;
 
 			var gamePaging = paging($('div#game').find('div.state')),
 			    countingPaging = paging($('div#counting').find('div.count')),
@@ -59,11 +59,17 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 			var playingMouseDown = function () {
 				g.click();
 				animations.flash();
-				updateYourClicks(g.clickCount);
+				updateYourClicks(g.count);
 			};
 
 			var initNewGame = function (name) {
 				g = new Game(name);
+				g.onWinCount = function (count) {
+					WIN_CLICKS = count;
+					if (WIN_CLICKS < 1) {
+						WIN_CLICKS = 1;
+					}
+				};
 				g.onMatched = function (opponentName) {
 					$('.theirName').html(opponentName);
 					gamePaging.switchToPage('counting');
@@ -74,7 +80,7 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 				g.onPlaying = function () {
 					gamePaging.switchToPage('playing');
 				};
-				g.onUpdateClicks = function (yourClicks, theirClicks) {
+				g.onClickCount = function (yourClicks, theirClicks) {
 					updateYourClicks(yourClicks);
 					updateTheirClicks(theirClicks);
 				};
@@ -88,6 +94,7 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 						}
 						$('#gameOverBanner').fadeIn();
 					});
+					$(document).off('mousedown', playingMouseDown);
 				};
 			};
 
@@ -109,9 +116,6 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 			});
 			gamePaging.addBeforeShowCallback('playing', function playingBeforeShow () {
 				$(document).on('mousedown', playingMouseDown);
-
-				yourClicks = 0;
-				theirClicks = 0;
 
 				$('#youWin').hide();
 				$('#youLose').hide();

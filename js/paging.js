@@ -1,14 +1,13 @@
 define(function pagingModule () {
 	'use strict';
 
-	return function Paging ($pages) {
-		//Constants
-		var BH = "pagingBeforeHideCallbacks";
-		var BS = "pagingBeforeShowCallbacks";
-		var AH = "pagingAfterHideCallbacks";
-		var AS = "pagingAfterShowCallbacks";
-		var OPEN = "pagingOpen";
+	const BH = "pagingBeforeHideCallbacks",
+		  BS = "pagingBeforeShowCallbacks",
+		  AH = "pagingAfterHideCallbacks",
+		  AS = "pagingAfterShowCallbacks",
+		  OPEN = "pagingOpen";
 
+	return function Paging ($pages) {
 		function callCallbacks ($page, dataId) {
 			var callbacks = $page.data(dataId);
 			if (callbacks !== undefined) {
@@ -19,8 +18,8 @@ define(function pagingModule () {
 		}
 
 		function switchToPage(id, immediately) {
-			var $oldPage = $pages.filter('div.' + OPEN);
-			var $newPage = $pages.filter('div#' + id);
+			var $oldPage = $pages.filter('div.' + OPEN),
+			    $newPage = $pages.filter('div#' + id);
 
 			callCallbacks($oldPage, BH);
 			callCallbacks($newPage, BS);
@@ -34,6 +33,7 @@ define(function pagingModule () {
 				callCallbacks($newPage, AS);
 			}
 
+			$pages.stop();
 			if (immediately) {
 				$oldPage.hide();
 				showNewPage();

@@ -13,7 +13,7 @@ define(['messages'], function client2ServerModule (messages) {
 
 		var callIfDefined = function (functionName) {
 			if (thisServer[functionName] !== undefined) {
-				thisServer[functionName].call(this, Array.prototype.slice.call(arguments, 1));
+				thisServer[functionName].apply(this, Array.prototype.slice.call(arguments, 1));
 			}
 		};
 
@@ -33,17 +33,22 @@ define(['messages'], function client2ServerModule (messages) {
 			}
 
 			var id = message.id;
-			if (id == messages.ids.NamePlease) {
+			if (id === messages.ids.WinCount) {
+				callIfDefined('onWinCount', message.count);
+			}
+			else if (id === messages.ids.NamePlease) {
 				callIfDefined('onNamePlease');
 			}
-			else if (id == messages.ids.Matched) {
+			else if (id === messages.ids.Matched) {
 				callIfDefined('onMatched', message.opponentName);
 			}
-			else if (id == messages.ids.CountDown) {
+			else if (id === messages.ids.CountDown) {
 				callIfDefined('onCountDown', message.value);
 			}
-			// TODO - Update Clicks
-			else if (id == messages.ids.GameOver) {
+			else if (id === messages.ids.ClickCount) {
+				callIfDefined('onClickCount', message.yourCount, message.theirCount);
+			}
+			else if (id === messages.ids.GameOver) {
 				callIfDefined('onGameOver', message.won);
 			}
 			else {
@@ -67,12 +72,13 @@ define(['messages'], function client2ServerModule (messages) {
 			conn.close();
 		};
 
+		this.onWinCount = undefined;
 		this.onMessage = undefined;
 		this.onNamePlease = undefined;
 		this.onMatched = undefined;
 		this.onOpponentName = undefined;
 		this.onCountDown = undefined;
-		this.onUpdateClicks = undefined;
+		this.onClickCount = undefined;
 		this.onGameOver = undefined;
 		this.onError = undefined;
 		this.onClose = undefined;
