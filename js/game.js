@@ -1,7 +1,7 @@
 define(['client2Server', 'logging'], function gameModule (Server, logging) {
 	'use strict';
 
-	const url = 'ws://localhost:3456',
+	const url = 'ws://wishbanana.herokuapp.com',
 		  stateNames = ['Connecting', 'Matching', 'Counting', 'Playing', 'Ending'];
 
 	logging = logging('Server');
