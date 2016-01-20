@@ -34,4 +34,10 @@ $(OUT)/assets/%.svg: assets/%.svg
 	cp $< $@
 
 clean:
-	@if [ -d $(OUT) ]; then rm -r $(OUT); elif [ -f $(OUT) ]; then rm $(OUT); fi
+	@if [ -d $(OUT) ]; then\
+		rm $(OUT)/wishbanana.html;\
+		rm $(OUT)/index.html;\
+		rm -r $(OUT)/css;\
+		rm -r $(OUT)/js;\
+		rm -r $(OUT)/assets;\
+	fi

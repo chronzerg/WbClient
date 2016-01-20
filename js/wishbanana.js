@@ -109,6 +109,9 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 					g.quit();
 					g = null;
 				}
+
+				$(document).off('mousedown', playingMouseDown);
+				animations.detachResizeHandler();
 			});
 
 			gamePaging.addBeforeShowCallback('counting', function countingBeforeShow () {
