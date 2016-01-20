@@ -26,12 +26,12 @@
 
 .clouds {
 	background-color: #547aff;
-	background-image: url("../assets/clouds.svg");
+	background-image: url('../assets/clouds.svg');
 	animation: scrollingFrames 10s linear infinite;
 }
 
 .lights {
 	background-color: #547aff;
-	background-image: url("../assets/lights.svg");
+	background-image: url('../assets/lights.svg');
 	animation: scrollingFrames 1s linear infinite;
 }
