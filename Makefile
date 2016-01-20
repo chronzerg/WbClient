@@ -2,32 +2,33 @@
 OUT = build
 
 # Input Files
-JS = $(shell find js/*.js ! -iname js/require.js)
-CSS = $(shell find css/*.css)
-ASSETS = $(shell find assets/*.svg)
+JS = $(wildcard js/*.js)
+CSS = $(wildcard css/*.css)
+ASSETS = $(wildcard assets/*.svg)
 
 # Output Files
+oJS = $(addprefix $(OUT)/,$(JS))
+oCSS = $(addprefix $(OUT)/,$(CSS))
 oASSETS = $(addprefix $(OUT)/,$(ASSETS))
 
 all: wishbanana
+	@if [ -f deploy ]; then\
+		./deploy;\
+	fi
 
-wishbanana: $(OUT)/index.html
+wishbanana: $(OUT)/index.html $(oJS) $(oCSS) $(oASSETS)
 
-$(OUT)/index.html: $(OUT)/wishbanana.html $(OUT)/js/require.js $(OUT)/css/wishbanana.css $(oASSETS)
-	inliner $(OUT)/wishbanana.html > $(OUT)/index.html
-
-$(OUT)/wishbanana.html: index.html
+$(OUT)/index.html: index.html
 	@mkdir -p $(OUT)
-	cp index.html $(OUT)/wishbanana.html
+	cp $< $@
 
-$(OUT)/js/require.js: $(JS)
-	r.js -o name=wishbanana out=$(OUT)/js/require.js paths.requireLib=require include=requireLib baseUrl=js useStrict=true
+$(OUT)/js/%.js: js/%.js
+	@mkdir -p $(OUT)/js
+	cp $< $@
 
-$(OUT)/css/wishbanana.css: $(CSS)
+$(OUT)/css/%.css: css/%.css
 	@mkdir -p $(OUT)/css
-	css-concat css/wishbanana.css $(OUT)/css/wishbanana.css
-	@# We prevent normalizeUrl because it strips the quotes from our inline SVG data.
-	cssnano --no-normalizeUrl $(OUT)/css/wishbanana.css $(OUT)/css/wishbanana.css
+	cp $< $@
 
 $(OUT)/assets/%.svg: assets/%.svg
 	@mkdir -p $(OUT)/assets
@@ -35,7 +36,6 @@ $(OUT)/assets/%.svg: assets/%.svg
 
 clean:
 	@if [ -d $(OUT) ]; then\
-		rm $(OUT)/wishbanana.html;\
 		rm $(OUT)/index.html;\
 		rm -r $(OUT)/css;\
 		rm -r $(OUT)/js;\
