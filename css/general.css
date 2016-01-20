@@ -85,6 +85,7 @@ button {
 	background-color: #CC99FF;
 	color: #FFF;
 	border: 1px solid black;
+	border-radius: 5px;
 	padding: 1vmax;
 }
 
