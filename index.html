@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Wish Banana</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
 
 		<link rel="stylesheet" type="text/css" href="css/wishbanana.css">
 		<script data-main="js/wishbanana" src="js/require.js"></script>
@@ -67,16 +67,10 @@
 				<button id="namingDone">done</button>
 			</div>
 
-			<div class="state centered" id="matching"><h1>matching...</h1></div>
+			<div class="state centered" id="matching"><h2></h2></div>
 
 			<div class="state" id="counting">
-				<div id="blank" class="count"></div>
-				<div id="5" class="count centered"><h1>5</h1></div>
-				<div id="4" class="count centered"><h1>4</h1></div>
-				<div id="3" class="count centered"><h1>3</h1></div>
-				<div id="2" class="count centered"><h1>2</h1></div>
-				<div id="1" class="count centered"><h1>1</h1></div>
-
+				<div id="count" class="centered"><h1></h1></div>
 				<div class="playingNames centeredX">
 					<div class="name yourName h3">Jonathan</div>
 					<div class="name theirName h3">Christopher</div>

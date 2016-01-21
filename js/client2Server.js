@@ -21,6 +21,10 @@ define(['messages'], function client2ServerModule (messages) {
 			conn.send(JSON.stringify(message));
 		};
 
+		conn.onopen = function () {
+			callIfDefined('onConnected');
+		};
+
 		conn.onmessage = function (event) {
 			var message;
 
@@ -72,6 +76,7 @@ define(['messages'], function client2ServerModule (messages) {
 			conn.close();
 		};
 
+		this.onConnected = undefined;
 		this.onWinCount = undefined;
 		this.onMessage = undefined;
 		this.onNamePlease = undefined;

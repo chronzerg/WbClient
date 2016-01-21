@@ -30,6 +30,10 @@ define(['client2Server', 'logging'], function gameModule (Server, logging) {
 			playing = false;
 		};
 
+		server.onConnected = function () {
+			thisGame.onConnected();
+		};
+
 		server.onWinCount = function (count) {
 			thisGame.onWinCount(count);
 		};
@@ -84,6 +88,7 @@ define(['client2Server', 'logging'], function gameModule (Server, logging) {
 			}
 		};
 
+		this.onConnected = undefined;
 		this.onWinCount = undefined;
 		this.onMatched = undefined;
 		this.onCountDown = undefined;

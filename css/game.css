@@ -17,7 +17,7 @@ button#namingDone {
 	height: 100%;
 }
 
-.count > h1 {
+#count > h1 {
 	font-size: 75vmin;
 }
 
