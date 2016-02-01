@@ -104,19 +104,11 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 			mainPaging.addBeforeShowCallback('game', function gameBeforeShow () {
 				gamePaging.switchToPage('naming');
 			});
-			mainPaging.addAfterShowCallback('game', function gameAfterShow () {
+			mainPaging.attachChildPaging('game', gamePaging);
+
+			gamePaging.addAfterShowCallback('naming', function namingAfterShowCallback () {
 				$('input#name').focus();
 			});
-			mainPaging.addBeforeHideCallback('game', function gameBeforeHide () {
-				if (g) {
-					g.quit();
-					g = null;
-				}
-
-				$(document).off('mousedown', playingMouseDown);
-				animations.detachResizeHandler();
-			});
-
 			gamePaging.addBeforeShowCallback('matching', function matchingBeforeShow () {
 				$('#matching > h2').html('connecting...');
 			});
@@ -136,6 +128,11 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 			gamePaging.addBeforeHideCallback('playing', function playingBeforeHide () {
 				$(document).off('mousedown', playingMouseDown);
 				animations.detachResizeHandler();
+
+				if (g !== null) {
+					g.quit();
+					g = null;
+				}
 			});
 
 			$('button#gameToMenu').click(function onGameToMenuClick (event) {
@@ -156,8 +153,6 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 				gamePaging.switchToPage('matching');
 			});
 			$('#playAgain').click(function onPlayAgainClick () {
-				g.quit();
-				g = null;
 				gamePaging.switchToPage('naming');
 			});
 		})();

@@ -85,6 +85,16 @@ define(['client2Server', 'logging'], function gameModule (Server, logging) {
 		this.quit = function () {
 			if (playing) {
 				server.close();
+				playing = false;
+
+				server.onClose = undefined;
+				server.onConnected = undefined;
+				server.onWinCount = undefined;
+				server.onNamePlease = undefined;
+				server.onMatched = undefined;
+				server.onCountDown = undefined;
+				server.onClickCount = undefined;
+				server.onGameOver = undefined;
 			}
 		};
 

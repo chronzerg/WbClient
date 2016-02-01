@@ -1,39 +1,65 @@
-define(function pagingModule () {
+define(['jquery'], function pagingModule ($) {
 	'use strict';
 
 	const BH = "pagingBeforeHideCallbacks",
 		  BS = "pagingBeforeShowCallbacks",
 		  AH = "pagingAfterHideCallbacks",
 		  AS = "pagingAfterShowCallbacks",
-		  OPEN = "pagingOpen";
+		  CH = "pagingChildInstance",
+		  OPEN = "pagingOpen",
+
+		  FADE_TIME = 200;
 
 	return function Paging ($pages) {
-		function callCallbacks ($page, dataId) {
+		var getPage = function (id) {
+			return $pages.filter('div#' + id);
+		};
+
+		var getOpenPage = function () {
+			return $pages.filter('div.' + OPEN);
+		};
+
+		var callCallbacks = function ($page, dataId) {
 			var callbacks = $page.data(dataId);
 			if (callbacks !== undefined) {
 				for (var i = 0; i < callbacks.length; i++) {
 					callbacks[i]();
 				}
 			}
-		}
 
-		function switchToPage(id, immediately) {
-			var $oldPage = $pages.filter('div.' + OPEN),
-			    $newPage = $pages.filter('div#' + id);
+			// Recursively call 'callCallbacks' on the child page.
+			var childPagesInstance = $page.data(CH);
+			if (childPagesInstance !== undefined) {
+				var openChildPage = childPagesInstance._getOpenPage();
+				childPagesInstance._callCallbacks(openChildPage, dataId);
+			}
+		};
+
+		var switchToPage = function (id, immediately) {
+			var $oldPage = getOpenPage(),
+			    $newPage = getPage(id);
+
+			if (immediately === undefined && $oldPage.is(':hidden')) {
+				immediately = true;
+			}
+
+			$oldPage.removeClass(OPEN);
+			$newPage.addClass(OPEN);
 
 			callCallbacks($oldPage, BH);
 			callCallbacks($newPage, BS);
 
 			function showNewPage () {
-				$oldPage.removeClass(OPEN);
 				$newPage.show();
-				$newPage.addClass(OPEN);
 
 				callCallbacks($oldPage, AH);
 				callCallbacks($newPage, AS);
 			}
 
+			// Stop any switch page animations that may be
+			// happening now.
 			$pages.stop();
+
 			if (immediately) {
 				$oldPage.hide();
 				showNewPage();
@@ -41,24 +67,25 @@ define(function pagingModule () {
 			else {
 				$oldPage.fadeOut({
 					complete: showNewPage,
-					duration: 200
+					duration: FADE_TIME
 				});
 			}
-		}
+		};
 
-		function addPageCallback (id, dataId, cb) {
-			var $thePage = $pages.filter('div#' + id);
-			var callbacks = $thePage.data(dataId);
+		var addPageCallback = function (id, dataId, cb) {
+			var $thePage = $pages.filter('div#' + id),
+				callbacks = $thePage.data(dataId);
+
 			if (callbacks === undefined) {
 				callbacks = [];
 			}
 			callbacks.push(cb);
 			$thePage.data(dataId, callbacks);
-		}
+		};
 
-		function getPage (id) {
-			return $pages.filter('div#' + id);
-		}
+		var attachChildPaging = function (id, pagingInstance) {
+			var $thePage = $pages.filter('div#' + id).data(CH, pagingInstance);
+		};
 
 		$pages.hide();
 		$pages.first().addClass(OPEN).show();
@@ -77,7 +104,11 @@ define(function pagingModule () {
 			addAfterShowCallback: function (id, cb) {
 				addPageCallback(id, AS, cb);
 			},
-			getPage: getPage
+			attachChildPaging: attachChildPaging,
+
+			// Internal use
+			_getOpenPage: getOpenPage,
+			_callCallbacks: callCallbacks
 		};
 	};
 });
