@@ -16,6 +16,12 @@ define(['jquery', 'paging', 'animations', 'game', 'logging'], function wishbanan
 			mainPaging = paging($('body > div.page'));
 		})();
 
+		(function initLoading () {
+			$(function onDoneLoading () {
+				mainPaging.switchToPage('menu');
+			});
+		})();
+
 		(function initMenu () {
 			$('button#menuToStory').click(function onMenuToStoryClick () {
 				mainPaging.switchToPage('story');
