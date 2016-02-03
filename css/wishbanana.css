@@ -155,3 +155,12 @@ input {
 #loading {
 	background-color: #547aff;
 }
+
+#loading div {
+	text-align: center;
+}
+
+#errorMessage {
+	display: none;
+	color: white;
+}
