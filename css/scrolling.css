@@ -1,0 +1,37 @@
+/*
+    Div used to display background moving accross the screen.
+    An animated background isn't used because browsers currently
+    don't GPU optimize such animations.
+ */
+
+@keyframes scrollingFrames {
+	/* Move 500px because thats the size of the repeating backgrounds */
+	0%		{ transform: translate(-500px, 0); }
+	100%	{ transform: translate(0, 0); }
+}
+
+.scrolling {
+	position: absolute;
+	/* Width is twice the size of the repeating background
+	   TODO: Optimize this size.
+	*/
+	width: 200%;
+	min-width: 1000px;
+	height: 100%;
+
+	background-size: 500px 500px;
+	background-position: 0px 0px;
+	background-repeat: repeat;
+}
+
+.clouds {
+	background-color: #547aff;
+	background-image: url('../assets/clouds.svg');
+	animation: scrollingFrames 10s linear infinite;
+}
+
+.lights {
+	background-color: #547aff;
+	background-image: url('../assets/lights.svg');
+	animation: scrollingFrames 1s linear infinite;
+}
