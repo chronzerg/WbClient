@@ -80,6 +80,11 @@ h3, .h3 {
 	margin: 0 auto;
 	overflow: hidden;
 	position: relative;
+	display: none;
+}
+
+.page#loading {
+	display: block;
 }
 
 
