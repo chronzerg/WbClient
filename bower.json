@@ -1,0 +1,9 @@
+{
+  "name": "wbclient",
+  "private": true,
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "requirejs": "^2.2.0",
+    "imagesloaded": "^4.1.0"
+  }
+}
