@@ -31,10 +31,10 @@ define(['jquery', 'imagesloaded', 'paging', 'animations', 'game', 'logging'], fu
 
 		$('button#openHelp').click(function onOpenHelpClick (event) {
 			event.stopPropagation();
-			$('#helpModal, #menu > .tint').show();
+			$('#helpModal, #menu > #tint').show();
 
 			$(document).one('click', function onHelpModalClick () {
-				$('#helpModal, #menu > .tint').hide();
+				$('#helpModal, #menu > #tint').hide();
 			});
 		});
 
