@@ -89,6 +89,15 @@ g.task('watch', ['default'], () => {
 });
 
 
+// Deploy Task
+// ===========
+
+g.task('deploy', ['default'], () => {
+    return g.src('./{index.html,CNAME,css/*.css,js/*.js,assets/*.svg}')
+        .pipe($.ghPages());
+});
+
+
 // Default Task
 // ============
 
