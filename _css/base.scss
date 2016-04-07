@@ -10,6 +10,10 @@ body {
     margin: 0;
 }
 
+
+// Headers
+// =======
+
 @mixin shadow {
     /* Adding multiple shadows to make 3D text */
     text-shadow:
@@ -53,6 +57,10 @@ h3 {
         0 4px 0 #b9b9b9,
         0 5px 0 #aaa;
 }
+
+
+// UI Elements
+// ===========
 
 @mixin interface {
     font-size: 6vmin;

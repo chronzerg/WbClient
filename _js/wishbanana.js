@@ -5,14 +5,6 @@ define(['jquery', 'imagesloaded', 'paging', 'animations', 'game', 'logging'], fu
 	var log = logging.log;
 
 	$(function onDocumentReady () {
-		// Check for chrome
-		if (navigator.userAgent.toLowerCase().indexOf('chrome') < 0) {
-			$('#loadingMessage').hide();
-			$('#errorMessage').show();
-
-			return;
-		}
-
 		var mainPaging = paging($('body > div.page'));
 
 		// When all images are loaded, switch to the menu page.

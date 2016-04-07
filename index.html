@@ -10,18 +10,14 @@
 
 	<body>
 		<div id="loading" class="page">
-			<div class="centered" id="loadingMessage">
+			<div id="loadingMessage">
 				<h2>loading</h2>
-			</div>
-			<div class="centered hidden" id="errorMessage">
-				<h3>chrome is required</h3>
-				<p>sorry, wish banana can only be played on the chrome web browser</p>
 			</div>
 		</div>
 		<div id="menu" class="page">
 			<div class="scrolling clouds"></div>
 
-			<img src="assets/banana.svg" class="centered banana" />
+			<img src="assets/banana.svg" class="banana">
 			<div id="title"><h1>wish banana</h1></div>
 			<div id="menuButtons">
 				<button id="menuToStory">story</button>
@@ -30,7 +26,7 @@
 			</div>
 
 			<div id="tint"></div>
-			<div id="helpModal" class="centered">
+			<div id="helpModal">
 				tap fast to win
 			</div>
 		</div>
@@ -70,19 +66,19 @@
 		<div id="game" class="page">
 			<div class="scrolling clouds"></div>
 
-			<div class="state centered" id="naming">
+			<div class="state" id="naming">
 				<input id="name" type="text" placeholder="enter name" />
 				<br>
 				<button id="namingDone">done</button>
 			</div>
 
-			<div class="state centered" id="matching"><h2></h2></div>
+			<div class="state" id="matching"><h2></h2></div>
 
 			<div class="state" id="counting">
-				<div id="count" class="centered"><h1></h1></div>
-				<div class="playingNames centeredX">
-					<div class="name yourName h3">Jonathan</div>
-					<div class="name theirName h3">Christopher</div>
+				<div id="count"><h1></h1></div>
+				<div class="playingNames">
+					<div class="name yourName h3"></div>
+					<div class="name theirName h3"></div>
 					<div class="vs">vs</div>
 				</div>
 			</div>
@@ -92,28 +88,28 @@
 					<div class="scrolling lights"></div>
 				</div>
 				<div id="flash"></div>
-				<div id="gameContainer" class="centered">
+				<div id="gameContainer">
 					<img src="assets/theirHand.svg" id="theirHand" class="fist" />
 
-					<img src="assets/banana.svg" id="unsmashed" class="centered banana" />
+					<img src="assets/banana.svg" id="unsmashed" class="banana" />
 
-					<img src="assets/theirSmash.svg" id="theirSmasher" class="centered banana hidden" />
-					<img src="assets/splat.svg" id="smashed" class="centered banana hidden" />
-					<img src="assets/yourSmash.svg" id="yourSmasher" class="centered banana hidden" />
+					<img src="assets/theirSmash.svg" id="theirSmasher" class="banana" />
+					<img src="assets/splat.svg" id="smashed" class="banana" />
+					<img src="assets/yourSmash.svg" id="yourSmasher" class="banana" />
 
 					<img src="assets/yourHand.svg" id="yourHand" class="fist" />
 				</div>
-				<div class="playingNames centeredX">
+				<div class="playingNames">
 					<div class="name yourName h3">Jonathan</div>
 					<div class="name theirName h3">Christopher</div>
 					<div class="vs">vs</div>
 				</div>
 
 				<div id="clickCover"></div>
-				<div id="gameOverBanner" class="centeredY hidden">
+				<div id="gameOverBanner">
 					<div id="youWin"><h1>winner</h1></div>
 					<div id="youLose"><h1>loser</h1></div>
-					<button id="playAgain" class="centeredX">again</button>
+					<button id="playAgain">again</button>
 				</div>
 			</div>
 
