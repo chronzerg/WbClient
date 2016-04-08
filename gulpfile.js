@@ -31,7 +31,8 @@ var require = {
     paths: {
         requireLib: '../bower_components/requirejs/require',
         jquery:     '../bower_components/jquery/dist/jquery',
-        imagesloaded: '../bower_components/imagesloaded/imagesloaded.pkgd'
+        imagesloaded: '../bower_components/imagesloaded/imagesloaded.pkgd',
+        machina: '../bower_components/machina/lib/machina'
     }
 }
 
