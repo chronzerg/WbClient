@@ -1,4 +1,12 @@
-define(['jquery', 'imagesloaded', 'paging', 'animations', 'game', 'logging'], function wishbananaModule ($, imagesloaded, paging, animations, Game, logging) {
+define([
+    'jquery',
+    'imagesloaded',
+    'paging',
+    'animations',
+    'game',
+    'logging'],
+
+function wishbananaModule ($, imagesloaded, paging, animations, Game, logging) {
 	'use strict';
 
 	logging = logging('wishbanana');

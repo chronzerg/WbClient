@@ -1,7 +1,7 @@
 define(['jquery'], function pagingModule ($) {
 	'use strict';
 
-	const BH = "pagingBeforeHideCallbacks",
+	var BH = "pagingBeforeHideCallbacks",
 		  BS = "pagingBeforeShowCallbacks",
 		  AH = "pagingAfterHideCallbacks",
 		  AS = "pagingAfterShowCallbacks",
