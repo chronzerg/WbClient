@@ -1,5 +1,6 @@
 define([
     'jquery',
+    'machina',
     'imagesloaded',
     'paging',
     'animations',
