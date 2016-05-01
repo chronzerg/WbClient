@@ -1,7 +1,6 @@
-define(['messages'], function client2ServerModule (messages) {
 	'use strict';
 
-	return function Server (url) {
+	module.exports = function Server (url) {
 		if (!window.WebSocket) {
 			log('WebSockets are not supported.', logging.ERROR);
 			throw new Error('WebSockets are not supported.');
@@ -10,6 +9,7 @@ define(['messages'], function client2ServerModule (messages) {
 		// 'thisServer' preserves the value of 'this' in the websocket's event handlers.
 		var thisServer = this;
 		var conn = new WebSocket(url, ['wishbanana']);
+		var messages = require('./messages');
 
 		var callIfDefined = function (functionName) {
 			if (thisServer[functionName] !== undefined) {
@@ -88,4 +88,3 @@ define(['messages'], function client2ServerModule (messages) {
 		this.onError = undefined;
 		this.onClose = undefined;
 	};
-});

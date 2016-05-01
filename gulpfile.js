@@ -1,5 +1,8 @@
 var g = require('gulp'),
-    $ = require('gulp-load-plugins')();
+    $ = require('gulp-load-plugins')(),
+    b = require('Browserify'),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer');
 
 
 // Configuration
@@ -15,37 +18,21 @@ var css = {
     output: 'css'
 };
 
-var require = {
-    // Source folder
-    baseUrl: js.input,
-
-    // Entry point
-    name: 'wishbanana',
-    insertRequire: ['wishbanana'],
-
-    // Include the RequireJS lib in our build so we don't have
-    // to include it as a separate file.
-    include: ['requireLib'],
-
-    // External modules which aren't located in the source folder.
-    paths: {
-        requireLib: '../bower_components/requirejs/require',
-        jquery:     '../bower_components/jquery/dist/jquery',
-        imagesloaded: '../bower_components/imagesloaded/imagesloaded.pkgd',
-        machina: '../bower_components/machina/lib/machina',
-        moment: '../bower_components/moment/moment'
-    }
-};
-
 // JS Tasks
 // ========
 
 g.task('js', () => {
-    return g.src(js.input + '/wishbanana.js')
-        .pipe($.sourcemaps.init())
-        .pipe($.requirejsOptimize(require))
-        .pipe($.sourcemaps.write())
-        .pipe(g.dest(js.output));
+    return b({
+        entries: js.input+'/wishbanana.js',
+        debug: true
+    }).bundle()
+    .pipe(source('wishbanana.js'))
+    .pipe(buffer())
+    .pipe($.sourcemaps.init({ loadMaps: true }))
+        .pipe($.uglify())
+        .on('error', $.util.log)
+    .pipe($.sourcemaps.write('./'))
+    .pipe(g.dest(js.output));
 });
 
 
@@ -77,7 +64,7 @@ g.task('clean-css', () => {
 
 g.task('clean-js', () => {
     return g.src(js.output).pipe($.clean());
-})
+});
 
 g.task('clean', ['clean-css', 'clean-js']);
 
