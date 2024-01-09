@@ -1,17 +1,18 @@
 'use strict';
 
-var url = 'wss://wishbanana.herokuapp.com',
+var url = 'ws://cheap-seahorse-65.deno.dev/',
 	stateNames = ['Connecting', 'Matching', 'Counting', 'Playing', 'Ending'];
 
-logging = require('./logging')('Server');
+var logging = require('./logging')('Server');
 var log = logging.log;
+var client2Server = require('./client2Server');
 
 module.exports = function Game (name) {
 	var thisGame = this,
 	    playing = true,
 	    state = 0,
 
-	    server = new require('./client2Server')(url);
+	    server = new client2Server(url, logging);
 
 	var changeState = function (newState) {
 		if (newState - state === 1) {
@@ -27,6 +28,10 @@ module.exports = function Game (name) {
 	server.onClose = function () {
 		playing = false;
 	};
+
+  server.onError = function(data) {
+    log("ERR: " + data, logging.ERROR);
+  }
 
 	server.onConnected = function () {
 		thisGame.onConnected();

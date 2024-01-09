@@ -1,6 +1,7 @@
 	'use strict';
 
-	module.exports = function Server (url) {
+	module.exports = function Server (url, logging) {
+    var log = logging.log
 		if (!window.WebSocket) {
 			log('WebSockets are not supported.', logging.ERROR);
 			throw new Error('WebSockets are not supported.');
@@ -13,12 +14,17 @@
 
 		var callIfDefined = function (functionName) {
 			if (thisServer[functionName] !== undefined) {
+        log("calling " + functionName, logging.INFO)
 				thisServer[functionName].apply(this, Array.prototype.slice.call(arguments, 1));
+        return;
 			}
+      log("not calling " + functionName, logging.INFO)
 		};
 
 		var sendMessage = function (message) {
-			conn.send(JSON.stringify(message));
+      var data = JSON.stringify(message)
+      log(data, logging.INFO);
+			conn.send(data);
 		};
 
 		conn.onopen = function () {
@@ -26,6 +32,7 @@
 		};
 
 		conn.onmessage = function (event) {
+      log(event.data, logging.INFO);
 			var message;
 
 			try {

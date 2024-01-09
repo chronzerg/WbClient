@@ -1,6 +1,6 @@
 'use strict';
 
-logging = require('./logging')('wishbanana');
+var logging = require('./logging')('wishbanana');
 var log = logging.log;
 
 var unipage = require('unipage');
@@ -8,6 +8,7 @@ var $ = require('jquery');
 
 $(function onDocumentReady () {
 	var mainunipage = unipage($('body > div.page'));
+  var game = require('./game')
 
 	// When all images are loaded, switch to the menu page.
 	// TODO - Fix this.
@@ -42,7 +43,7 @@ $(function onDocumentReady () {
 	var gameunipage = unipage($('div#game').find('div.state')),
 	    countingunipage = unipage($('div#counting').find('div.count')),
 	    g = null;
-	var animations = require('./animations');
+	var animations = require('./animations')();
 
 	var updateYourClicks = function (yourClicks) {
 		animations.updateYourProgress(yourClicks / WIN_CLICKS);
@@ -59,11 +60,12 @@ $(function onDocumentReady () {
 	};
 
 	var initNewGame = function (name) {
-		g = new require('./game')(name);
+		g = new game(name);
 		g.onConnected = function () {
 			$('#matching > h2').html('matching...');
 		};
 		g.onWinCount = function (count) {
+      console.log("got win count " + count);
 			WIN_CLICKS = count;
 			if (WIN_CLICKS < 1) {
 				WIN_CLICKS = 1;

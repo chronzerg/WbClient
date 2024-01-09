@@ -2,7 +2,7 @@
 
 // List of modules whose logs are not displayed.
 var moduleFilter = {};
-var levelFilter = 0;
+var levelFilter = 10;
 var levelNames = ['ERROR', 'WARNING', 'DEBUG', 'INFO'];
 var moment = require('moment');
 
