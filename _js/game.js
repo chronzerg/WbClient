@@ -1,6 +1,6 @@
 'use strict';
 
-var url = 'ws://cheap-seahorse-65.deno.dev/',
+var url = 'ws://wishbanana.deno.dev/',
 	stateNames = ['Connecting', 'Matching', 'Counting', 'Playing', 'Ending'];
 
 var logging = require('./logging')('Server');
