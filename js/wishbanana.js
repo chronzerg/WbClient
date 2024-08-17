@@ -351,7 +351,7 @@ module.exports = function() {
 },{"./messages":5}],3:[function(require,module,exports){
 'use strict';
 
-var url = 'ws://wishbanana.deno.dev/',
+var url = 'wss://wishbanana.deno.dev/',
 	stateNames = ['Connecting', 'Matching', 'Counting', 'Playing', 'Ending'];
 
 var logging = require('./logging')('Server');
